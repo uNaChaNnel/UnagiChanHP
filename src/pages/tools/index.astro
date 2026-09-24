@@ -1,7 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ToolCard from '../../components/ToolCard.astro';
-import AdSense from '../../components/AdSense.astro';
 import { toolsData } from '../../data/tools';
 ---
 
@@ -26,9 +25,6 @@ import { toolsData } from '../../data/tools';
         <ToolCard tool={tool} featured={tool.status === 'active'} />
       ))}
     </div>
-
-    <!-- AdSense Slot -->
-    <AdSense slotId="tools-page-slot" />
 
     <!-- StampCreator Spotlight Feature Guide -->
     <div class="cyber-card tool-deep-dive">

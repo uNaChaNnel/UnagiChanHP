@@ -2,7 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import ToolCard from '../components/ToolCard.astro';
 import PostCard from '../components/PostCard.astro';
-import AdSense from '../components/AdSense.astro';
 import { toolsData } from '../data/tools';
 import { getCollection } from 'astro:content';
 
@@ -97,11 +96,6 @@ const featuredTool = toolsData[0];
         </a>
       </div>
     </div>
-  </section>
-
-  <!-- Google AdSense Slot -->
-  <section class="container">
-    <AdSense slotId="homepage-banner" />
   </section>
 
   <!-- Latest Blog Posts -->

@@ -12,7 +12,7 @@ interface Props {
 }
 
 const { title, description, image, type } = Astro.props;
-const publisherId = import.meta.env.PUBLIC_ADSENSE_CLIENT_ID;
+const publisherId = import.meta.env.PUBLIC_ADSENSE_CLIENT_ID || 'ca-pub-9242439217321222';
 ---
 
 <!doctype html>
@@ -20,14 +20,13 @@ const publisherId = import.meta.env.PUBLIC_ADSENSE_CLIENT_ID;
   <head>
     <SEO title={title} description={description} image={image} type={type} />
     
-    <!-- Google AdSense Auto Ads / Verification Script -->
-    {publisherId && publisherId !== 'ca-pub-XXXXXXXXXXXXXXXX' && (
-      <script
-        async
-        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${publisherId}`}
-        crossorigin="anonymous"
-      ></script>
-    )}
+    <!-- Google AdSense Verification & Auto Ads -->
+    <meta name="google-adsense-account" content={publisherId} />
+    <script
+      async
+      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${publisherId}`}
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <Header />

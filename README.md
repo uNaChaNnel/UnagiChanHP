@@ -68,14 +68,14 @@ npm run preview
 Cloudflare Pages の **環境変数** または ローカルの `.env` ファイルに、AdSense管理画面で発行されるあなたのパブリッシャーIDを設定します：
 
 ```env
-PUBLIC_ADSENSE_CLIENT_ID=ca-pub-XXXXXXXXXXXXXXXX
+PUBLIC_ADSENSE_CLIENT_ID=ca-pub-9242439217321222
 ```
-設定すると、すべてのページの `<head>` タグ内にAdSenseの自動広告・審査タグが自動的に挿入されます。
+設定すると、すべてのページの `<head>` タグ内にAdSenseの自動広告スクリプトおよび認証メタタグが自動的に挿入されます（※自動広告のみで運用）。
 
-### 2. ads.txt の更新
-`public/ads.txt` を開き、あなたのパブリッシャーIDに書き換えます：
+### 2. ads.txt の確認
+`public/ads.txt` に以下のパブリッシャー情報が設定されています：
 ```text
-google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+google.com, pub-9242439217321222, DIRECT, f08c47fec0942fa0
 ```
 
 ### 3. 審査用固定ページ

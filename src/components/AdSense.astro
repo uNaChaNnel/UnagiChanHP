@@ -1,25 +1,31 @@
 ---
+/**
+ * Google AdSense Component
+ * ※ 現在は「自動広告（Auto Ads）」のみで運用しているため、
+ * Layout.astro のヘッダーにて一元配信されています。
+ * 将来的に個別広告ユニット（手動スロット）を設置する場合に備えてコンポーネントを維持しています。
+ */
 interface Props {
   slotId?: string;
   format?: 'auto' | 'fluid' | 'rectangle';
   responsive?: boolean;
   className?: string;
+  enableManualSlot?: boolean;
 }
 
 const {
-  slotId = '0000000000',
+  slotId = '',
   format = 'auto',
   responsive = true,
   className = '',
+  enableManualSlot = false,
 } = Astro.props;
 
-// クライアントID（環境変数 または 定数）。審査通過後に自身のパブリッシャーID（ca-pub-XXXXXXXXXXXX）を設定可能
-const publisherId = import.meta.env.PUBLIC_ADSENSE_CLIENT_ID || '';
-const isConfigured = Boolean(publisherId && publisherId !== 'ca-pub-XXXXXXXXXXXXXXXX');
+const publisherId = import.meta.env.PUBLIC_ADSENSE_CLIENT_ID || 'ca-pub-9242439217321222';
 ---
 
-<div class={`adsense-wrapper my-8 ${className}`}>
-  {isConfigured ? (
+{enableManualSlot && slotId && (
+  <div class={`adsense-wrapper my-8 ${className}`}>
     <ins
       class="adsbygoogle"
       style="display:block"
@@ -31,13 +37,8 @@ const isConfigured = Boolean(publisherId && publisherId !== 'ca-pub-XXXXXXXXXXXX
     <script is:inline>
       (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
-  ) : (
-    <div class="ad-placeholder">
-      <div class="ad-tag">SPONSORED / 広告枠</div>
-      <p class="ad-note">Google AdSense 掲載スロット（審査通過後に自動反映）</p>
-    </div>
-  )}
-</div>
+  </div>
+)}
 
 <style>
   .adsense-wrapper {
@@ -48,35 +49,5 @@ const isConfigured = Boolean(publisherId && publisherId !== 'ca-pub-XXXXXXXXXXXX
     align-items: center;
     width: 100%;
     overflow: hidden;
-  }
-
-  .ad-placeholder {
-    width: 100%;
-    max-width: 728px;
-    height: 90px;
-    border: 1px dashed rgba(0, 240, 255, 0.25);
-    background: rgba(10, 16, 28, 0.4);
-    border-radius: var(--radius-sm);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.25rem;
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    user-select: none;
-  }
-
-  .ad-tag {
-    font-size: 0.65rem;
-    letter-spacing: 0.08em;
-    color: var(--cyan);
-    font-family: var(--font-mono);
-    text-transform: uppercase;
-  }
-
-  .ad-note {
-    font-size: 0.75rem;
-    color: var(--text-secondary);
   }
 </style>

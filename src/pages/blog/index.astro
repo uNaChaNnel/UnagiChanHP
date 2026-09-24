@@ -1,7 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PostCard from '../../components/PostCard.astro';
-import AdSense from '../../components/AdSense.astro';
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('blog');
@@ -41,9 +40,6 @@ const allTags = Array.from(new Set(posts.flatMap(p => p.data.tags)));
         <PostCard post={post} />
       ))}
     </div>
-
-    <!-- AdSense Slot -->
-    <AdSense slotId="blog-index-bottom-slot" />
   </div>
 </Layout>
 

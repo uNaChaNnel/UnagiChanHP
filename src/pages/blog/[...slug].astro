@@ -1,6 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import AdSense from '../../components/AdSense.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -58,9 +57,6 @@ const xShareLink = `https://twitter.com/intent/tweet?text=${shareText}&url=${enc
     </div>
 
     <div class="container-narrow article-body-container">
-      <!-- Top AdSense Slot -->
-      <AdSense slotId="article-top-slot" />
-
       <!-- Main Prose Content -->
       <div class="prose">
         <Content />
@@ -83,9 +79,6 @@ const xShareLink = `https://twitter.com/intent/tweet?text=${shareText}&url=${enc
           </a>
         </div>
       </div>
-
-      <!-- Bottom AdSense Slot -->
-      <AdSense slotId="article-bottom-slot" />
 
       <!-- Tool Promo Banner -->
       <div class="cyber-card article-tool-promo">
