@@ -1,0 +1,214 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ToolCard from '../../components/ToolCard.astro';
+import AdSense from '../../components/AdSense.astro';
+import { toolsData } from '../../data/tools';
+---
+
+<Layout
+  title="制作ツール一覧 | うなぎちゃん公式サイト"
+  description="うなぎちゃんが開発・提供しているクリエイター支援Webツールの一覧。スマホ完結LINEスタンプ制作ツール「StampCreator」をはじめ、登録不要・ブラウザ完結のツールを提供しています。"
+>
+  <div class="page-header">
+    <div class="container">
+      <span class="cyber-badge pink">TOOLS DIRECTORY</span>
+      <h1 class="page-title">制作ツール・Webアプリ一覧</h1>
+      <p class="page-desc">
+        クリエイターが創作活動に集中できるよう、面倒な規格調整や画像処理を自動化するWebツールを開発・公開しています。
+        すべてのツールはインストール不要、スマホやPCのブラウザからすぐにご利用いただけます。
+      </p>
+    </div>
+  </div>
+
+  <div class="container tools-main-container">
+    <div class="tools-grid">
+      {toolsData.map((tool) => (
+        <ToolCard tool={tool} featured={tool.status === 'active'} />
+      ))}
+    </div>
+
+    <!-- AdSense Slot -->
+    <AdSense slotId="tools-page-slot" />
+
+    <!-- StampCreator Spotlight Feature Guide -->
+    <div class="cyber-card tool-deep-dive">
+      <div class="deep-header">
+        <span class="cyber-badge">DEEP DIVE</span>
+        <h2 class="deep-title">StampCreator の特徴と安心へのこだわり</h2>
+      </div>
+
+      <div class="feature-columns">
+        <div class="column-card">
+          <div class="icon-circle">🔒</div>
+          <h3>完全プライベート処理</h3>
+          <p>
+            アップロードされた画像は一切サーバーに送信・保存されません。
+            お使いのブラウザ内部（HTML5 Canvas）で高速処理されるため、著作権や未公開イラストの流出リスクがゼロです。
+          </p>
+        </div>
+
+        <div class="column-card">
+          <div class="icon-circle">⚡</div>
+          <h3>スマホ・タブレット完全対応</h3>
+          <p>
+            PCソフトを持っていなくても、iPadやスマートフォンのブラウザだけで完結。
+            イラスト制作アプリで描いた画像をそのまま読み込んですぐにZIP出力できます。
+          </p>
+        </div>
+
+        <div class="column-card">
+          <div class="icon-circle">🎯</div>
+          <h3>公式審査エラーの徹底防止</h3>
+          <p>
+            偶数ドット制限、余白不足、main/tab画像の比率不一致など、初心者が陥りがちなリジェクト理由を自動補正で先回りしてクリアします。
+          </p>
+        </div>
+      </div>
+
+      <div class="cta-banner">
+        <div class="cta-text">
+          <strong>今すぐ無料でスタンプ画像セットを作成する</strong>
+          <span>登録不要・数秒でZIPダウンロードが可能です</span>
+        </div>
+        <a
+          href="https://stampcreator.unagichan.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="cyber-btn cyber-btn-primary"
+        >
+          StampCreator を起動する
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .page-header {
+    padding: 4.5rem 0 3rem;
+    border-bottom: 1px solid var(--border-subtle);
+    background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(236, 72, 153, 0.08), transparent 70%);
+  }
+
+  .page-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-top: 0.75rem;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+
+  .page-desc {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    max-width: 680px;
+    line-height: 1.8;
+  }
+
+  .tools-main-container {
+    padding-top: 3.5rem;
+    padding-bottom: 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  .tools-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .tools-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Deep Dive */
+  .tool-deep-dive {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .deep-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 0.5rem;
+  }
+
+  .feature-columns {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .feature-columns {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .column-card {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .icon-circle {
+    font-size: 1.75rem;
+  }
+
+  .column-card h3 {
+    font-size: 1.15rem;
+    color: var(--cyan);
+    font-weight: 600;
+  }
+
+  .column-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .cta-banner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(139, 92, 246, 0.15));
+    border: 1px solid var(--border-glow);
+    border-radius: var(--radius-md);
+    padding: 1.75rem 2rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @media (min-width: 640px) {
+    .cta-banner {
+      flex-direction: row;
+    }
+  }
+
+  .cta-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .cta-text strong {
+    font-size: 1.15rem;
+    color: #fff;
+  }
+
+  .cta-text span {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+</style>

@@ -1,0 +1,226 @@
+---
+import type { ToolItem } from '../data/tools';
+
+interface Props {
+  tool: ToolItem;
+  featured?: boolean;
+}
+
+const { tool, featured = false } = Astro.props;
+---
+
+<div class={`cyber-card tool-card ${featured ? 'is-featured' : ''}`}>
+  <div class="tool-content">
+    <div class="tool-header">
+      <div class="badge-group">
+        {tool.badge && (
+          <span class={`cyber-badge ${tool.status === 'active' ? 'pink' : 'purple'}`}>
+            {tool.badge}
+          </span>
+        )}
+        <span class="status-indicator">
+          <span class={`status-dot ${tool.status}`}></span>
+          {tool.status === 'active' ? '稼働中 / 無料' : '開発中'}
+        </span>
+      </div>
+      <h3 class="tool-title">{tool.title}</h3>
+      <p class="tool-catchphrase">{tool.catchphrase}</p>
+    </div>
+
+    <p class="tool-description">{tool.description}</p>
+
+    {tool.features && tool.features.length > 0 && (
+      <div class="tool-features">
+        <div class="feature-label">KEY FEATURES</div>
+        <ul class="feature-list">
+          {tool.features.map((feature) => (
+            <li>
+              <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              <span>{feature}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    <div class="tool-tags">
+      {tool.tags.map((tag) => (
+        <span class="tool-tag">#{tag}</span>
+      ))}
+    </div>
+
+    <div class="tool-action">
+      {tool.status === 'active' ? (
+        <a
+          href={tool.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="cyber-btn cyber-btn-primary tool-btn"
+        >
+          <span>ツールを使う</span>
+          <svg class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </a>
+      ) : (
+        <button class="cyber-btn cyber-btn-secondary tool-btn disabled" disabled>
+          <span>開発進行中</span>
+        </button>
+      )}
+    </div>
+  </div>
+</div>
+
+<style>
+  .tool-card {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tool-card.is-featured {
+    border-color: rgba(0, 240, 255, 0.35);
+    background: radial-gradient(circle at top left, rgba(0, 240, 255, 0.08), transparent 70%), var(--grad-card);
+  }
+
+  .tool-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 1.25rem;
+  }
+
+  .tool-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .badge-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  .status-dot.active {
+    background-color: var(--green);
+    box-shadow: 0 0 8px var(--green);
+  }
+
+  .status-dot.coming-soon {
+    background-color: #f59e0b;
+  }
+
+  .tool-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+
+  .tool-catchphrase {
+    font-size: 0.95rem;
+    color: var(--cyan);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .tool-description {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .tool-features {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+  }
+
+  .feature-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.6rem;
+  }
+
+  .feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .feature-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #e2e8f0;
+  }
+
+  .check-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--cyan);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .tool-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: auto;
+  }
+
+  .tool-tag {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.03);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+  }
+
+  .tool-action {
+    padding-top: 0.5rem;
+  }
+
+  .tool-btn {
+    width: 100%;
+  }
+
+  .tool-btn.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  .arrow-icon {
+    width: 16px;
+    height: 16px;
+  }
+</style>

@@ -1,0 +1,116 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostCard from '../../components/PostCard.astro';
+import AdSense from '../../components/AdSense.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// 全タグをユニーク抽出
+const allTags = Array.from(new Set(posts.flatMap(p => p.data.tags)));
+---
+
+<Layout
+  title="公式ブログ | うなぎちゃん公式サイト"
+  description="うなぎちゃんの公式ブログ。LINEスタンプ制作のノウハウ、Webツール開発記、CloudflareやAstroによるモダンフロントエンド開発Tipsを公開しています。"
+>
+  <div class="page-header">
+    <div class="container">
+      <span class="cyber-badge purple">BLOG &amp; ARTICLES</span>
+      <h1 class="page-title">公式ブログ・開発ノート</h1>
+      <p class="page-desc">
+        LINEスタンプ制作の実践知識、Webフロントエンド技術、個人ツールのUI/UX設計など、
+        クリエイターとエンジニアに役立つ実践的な知見をシェアしています。
+      </p>
+
+      {allTags.length > 0 && (
+        <div class="tag-cloud">
+          <span class="tag-label">TAGS:</span>
+          {allTags.map((tag) => (
+            <span class="tag-pill">#{tag}</span>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+
+  <div class="container blog-main-container">
+    <div class="blog-grid">
+      {sortedPosts.map((post) => (
+        <PostCard post={post} />
+      ))}
+    </div>
+
+    <!-- AdSense Slot -->
+    <AdSense slotId="blog-index-bottom-slot" />
+  </div>
+</Layout>
+
+<style>
+  .page-header {
+    padding: 4.5rem 0 3rem;
+    border-bottom: 1px solid var(--border-subtle);
+    background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(139, 92, 246, 0.08), transparent 70%);
+  }
+
+  .page-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-top: 0.75rem;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+
+  .page-desc {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    max-width: 680px;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .tag-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--cyan);
+    letter-spacing: 0.08em;
+  }
+
+  .tag-pill {
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-subtle);
+    padding: 0.25rem 0.7rem;
+    border-radius: var(--radius-full);
+  }
+
+  .blog-main-container {
+    padding-top: 3.5rem;
+    padding-bottom: 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .blog-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

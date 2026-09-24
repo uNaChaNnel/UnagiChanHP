@@ -1,0 +1,382 @@
+---
+const navItems = [
+  { label: 'ホーム', href: '/' },
+  { label: '制作ツール', href: '/tools' },
+  { label: 'ブログ', href: '/blog' },
+  { label: 'プロフィール', href: '/about' },
+  { label: 'お問い合わせ', href: '/contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="header-inner container">
+    <a href="/" class="brand-logo" aria-label="うなぎちゃん公式サイト ホーム">
+      <div class="logo-icon-wrap">
+        <svg class="logo-svg" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="14" stroke="url(#hGrad)" stroke-width="2"/>
+          <path d="M9 21C8 17 11 13 14 12C18 10 22 12 23 16C24 19 21 22 18 22C14 22 12 19 13 17" stroke="url(#hGrad)" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="12" cy="13" r="1.5" fill="#00f0ff"/>
+          <defs>
+            <linearGradient id="hGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00f0ff" />
+              <stop offset="100%" stop-color="#ec4899" />
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="live-dot"></span>
+      </div>
+      <div class="brand-text">
+        <span class="site-name">うなぎちゃん</span>
+        <span class="site-sub">OFFICIAL</span>
+      </div>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="desktop-nav" aria-label="メインナビゲーション">
+      {navItems.map((item) => {
+        const isActive = item.href === '/' 
+          ? currentPath === '/' 
+          : currentPath.startsWith(item.href);
+        return (
+          <a
+            href={item.href}
+            class={`nav-link ${isActive ? 'active' : ''}`}
+          >
+            {item.label}
+          </a>
+        );
+      })}
+    </nav>
+
+    <!-- Social & Actions -->
+    <div class="header-actions">
+      <a
+        href="https://x.com/UnagiChaaaaaN"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="x-link-btn"
+        aria-label="うなぎちゃんのX（旧Twitter）アカウント @UnagiChaaaaaN"
+      >
+        <svg class="x-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        <span class="x-handle">@UnagiChaaaaaN</span>
+      </a>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="mobile-toggle" id="menuToggle" aria-label="メニューを開く" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <nav class="mobile-nav">
+      {navItems.map((item) => {
+        const isActive = item.href === '/' 
+          ? currentPath === '/' 
+          : currentPath.startsWith(item.href);
+        return (
+          <a
+            href={item.href}
+            class={`mobile-link ${isActive ? 'active' : ''}`}
+          >
+            {item.label}
+          </a>
+        );
+      })}
+      <a
+        href="https://x.com/UnagiChaaaaaN"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mobile-x-link"
+      >
+        <span>X (Twitter) @UnagiChaaaaaN</span>
+        <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggleBtn = document.getElementById('menuToggle');
+  const drawer = document.getElementById('mobileDrawer');
+
+  if (toggleBtn && drawer) {
+    toggleBtn.addEventListener('click', () => {
+      const isOpen = drawer.classList.toggle('is-open');
+      toggleBtn.setAttribute('aria-expanded', String(isOpen));
+      toggleBtn.classList.toggle('active', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    // リンククリック時に閉じる
+    const mobileLinks = drawer.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        drawer.classList.remove('is-open');
+        toggleBtn.classList.remove('active');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(7, 9, 14, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+  }
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+  }
+
+  .logo-icon-wrap {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.5));
+  }
+
+  .live-dot {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 8px;
+    height: 8px;
+    background: #00f0ff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00f0ff;
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .site-name {
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: -0.01em;
+    background: linear-gradient(135deg, #ffffff 40%, var(--cyan) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .site-sub {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--cyan);
+    opacity: 0.9;
+  }
+
+  .desktop-nav {
+    display: none;
+    align-items: center;
+    gap: 1.75rem;
+  }
+
+  @media (min-width: 768px) {
+    .desktop-nav {
+      display: flex;
+    }
+  }
+
+  .nav-link {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    position: relative;
+    padding: 0.4rem 0;
+  }
+
+  .nav-link:hover {
+    color: #ffffff;
+  }
+
+  .nav-link.active {
+    color: var(--cyan);
+    font-weight: 600;
+  }
+
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--cyan);
+    box-shadow: 0 0 8px var(--cyan);
+    border-radius: 2px;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .x-link-btn {
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-subtle);
+    padding: 0.45rem 0.9rem;
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-main);
+    transition: all 0.25s ease;
+  }
+
+  @media (min-width: 640px) {
+    .x-link-btn {
+      display: inline-flex;
+    }
+  }
+
+  .x-link-btn:hover {
+    background: rgba(0, 240, 255, 0.1);
+    border-color: var(--cyan);
+    color: #fff;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.25);
+  }
+
+  .x-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .x-handle {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+
+  .mobile-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    padding: 8px;
+    cursor: pointer;
+  }
+
+  @media (min-width: 768px) {
+    .mobile-toggle {
+      display: none;
+    }
+  }
+
+  .mobile-toggle .bar {
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-main);
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  .mobile-toggle.active .bar:first-child {
+    transform: translateY(4px) rotate(45deg);
+  }
+
+  .mobile-toggle.active .bar:last-child {
+    transform: translateY(-4px) rotate(-45deg);
+  }
+
+  .mobile-drawer {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(7, 9, 14, 0.98);
+    backdrop-filter: blur(20px);
+    padding: 2rem 1.5rem;
+    z-index: 99;
+    flex-direction: column;
+  }
+
+  .mobile-drawer.is-open {
+    display: flex;
+  }
+
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .mobile-link {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .mobile-link.active {
+    color: var(--cyan);
+  }
+
+  .mobile-x-link {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1.25rem;
+    background: rgba(0, 240, 255, 0.08);
+    border: 1px solid var(--cyan-glow);
+    border-radius: var(--radius-md);
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .external-icon {
+    width: 18px;
+    height: 18px;
+  }
+</style>

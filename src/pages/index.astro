@@ -1,0 +1,471 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ToolCard from '../components/ToolCard.astro';
+import PostCard from '../components/PostCard.astro';
+import AdSense from '../components/AdSense.astro';
+import { toolsData } from '../data/tools';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog');
+const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0, 3);
+const featuredTool = toolsData[0];
+---
+
+<Layout
+  title="うなぎちゃん公式サイト | クリエイター支援ツール＆ブログ"
+  description="うなぎちゃん（@UnagiChaaaaaN）の公式サイト。スマホ完結LINEスタンプ制作ツール「StampCreator」をはじめとするWebツール開発と、開発ノウハウ・制作ティップスを発信しています。"
+>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-glow"></div>
+    <div class="container hero-container">
+      <div class="hero-badge-wrap">
+        <span class="cyber-badge">OFFICIAL PORTAL</span>
+        <span class="hero-subtext">DEVELOPER &amp; CREATOR</span>
+      </div>
+
+      <h1 class="hero-title">
+        クリエイターの「つくりたい」を<br />
+        <span class="gradient-text">テクノロジーで加速する。</span>
+      </h1>
+
+      <p class="hero-description">
+        個人開発者「うなぎちゃん」の公式ポータルサイト。
+        スマホ完結の制作支援Webツール <strong>StampCreator</strong> の公開や、
+        Web開発・UI/UX・創作ノウハウをまとめた実践的ブログをお届けします。
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="https://stampcreator.unagichan.com/" target="_blank" rel="noopener noreferrer" class="cyber-btn cyber-btn-primary">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          <span>StampCreator を使う</span>
+        </a>
+        <a href="/tools" class="cyber-btn cyber-btn-secondary">
+          <span>制作ツール一覧を見る</span>
+        </a>
+        <a href="https://x.com/UnagiChaaaaaN" target="_blank" rel="noopener noreferrer" class="cyber-btn cyber-btn-secondary x-btn">
+          <svg class="x-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+          <span>X @UnagiChaaaaaN</span>
+        </a>
+      </div>
+
+      <!-- Quick Metrics -->
+      <div class="metrics-grid">
+        <div class="metric-item">
+          <span class="metric-value">100%</span>
+          <span class="metric-label">Client-Side Process (画像非保存)</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-value">Free</span>
+          <span class="metric-label">登録不要・完全無料</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-value">Mobile</span>
+          <span class="metric-label">スマホ・iPad完全対応</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Tool Section -->
+  <section class="section section-tools">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">
+          <span class="cyber-badge pink">FEATURED PRODUCT</span>
+        </div>
+        <h2 class="section-title">注目の制作ツール</h2>
+        <p class="section-desc">
+          クリエイターの作業負担を劇的に減らす、実用的な自作Webツールを公開しています。
+        </p>
+      </div>
+
+      <div class="featured-tool-wrapper">
+        <ToolCard tool={featuredTool} featured={true} />
+      </div>
+
+      <div class="section-more">
+        <a href="/tools" class="more-link">
+          <span>すべての制作ツール・プロジェクトを見る</span>
+          <svg class="arrow-right" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Google AdSense Slot -->
+  <section class="container">
+    <AdSense slotId="homepage-banner" />
+  </section>
+
+  <!-- Latest Blog Posts -->
+  <section class="section section-blog">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">
+          <span class="cyber-badge purple">LATEST INSIGHTS</span>
+        </div>
+        <h2 class="section-title">公式ブログ・制作ノウハウ</h2>
+        <p class="section-desc">
+          LINEスタンプ規格の攻略法、Web開発技術、個人ツールのUI/UX設計などを分かりやすく解説。
+        </p>
+      </div>
+
+      <div class="blog-grid">
+        {sortedPosts.map((post) => (
+          <PostCard post={post} />
+        ))}
+      </div>
+
+      <div class="section-more">
+        <a href="/blog" class="more-link">
+          <span>ブログ記事一覧をすべて読む</span>
+          <svg class="arrow-right" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About / Vision Teaser -->
+  <section class="section section-about-teaser">
+    <div class="container">
+      <div class="cyber-card about-card">
+        <div class="about-grid">
+          <div class="about-content">
+            <span class="cyber-badge">ABOUT UNAGICHAN</span>
+            <h2 class="about-title">「シンプルで役に立つ」を、すぐそばに。</h2>
+            <p class="about-text">
+              はじめまして！個人開発者のうなぎちゃん（@UnagiChaaaaaN）です。
+              「自分が本当に使いたいツール」「同じ悩みを持つクリエイターが笑顔になるツール」をモットーに、
+              日夜Webフロントエンド開発やデザインを行っています。
+            </p>
+            <div class="about-links">
+              <a href="/about" class="cyber-btn cyber-btn-primary">
+                詳しいプロフィールを読む
+              </a>
+              <a href="https://x.com/UnagiChaaaaaN" target="_blank" rel="noopener noreferrer" class="cyber-btn cyber-btn-secondary">
+                X（旧Twitter）をフォロー
+              </a>
+            </div>
+          </div>
+          <div class="about-deco">
+            <div class="code-terminal">
+              <div class="terminal-bar">
+                <span class="t-dot red"></span>
+                <span class="t-dot yellow"></span>
+                <span class="t-dot green"></span>
+                <span class="terminal-title">unagichan_profile.ts</span>
+              </div>
+              <pre><code>const creator = &#123;
+  name: "うなぎちゃん",
+  handle: "@UnagiChaaaaaN",
+  stack: ["Astro", "TypeScript", "Cloudflare"],
+  mission: "クリエイター支援と爆速Webツールの創造",
+  status: "Shipping great tools &amp; writing tips!"
+&#125;;</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Hero */
+  .hero-section {
+    position: relative;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(0, 240, 255, 0.12) 0%, rgba(139, 92, 246, 0.08) 50%, transparent 80%);
+    filter: blur(60px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-badge-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-subtext {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .hero-title {
+      font-size: 3.75rem;
+    }
+  }
+
+  .hero-description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 680px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .btn-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .x-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    width: 100%;
+    max-width: 720px;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 2rem;
+  }
+
+  @media (max-width: 600px) {
+    .metrics-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
+  .metric-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .metric-value {
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--cyan);
+  }
+
+  .metric-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  /* Section Common */
+  .section {
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .section-badge {
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-desc {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    max-width: 580px;
+  }
+
+  .section-more {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+  }
+
+  .more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--cyan);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    border-radius: var(--radius-full);
+    background: rgba(0, 240, 255, 0.05);
+    transition: all 0.25s ease;
+  }
+
+  .more-link:hover {
+    background: rgba(0, 240, 255, 0.15);
+    border-color: var(--cyan);
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+  }
+
+  .arrow-right {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Featured Tool */
+  .featured-tool-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* Blog Grid */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .blog-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* About Teaser */
+  .about-card {
+    padding: 3rem;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  @media (min-width: 860px) {
+    .about-grid {
+      grid-template-columns: 1.2fr 1fr;
+    }
+  }
+
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .about-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.35;
+  }
+
+  .about-text {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    font-size: 0.98rem;
+  }
+
+  .about-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  /* Terminal Mockup */
+  .code-terminal {
+    background: #060911;
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.6rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .t-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .t-dot.red { background: #ef4444; }
+  .t-dot.yellow { background: #f59e0b; }
+  .t-dot.green { background: #10b981; }
+
+  .terminal-title {
+    margin-left: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .code-terminal pre {
+    padding: 1.25rem;
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #38bdf8;
+    background: transparent !important;
+  }
+</style>

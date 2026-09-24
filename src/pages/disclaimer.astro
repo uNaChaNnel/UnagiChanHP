@@ -1,0 +1,87 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="免責事項 | うなぎちゃん公式サイト"
+  description="うなぎちゃん公式サイトにおける掲載情報、制作ツールの利用に関する免責事項および著作権について記載しています。"
+>
+  <div class="page-header">
+    <div class="container-narrow">
+      <span class="cyber-badge">LEGAL</span>
+      <h1 class="page-title">免責事項・著作権</h1>
+      <p class="page-desc">最終改定日: 2026年9月25日</p>
+    </div>
+  </div>
+
+  <div class="container-narrow disclaimer-body">
+    <div class="prose disclaimer-content">
+      <h2>1. 掲載情報の正確性について</h2>
+      <p>
+        当サイトに掲載されている情報については、可能な限り正確な情報を掲載するよう細心の注意を払っておりますが、誤情報が混入したり、情報の最新性が失われている可能性もあります。<br />
+        当サイトの情報を用いて行う一切の行為、および生じた損害等について、当サイトは一切の責任を負いかねますのでご了承ください。
+      </p>
+
+      <h2>2. 制作ツール（StampCreator等）の利用について</h2>
+      <p>
+        当サイトで紹介・提供しているWebツール（StampCreator等）は、LINEスタンプ制作および画像整形の補助を目的とした無保証の無料サービスです。<br />
+        ツールの利用、または利用できなかったことによって生じたいかなる損害（LINE Creators Marketでの審査結果、データ消失、機会損失等を含む）についても、運営者は責任を負いません。スタンプ申請前の画像確認はユーザーご自身の責任において行ってください。
+      </p>
+
+      <h2>3. 損害等の責任について</h2>
+      <p>
+        当サイトからリンクやバナーなどによって他のサイトに移動された場合、移動先サイトで提供される情報、サービス等について一切の責任を負いません。<br />
+        また、当サイトの保守、火災、停電、その他の自然災害、ならびにウィルスや第三者の妨害等行為などの不可抗力によって、当サイトのサービスが停止したことに起因して利用者に生じた損害についても、何ら責任を負うものではありません。
+      </p>
+
+      <h2>4. 著作権・肖像権について</h2>
+      <p>
+        当サイトで掲載しているすべての文章・画像・デザイン・プログラム等の著作権および肖像権は、当サイト運営者または各権利所有者に帰属します。<br />
+        法的に認められている引用の範囲を超えて、無断で複製・転載・改変・公衆送信等を行うことを固く禁じます。
+      </p>
+      <p>
+        なお、当サイトのWebツール（StampCreator等）を使用してユーザーが生成・書き出した画像データの著作権は、すべて元画像の著作者であるユーザー自身に帰属します。
+      </p>
+
+      <h2>5. リンクについて</h2>
+      <p>
+        当サイトは原則としてリンクフリーです。リンクを行う場合の許可や連絡は不要です。<br />
+        ただし、インラインフレームの使用や画像の直リンクなど、当サイトのコンテンツであることが不明瞭となる形式でのリンクはお断りいたします。
+      </p>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .page-header {
+    padding: 4.5rem 0 2.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+    background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(139, 92, 246, 0.05), transparent 70%);
+  }
+
+  .page-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+  }
+
+  .page-desc {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
+  }
+
+  .disclaimer-body {
+    padding-top: 3rem;
+    padding-bottom: 5rem;
+  }
+
+  .disclaimer-content {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 2.5rem;
+  }
+</style>

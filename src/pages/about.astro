@@ -1,0 +1,250 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="運営者情報・プロフィール | うなぎちゃん公式サイト"
+  description="うなぎちゃん（@UnagiChaaaaaN）のプロフィール、開発ツール、活動理念、技術スタックを紹介するページです。"
+>
+  <div class="page-header">
+    <div class="container-narrow">
+      <span class="cyber-badge pink">ABOUT CREATOR</span>
+      <h1 class="page-title">運営者情報・プロフィール</h1>
+      <p class="page-desc">うなぎちゃん（UnagiChaaaaaN）の活動とビジョン</p>
+    </div>
+  </div>
+
+  <div class="container-narrow about-body">
+    <div class="cyber-card profile-card">
+      <div class="profile-header">
+        <div class="avatar-ring">
+          <svg viewBox="0 0 64 64" fill="none" class="avatar-svg">
+            <circle cx="32" cy="32" r="30" fill="#0b0f19" stroke="url(#abGrad)" stroke-width="2"/>
+            <path d="M18 42C16 35 22 28 28 26C36 23 44 26 46 34C48 40 43 46 36 46C29 46 25 41 26 36C27 32 32 30 35 32" stroke="url(#abGrad)" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="25" cy="27" r="2.5" fill="#00f0ff"/>
+            <circle cx="22" cy="30" r="1.5" fill="#ec4899"/>
+            <defs>
+              <linearGradient id="abGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00f0ff" />
+                <stop offset="100%" stop-color="#ec4899" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="profile-names">
+          <h2 class="name">うなぎちゃん</h2>
+          <span class="subname">Web Tool Developer &amp; Creator</span>
+          <a
+            href="https://x.com/UnagiChaaaaaN"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="x-handle-link"
+          >
+            <svg class="x-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+            <span>@UnagiChaaaaaN</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="prose profile-intro">
+        <h3>ご挨拶</h3>
+        <p>
+          はじめまして、個人開発者の「うなぎちゃん」です。<br />
+          日常の創作活動やWeb制作の中で、「ここがもっと簡単になったらいいのに」「こんなツールがあれば作業が10倍速くなるのに」と感じたアイデアを、自らWebフロントエンド技術でプロダクト化しています。
+        </p>
+
+        <h3>活動理念</h3>
+        <p>
+          <strong>「迷わせない、待たせない、創作に没頭できる環境づくり」</strong><br />
+          会員登録の強制や複雑な設定を排し、スマホからでもPCからでも、開いた瞬間にサクッと目的を達成できる軽量・直感的なWebアプリケーションの提供を心がけています。
+        </p>
+
+        <h3>開発・運営プロダクト</h3>
+        <ul>
+          <li>
+            <strong><a href="https://stampcreator.unagichan.com/" target="_blank" rel="noopener noreferrer">StampCreator</a></strong><br />
+            スマホ完結・LINEスタンプ制作支援ツール。厳格なLINE Creators Marketの画像規格（偶数ドット・余白・リサイズ・main/tab生成）を完全ブラウザ内処理で一括生成・ZIP化するツール。
+          </li>
+          <li>
+            <strong>うなぎちゃん公式サイト（本サイト）</strong><br />
+            制作ツール一覧、技術ブログ、最新情報の発信母艦。
+          </li>
+        </ul>
+
+        <h3>主な技術スタック</h3>
+        <div class="skills-grid">
+          <span class="skill-tag">HTML5 / Canvas API</span>
+          <span class="skill-tag">TypeScript / JavaScript</span>
+          <span class="skill-tag">Astro (SSG)</span>
+          <span class="skill-tag">Cloudflare Pages</span>
+          <span class="skill-tag">Git / GitHub</span>
+          <span class="skill-tag">UI/UX Design</span>
+        </div>
+
+        <h3>サイト概要</h3>
+        <table class="info-table">
+          <tbody>
+            <tr>
+              <th>サイト名</th>
+              <td>うなぎちゃん公式サイト</td>
+            </tr>
+            <tr>
+              <th>運営者</th>
+              <td>うなぎちゃん (UnagiChaaaaaN)</td>
+            </tr>
+            <tr>
+              <th>URL</th>
+              <td>https://unagichan.com</td>
+            </tr>
+            <tr>
+              <th>公式SNS</th>
+              <td><a href="https://x.com/UnagiChaaaaaN" target="_blank" rel="noopener noreferrer">X (旧Twitter) @UnagiChaaaaaN</a></td>
+            </tr>
+            <tr>
+              <th>お問い合わせ</th>
+              <td><a href="/contact">お問い合わせフォーム</a> または XのDM</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .page-header {
+    padding: 4.5rem 0 2.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+    background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(236, 72, 153, 0.08), transparent 70%);
+  }
+
+  .page-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+  }
+
+  .page-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  .about-body {
+    padding-top: 3rem;
+    padding-bottom: 5rem;
+  }
+
+  .profile-card {
+    padding: 2.5rem;
+  }
+
+  .profile-header {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-subtle);
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 600px) {
+    .profile-header {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  .avatar-ring {
+    width: 90px;
+    height: 90px;
+    flex-shrink: 0;
+  }
+
+  .avatar-svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.4));
+  }
+
+  .profile-names {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .name {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #fff;
+  }
+
+  .subname {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--cyan);
+  }
+
+  .x-handle-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    font-family: var(--font-mono);
+    width: fit-content;
+  }
+
+  .x-handle-link:hover {
+    color: #fff;
+  }
+
+  .x-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0 1.5rem;
+  }
+
+  .skill-tag {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    background: rgba(0, 240, 255, 0.08);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    color: var(--cyan);
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .info-table th, .info-table td {
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--border-subtle);
+  }
+
+  .info-table th {
+    background: rgba(255, 255, 255, 0.03);
+    width: 28%;
+    color: var(--cyan);
+    font-weight: 600;
+    text-align: left;
+  }
+
+  .info-table td {
+    color: var(--text-secondary);
+  }
+</style>

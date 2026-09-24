@@ -1,0 +1,47 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SEO from '../components/SEO.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+}
+
+const { title, description, image, type } = Astro.props;
+const publisherId = import.meta.env.PUBLIC_ADSENSE_CLIENT_ID;
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <SEO title={title} description={description} image={image} type={type} />
+    
+    <!-- Google AdSense Auto Ads / Verification Script -->
+    {publisherId && publisherId !== 'ca-pub-XXXXXXXXXXXXXXXX' && (
+      <script
+        async
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${publisherId}`}
+        crossorigin="anonymous"
+      ></script>
+    )}
+  </head>
+  <body>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  #main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+</style>
