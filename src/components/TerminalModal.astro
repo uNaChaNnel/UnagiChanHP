@@ -217,7 +217,11 @@ Type <span class="term-hl">exit</span> to return to graphical interface.
 
     function printLine(text: string, className = '') {
       const line = document.createElement('div');
-      line.className = `term-line ${className}`;
+      line.className = className ? `term-line ${className}` : 'term-line';
+      line.style.whiteSpace = 'pre-wrap';
+      line.style.wordBreak = 'break-word';
+      line.style.lineHeight = '1.7';
+      line.style.marginBottom = '0.75rem';
       line.innerHTML = text;
       historyContainer?.appendChild(line);
     }
@@ -249,18 +253,42 @@ Type <span class="term-hl">exit</span> to return to graphical interface.
         case '?':
           printLine(`
 <span class="term-hl">=== UNAGI CUI COMMANDS ===</span>
-  <span class="cmd">unagi</span>        : トップへ帰還＆カードUI消去（壁紙アンヴェールモード）
-  <span class="cmd">tools</span>        : 制作ツール・プロジェクト一覧を表示
-  <span class="cmd">stamp</span>        : 注目の「StampCreator」をブラウザで即起動
-  <span class="cmd">note</span>         : 公式note（嫁との攻防・開発奮闘記）を開く
-  <span class="cmd">x</span>            : うなぎちゃんのX（@UnagiChaaaaaN）を開く
-  <span class="cmd">spec</span>         : うなぎちゃん＠（プロ駄作クリエーター）のシステム仕様
-  <span class="cmd">gpu</span>          : GPU VRAM限界アラートと嫁への土下座状況
-  <span class="cmd">wife</span>         : 嫁（あなごちゃん）の現況ステータス（超警戒）
-  <span class="cmd">doromizu</span>     : 泥水啜りプロセスの実行ログを出力
-  <span class="cmd">matrix</span>       : 緑の文字が降るマトリックス演出
-  <span class="cmd">clear</span>, <span class="cmd">cls</span>   : ターミナル画面を消去
-  <span class="cmd">exit</span>, <span class="cmd">gui</span>     : CUIを終了して通常Web画面に戻る
+
+  <span class="cmd">unagi</span>
+    ???
+
+  <span class="cmd">tools</span>
+    制作ツール・プロジェクト一覧を表示
+
+  <span class="cmd">stamp</span>
+    注目の「StampCreator」をブラウザで即起動
+
+  <span class="cmd">note</span>
+    公式note（嫁との攻防・開発奮闘記）を開く
+
+  <span class="cmd">x</span>, <span class="cmd">twitter</span>
+    うなぎちゃんのX（@UnagiChaaaaaN）を開く
+
+  <span class="cmd">spec</span>, <span class="cmd">about</span>
+    うなぎちゃん＠（プロ駄作クリエーター）のシステム仕様
+
+  <span class="cmd">gpu</span>, <span class="cmd">vram</span>
+    GPU VRAM限界アラートと嫁への土下座状況
+
+  <span class="cmd">wife</span>, <span class="cmd">anago</span>
+    嫁（あなごちゃん）の現況ステータス（超警戒）
+
+  <span class="cmd">doromizu</span>
+    泥水啜りプロセスの実行ログを出力
+
+  <span class="cmd">matrix</span>
+    緑の文字が降るマトリックス演出
+
+  <span class="cmd">clear</span>, <span class="cmd">cls</span>
+    ターミナル画面を消去
+
+  <span class="cmd">exit</span>, <span class="cmd">gui</span>
+    CUIを終了して通常Web画面に戻る
 `);
           break;
 
@@ -400,7 +428,7 @@ Type <span class="term-hl">exit</span> to return to graphical interface.
   })();
 </script>
 
-<style>
+<style is:global>
   /* Terminal Fullscreen Overlay */
   .terminal-modal {
     display: none;
@@ -532,8 +560,10 @@ Type <span class="term-hl">exit</span> to return to graphical interface.
 
   /* Lines */
   .term-line {
-    word-break: break-all;
-    white-space: pre-wrap;
+    word-break: break-word;
+    white-space: pre-wrap !important;
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
   }
 
   .term-prompt {
