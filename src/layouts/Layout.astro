@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import TerminalModal from '../components/TerminalModal.astro';
 import SEO from '../components/SEO.astro';
 import '../styles/global.css';
 
@@ -9,9 +10,10 @@ interface Props {
   description?: string;
   image?: string;
   type?: 'website' | 'article';
+  compactFooter?: boolean;
 }
 
-const { title, description, image, type } = Astro.props;
+const { title, description, image, type, compactFooter = false } = Astro.props;
 const publisherId = import.meta.env.PUBLIC_ADSENSE_CLIENT_ID || 'ca-pub-9242439217321222';
 ---
 
@@ -33,7 +35,8 @@ const publisherId = import.meta.env.PUBLIC_ADSENSE_CLIENT_ID || 'ca-pub-92424392
     <main id="main-content">
       <slot />
     </main>
-    <Footer />
+    <Footer compact={compactFooter} />
+    <TerminalModal />
   </body>
 </html>
 

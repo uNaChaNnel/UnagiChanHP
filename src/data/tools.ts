@@ -6,6 +6,7 @@ export interface ToolItem {
   url: string;
   tags: string[];
   badge?: string;
+  image?: string;
   features: string[];
   status: 'active' | 'beta' | 'coming-soon';
   releaseDate: string;
@@ -32,18 +33,19 @@ export const toolsData: ToolItem[] = [
   },
   {
     id: 'ai-prompt-lab',
-    title: 'Cyber Prompt Lab (構想中)',
-    catchphrase: 'クリエイター向けプロンプト＆アセット最適化ジェネレーター',
-    description: 'イラスト制作やデザイン生成における呪文（プロンプト）の調整や、スタンプ向きの構図・差分作成を強力に支援するジェネレーターツール（近日公開予定）。',
-    url: '#',
-    tags: ['AIプロンプト', '画像生成支援', '近日公開'],
-    badge: 'COMING SOON',
+    title: '案くれ',
+    catchphrase: '【アイデア・要望募集中】スタンプ用プロンプト生成＆最適化ツールへのご意見・案を募集！',
+    description: 'LINEスタンプ制作に役立つセリフ・ポーズの一括プロンプト生成や画像生成支援ツールの開発構想中。「こんな機能があれば便利」「こういうプロンプト一括設定が欲しい」というクリエーターの皆様からのアイデア・要望を大募集中です！',
+    url: 'https://x.com/intent/tweet?text=%40UnagiChaaaaaN%20%E3%81%86%E3%81%AA%E3%81%8E%E3%81%A1%E3%82%83%E3%82%93%E3%81%AE%E6%96%B0%E3%83%84%E3%83%BC%E3%83%AB%E3%80%81%E3%81%93%E3%82%93%E3%81%AA%E6%A9%9F%E8%83%BD%E3%81%8C%E6%AC%B2%E3%81%97%E3%81%84%EF%BC%81%20%E3%80%90%E6%A1%88%E3%81%8F%E3%82%8C%E3%80%91',
+    tags: ['案くれ', 'アイデア募集中', 'AIプロンプト', '画像生成支援', '近日公開'],
+    badge: 'IDEA WANTED // 案くれ',
+    image: '/ankure.png',
     features: [
-      'LINEスタンプに最適な表情・構図プロンプトプリセット',
-      '商用利用を考慮したプロンプト整理',
-      'タグごとのクイックコピー機能'
+      'LINEスタンプに最適な表情・構図・セリフの一括プロンプト出力',
+      'CSV一括設定やランダム生成など、クリエーターの要望をもとに実装予定',
+      'X（@UnagiChaaaaaN）で「こんな機能欲しい！」という案をお待ちしています'
     ],
     status: 'coming-soon',
-    releaseDate: 'Coming Soon'
+    releaseDate: 'アイデア集まり次第'
   }
 ];

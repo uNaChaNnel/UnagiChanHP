@@ -1,0 +1,662 @@
+---
+// TerminalModal.astro - Retro Cyber CUI Terminal Interface
+---
+
+<div id="unagiTerminalModal" class="terminal-modal" aria-hidden="true" role="dialog" aria-label="UNAGI CUI ターミナル">
+  <!-- Scanlines & CRT Distortion Overlay -->
+  <div class="crt-overlay" aria-hidden="true"></div>
+
+  <!-- Terminal Window Bar -->
+  <div class="terminal-topbar">
+    <div class="topbar-left">
+      <span class="term-status-dot"></span>
+      <span class="term-title">UNAGI-OS // CUI TERMINAL v1.0.0 [ACTIVE]</span>
+    </div>
+    <div class="topbar-right">
+      <span class="key-hint">Type <code>help</code> or <code>exit</code> (ESC to close)</span>
+      <button id="terminalCloseBtn" class="term-close-btn" aria-label="ターミナルを閉じる">[X] EXIT</button>
+    </div>
+  </div>
+
+  <!-- Terminal Body / Log Output Area -->
+  <div class="terminal-body" id="terminalOutput">
+    <div class="terminal-banner">
+======================================================================
+  _   _ _   _    _    ____ ___     ____  _   _ ___ 
+ | | | | \ | |  / \  / ___|_ _|   / ___|| | | |_ _|
+ | | | |  \| | / _ \| |  _ | |   | |    | | | || | 
+ | |_| | |\  |/ ___ \ |_| || |   | |___ | |_| || | 
+  \___/|_| \_/_/   \_\____|___|   \____| \___/|___|
+                                                   
+  UNAGI-OS (v1.0.0-unagi-core) - Cybernetic Shell
+  Host: UNAGI-LAB // Kernel: Doromizu-6.12-rtx-dream
+======================================================================
+[  OK  ] Initializing UNAGI Core Engine...
+[  OK  ] Mounting /dev/doromizu (filesystem: sticky-rice)...
+[ WARN ] Checking GPU Hardware... VRAM: 0.02% remaining. [CRITICAL HEAT]
+[ FAIL ] Authenticating with ANAGO-CHAN (Wife)... ACCESS DENIED (Iron Wall).
+[  OK  ] Loading Tool Registry: StampCreator v1.0 [READY]
+[  OK  ] System Ready. Have fun, or don't do it at all.
+
+Type <span class="term-hl">help</span> to view available commands.
+Type <span class="term-hl">exit</span> to return to graphical interface.
+======================================================================
+    </div>
+    <div id="commandHistory"></div>
+  </div>
+
+  <!-- Prompt & Input Line with Mobile Enter Button -->
+  <div class="terminal-input-row">
+    <span class="term-prompt">unagi@unagichan-lab:~$</span>
+    <input
+      type="text"
+      id="terminalInput"
+      class="term-input"
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+      aria-label="コマンド入力"
+      placeholder="Type command..."
+    />
+    <button id="terminalEnterBtn" class="term-enter-btn" type="button" aria-label="コマンド実行 (Enter)">
+      <span class="enter-text">ENTER</span>
+      <span class="enter-sym">↵</span>
+    </button>
+  </div>
+</div>
+
+<script>
+  // Terminal Logic
+  (function () {
+    const modal = document.getElementById('unagiTerminalModal');
+    const closeBtn = document.getElementById('terminalCloseBtn');
+    const enterBtn = document.getElementById('terminalEnterBtn');
+    const input = document.getElementById('terminalInput') as HTMLInputElement | null;
+    const historyContainer = document.getElementById('commandHistory');
+    const bodyContainer = document.getElementById('terminalOutput');
+
+    let isOpen = false;
+
+    // Public / Event-based Open & Close
+    function openTerminal() {
+      isOpen = true;
+      if (modal) {
+        modal.style.display = 'flex';
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+      }
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => {
+        input?.focus();
+        scrollToBottom();
+      }, 50);
+    }
+
+    function closeTerminal() {
+      isOpen = false;
+      if (modal) {
+        modal.style.display = 'none';
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+      document.body.style.overflow = '';
+    }
+
+    // Expose to window for bulletproof access from anywhere
+    (window as any).toggleUnagiTerminal = () => {
+      if (isOpen) closeTerminal();
+      else openTerminal();
+    };
+    (window as any).openUnagiTerminal = openTerminal;
+    (window as any).closeUnagiTerminal = closeTerminal;
+
+    // Listen for custom trigger from Header button
+    window.addEventListener('open-unagi-terminal', openTerminal);
+    window.addEventListener('toggle-unagi-terminal', () => {
+      if (isOpen) closeTerminal();
+      else openTerminal();
+    });
+
+    if (!modal || !input || !historyContainer || !bodyContainer) return;
+
+    const commandList = ['help', 'unagi', 'tools', 'stamp', 'stampcreator', 'note', 'x', 'twitter', 'spec', 'about', 'gpu', 'doromizu', 'wife', 'contact', 'clear', 'cls', 'matrix', 'sudo', 'exit', 'gui'];
+    const cmdHistory: string[] = [];
+    let historyIndex = -1;
+
+    function submitCurrentCommand() {
+      if (!input) return;
+      const rawCmd = input.value.trim();
+      input.value = '';
+      if (rawCmd) {
+        cmdHistory.push(rawCmd);
+        historyIndex = cmdHistory.length;
+        executeCommand(rawCmd);
+      } else {
+        printLine('unagi@unagichan-lab:~$ ');
+      }
+      scrollToBottom();
+      // Keep input focused
+      input.focus();
+    }
+
+    // Secret Key Sequence "unagi" detector
+    let keyBuffer = '';
+    window.addEventListener('keydown', (e) => {
+      // If typing inside another input/textarea, don't trigger unagi
+      const target = e.target as HTMLElement;
+      if (!isOpen && target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA')) {
+        return;
+      }
+
+      if (e.key === 'Escape' && isOpen) {
+        closeTerminal();
+        return;
+      }
+
+      if (!isOpen) {
+        if (e.key.length === 1 && /[a-zA-Z]/.test(e.key)) {
+          keyBuffer += e.key.toLowerCase();
+          if (keyBuffer.length > 10) {
+            keyBuffer = keyBuffer.slice(-10);
+          }
+          if (keyBuffer.endsWith('unagi')) {
+            openTerminal();
+            keyBuffer = '';
+          }
+        }
+      }
+    });
+
+    closeBtn?.addEventListener('click', closeTerminal);
+    enterBtn?.addEventListener('click', submitCurrentCommand);
+
+    // Handle Input Events
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        submitCurrentCommand();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (cmdHistory.length > 0 && historyIndex > 0) {
+          historyIndex--;
+          input.value = cmdHistory[historyIndex];
+        }
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (historyIndex < cmdHistory.length - 1) {
+          historyIndex++;
+          input.value = cmdHistory[historyIndex];
+        } else {
+          historyIndex = cmdHistory.length;
+          input.value = '';
+        }
+      } else if (e.key === 'Tab') {
+        e.preventDefault();
+        const current = input.value.trim();
+        if (current) {
+          const match = commandList.find((c) => c.startsWith(current));
+          if (match) {
+            input.value = match;
+          }
+        }
+      }
+    });
+
+    // Always keep focus inside terminal input when clicked
+    modal.addEventListener('click', (e) => {
+      if (e.target !== closeBtn) {
+        input.focus();
+      }
+    });
+
+    function scrollToBottom() {
+      if (bodyContainer) {
+        bodyContainer.scrollTop = bodyContainer.scrollHeight;
+      }
+    }
+
+    function printLine(text: string, className = '') {
+      const line = document.createElement('div');
+      line.className = `term-line ${className}`;
+      line.innerHTML = text;
+      historyContainer?.appendChild(line);
+    }
+
+    // Command Execution Engine
+    function executeCommand(cmd: string) {
+      printLine(`<span class="term-prompt">unagi@unagichan-lab:~$</span> ${escapeHtml(cmd)}`);
+      const lower = cmd.toLowerCase().trim();
+      const parts = lower.split(/\s+/);
+      const mainCmd = parts[0];
+
+      switch (mainCmd) {
+        case 'unagi':
+          printLine(`<span class="term-success">[UNVEIL PROTOCOL TRIGGERED]</span>`);
+          printLine(`トップページへ帰還中... カードUIを消去し、うなぎちゃん（真の姿）を展開します。`);
+          if (window.location.pathname !== '/') {
+            setTimeout(() => {
+              window.location.href = '/?unveil=true';
+            }, 350);
+          } else {
+            window.dispatchEvent(new CustomEvent('unagi-unveil-mode'));
+            setTimeout(() => {
+              closeTerminal();
+            }, 350);
+          }
+          break;
+
+        case 'help':
+        case '?':
+          printLine(`
+<span class="term-hl">=== UNAGI CUI COMMANDS ===</span>
+  <span class="cmd">unagi</span>        : トップへ帰還＆カードUI消去（壁紙アンヴェールモード）
+  <span class="cmd">tools</span>        : 制作ツール・プロジェクト一覧を表示
+  <span class="cmd">stamp</span>        : 注目の「StampCreator」をブラウザで即起動
+  <span class="cmd">note</span>         : 公式note（嫁との攻防・開発奮闘記）を開く
+  <span class="cmd">x</span>            : うなぎちゃんのX（@UnagiChaaaaaN）を開く
+  <span class="cmd">spec</span>         : うなぎちゃん＠（プロ駄作クリエーター）のシステム仕様
+  <span class="cmd">gpu</span>          : GPU VRAM限界アラートと嫁への土下座状況
+  <span class="cmd">wife</span>         : 嫁（あなごちゃん）の現況ステータス（超警戒）
+  <span class="cmd">doromizu</span>     : 泥水啜りプロセスの実行ログを出力
+  <span class="cmd">matrix</span>       : 緑の文字が降るマトリックス演出
+  <span class="cmd">clear</span>, <span class="cmd">cls</span>   : ターミナル画面を消去
+  <span class="cmd">exit</span>, <span class="cmd">gui</span>     : CUIを終了して通常Web画面に戻る
+`);
+          break;
+
+        case 'tools':
+          printLine(`
+<span class="term-hl">[AVAILABLE TOOLS & PROJECTS]</span>
+1. <span class="cmd">StampCreator</span> (v1.0) [ACTIVE]
+   - LINEスタンプ画像の一括規格調整＆ZIP化ツール
+   - URL: <a href="https://stampcreator.unagichan.com/" target="_blank" class="term-link">https://stampcreator.unagichan.com/</a>
+   - Command: Type '<span class="term-hl">stamp</span>' to launch immediately!
+2. <span class="cmd">案くれ</span> (IDEA WANTED)
+   - 股間が虹色に発光するうなぎちゃんが爆誕。プロ駄作クリエーターに機能案を！
+   - Check preview & details: <a href="/tools" class="term-link">/tools</a>
+3. All Tools Directory: <a href="/tools" class="term-link">/tools</a>
+`);
+          break;
+
+        case 'stamp':
+        case 'stampcreator':
+          printLine(`<span class="term-success">[LAUNCH]</span> StampCreatorを別ウィンドウで起動中...`);
+          window.open('https://stampcreator.unagichan.com/', '_blank');
+          break;
+
+        case 'note':
+          printLine(`<span class="term-success">[OPEN]</span> 公式note（うなぎちゃん＠ / 記事準備中）を開いています... フォローして待機せよ！`);
+          window.open('https://note.com/un4chan', '_blank');
+          break;
+
+        case 'x':
+        case 'twitter':
+          printLine(`<span class="term-success">[CONNECT]</span> X (@UnagiChaaaaaN) へ接続中... 嫁説得の援護射撃待ってます！`);
+          window.open('https://x.com/UnagiChaaaaaN', '_blank');
+          break;
+
+        case 'spec':
+        case 'about':
+          printLine(`
+<span class="term-hl">[CREATOR PROFILE]</span>
+- Name       : うなぎちゃん＠ (uNaChaNnel)
+- Role       : プロ駄作クリエーター（組込 / Web / ツール開発）
+- Weapons    : C# (WPF), C/C++, MATLAB/Simulink, Java/Kotlin, TypeScript, Canvas API
+- Policy     : 「色んな事をやりたい。でも面白くないならやらない」
+- Goal       : 新型グラボ獲得＆未知の技術領域へ突撃
+- Details    : Type or visit <a href="/about" class="term-link">/about</a>
+`);
+          break;
+
+        case 'gpu':
+        case 'vram':
+          printLine(`
+<span class="term-danger">[ALERT: GPU HARDWARE CRISIS]</span>
+- Target GPU : NVIDIA RTX 5090 / 4090
+- Current GPU: 限界突破中 (温度 88°C, VRAM 残量 0.02%)
+- Wife Guard : 耐久値 99,999 / 突破成功率 0.001%
+- Status     : グラボほちい・・・泥水啜って頑張ります。
+- Result     : おねだりしたら0.3秒で一蹴されました。
+`);
+          break;
+
+        case 'wife':
+        case 'anago':
+          printLine(`
+<span class="term-danger">[TARGET: ANAGO-CHAN (最強の嫁)]</span>
+- Threat Level : SSS+ (絶対不可侵)
+- Defense Type : 鉄壁の家計管理ガード
+- Dialogue Log : 
+    おじさん:「あのー…AIイラスト用にグラボ新しく…」
+    あなごちゃん:「ダメです。(即答)」
+- Advice       : 逆らわないでください。死にます。
+`);
+          break;
+
+        case 'doromizu':
+          printLine(`
+[PROCESS: DOROMIZU-SUCTION-V1]
+0% ................... [STARTING]
+25% .................. [SWEET AND MUDDY]
+50% .................. [TASTES LIKE DETERMINATION]
+75% .................. [OVERCOMING ADVERSITY]
+100% ................. [COMPLETE: 泥水美味しく頂きました！]
+★ 面白いことのためなら靴も舐めますがつまらんことには1秒も使いません！！
+`);
+          break;
+
+        case 'matrix':
+          runMatrixEffect();
+          break;
+
+        case 'sudo':
+          printLine(`<span class="term-danger">unagi is not in the sudoers file. この事件を嫁（あなごちゃん）に通報します。</span>`);
+          break;
+
+        case 'contact':
+          printLine(`お問い合わせページへ遷移します: <a href="/contact" class="term-link">/contact</a>`);
+          break;
+
+        case 'clear':
+        case 'cls':
+          if (historyContainer) historyContainer.innerHTML = '';
+          break;
+
+        case 'exit':
+        case 'gui':
+        case 'quit':
+          printLine(`Returning to GUI...`);
+          setTimeout(closeTerminal, 200);
+          break;
+
+        default:
+          printLine(`bash: command not found: ${escapeHtml(mainCmd)}. Type '<span class="term-hl">help</span>' for a list of commands.`, 'term-error');
+          break;
+      }
+    }
+
+    function escapeHtml(str: string) {
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function runMatrixEffect() {
+      printLine('<span class="term-success">[MATRIX MODE ENABLED] (Click anywhere to stop)</span>');
+      let count = 0;
+      const interval = setInterval(() => {
+        if (!isOpen || count > 30) {
+          clearInterval(interval);
+          return;
+        }
+        let line = '';
+        const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZUNAGI';
+        for (let i = 0; i < 40; i++) {
+          line += chars.charAt(Math.floor(Math.random() * chars.length)) + ' ';
+        }
+        printLine(line, 'matrix-stream');
+        scrollToBottom();
+        count++;
+      }, 70);
+    }
+  })();
+</script>
+
+<style>
+  /* Terminal Fullscreen Overlay */
+  .terminal-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background-color: #030804;
+    color: #00ff66;
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    font-size: 0.88rem;
+    line-height: 1.5;
+    flex-direction: column;
+    overflow: hidden;
+    text-shadow: 0 0 6px rgba(0, 255, 102, 0.4);
+  }
+
+  .terminal-modal.is-open {
+    display: flex;
+  }
+
+  /* Scanlines CRT Effect */
+  .crt-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1000;
+    background: linear-gradient(
+      rgba(18, 16, 16, 0) 50%, 
+      rgba(0, 0, 0, 0.25) 50%
+    );
+    background-size: 100% 4px;
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8);
+  }
+
+  /* Top Bar */
+  .terminal-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0, 255, 102, 0.1);
+    border-bottom: 1px solid rgba(0, 255, 102, 0.3);
+    padding: 0.45rem 1rem;
+    font-size: 0.78rem;
+    flex-shrink: 0;
+    user-select: none;
+  }
+
+  .topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .term-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #00ff66;
+    box-shadow: 0 0 8px #00ff66;
+    animation: blink 1.2s infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .term-title {
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .key-hint {
+    color: rgba(0, 255, 102, 0.7);
+    font-size: 0.72rem;
+  }
+
+  .key-hint code {
+    background: rgba(0, 255, 102, 0.2);
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+  }
+
+  .term-close-btn {
+    background: transparent;
+    border: 1px solid rgba(0, 255, 102, 0.4);
+    color: #00ff66;
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .term-close-btn:hover {
+    background: #00ff66;
+    color: #030804;
+    box-shadow: 0 0 10px #00ff66;
+  }
+
+  /* Body Output Area */
+  .terminal-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    scroll-behavior: smooth;
+  }
+
+  .terminal-banner {
+    white-space: pre;
+    font-size: 0.75rem;
+    color: #39ff14;
+    opacity: 0.95;
+    line-height: 1.35;
+    margin-bottom: 0.5rem;
+    overflow-x: auto;
+  }
+
+  /* Lines */
+  .term-line {
+    word-break: break-all;
+    white-space: pre-wrap;
+  }
+
+  .term-prompt {
+    color: #38bdf8;
+    margin-right: 0.4rem;
+    font-weight: 700;
+  }
+
+  .term-hl {
+    color: #facc15;
+    font-weight: 700;
+  }
+
+  .cmd {
+    color: #38bdf8;
+    font-weight: 700;
+  }
+
+  .term-success {
+    color: #00ff66;
+    font-weight: 700;
+  }
+
+  .term-danger {
+    color: #ff3366;
+    font-weight: 700;
+  }
+
+  .term-error {
+    color: #ff3366;
+  }
+
+  .term-link {
+    color: #38bdf8;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .term-link:hover {
+    color: #ffffff;
+    text-shadow: 0 0 8px #38bdf8;
+  }
+
+  .matrix-stream {
+    color: #00ff66;
+    opacity: 0.8;
+    letter-spacing: 0.1em;
+    font-size: 0.8rem;
+  }
+
+  /* Prompt Input Row */
+  .terminal-input-row {
+    display: flex;
+    align-items: center;
+    padding: 0.6rem 1.25rem 0.9rem;
+    background: rgba(0, 0, 0, 0.4);
+    border-top: 1px solid rgba(0, 255, 102, 0.2);
+    flex-shrink: 0;
+  }
+
+  .term-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #00ff66;
+    font-family: inherit;
+    font-size: 0.88rem;
+    caret-color: #00ff66;
+    text-shadow: 0 0 6px rgba(0, 255, 102, 0.5);
+    min-width: 80px;
+  }
+
+  /* Mobile / Touch Enter Button */
+  .term-enter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: rgba(0, 255, 102, 0.15);
+    border: 1px solid rgba(0, 255, 102, 0.5);
+    color: #00ff66;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.35rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 0.6rem;
+    transition: all 0.2s ease;
+    user-select: none;
+    flex-shrink: 0;
+  }
+
+  .term-enter-btn:hover {
+    background: #00ff66;
+    color: #030804;
+    box-shadow: 0 0 10px #00ff66;
+  }
+
+  .term-enter-btn:active {
+    transform: scale(0.96);
+  }
+
+  .enter-sym {
+    font-size: 0.9rem;
+    line-height: 1;
+  }
+
+  /* Custom Scrollbar for Terminal */
+  .terminal-body::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .terminal-body::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .terminal-body::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 102, 0.3);
+    border-radius: 3px;
+  }
+
+  .terminal-body::-webkit-scrollbar-thumb:hover {
+    background: #00ff66;
+  }
+</style>

@@ -1,76 +1,166 @@
 ---
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="site-footer">
-  <div class="container footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <div class="footer-logo">
-          <img src="/unagi-icon.png" alt="うなぎちゃん" class="footer-logo-img" width="32" height="32" />
-          <span class="gradient-text logo-title">うなぎちゃん</span>
-          <span class="cyber-badge purple">UNAGI TECH LAB</span>
+{compact ? (
+  <footer class="site-footer-compact">
+    <div class="container footer-compact-inner">
+      <div class="compact-left">
+        <span class="status-indicator"></span>
+        <span class="compact-brand">uNaChaNnel // LAB</span>
+        <span class="compact-copy">&copy; {currentYear} うなぎちゃん</span>
+      </div>
+      <div class="compact-links">
+        <a href="https://stampcreator.unagichan.com/" target="_blank" rel="noopener noreferrer">StampCreator</a>
+        <span class="sep">/</span>
+        <a href="https://note.com/un4chan" target="_blank" rel="noopener noreferrer">note (準備中)</a>
+        <span class="sep">/</span>
+        <a href="/about">生態</a>
+        <span class="sep">/</span>
+        <a href="/contact">連絡</a>
+        <span class="sep">/</span>
+        <a href="/privacy-policy">プライバシー</a>
+        <span class="sep">/</span>
+        <a href="/disclaimer">免責事項</a>
+      </div>
+    </div>
+  </footer>
+) : (
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="/unagi-icon.png" alt="うなぎちゃん" class="footer-logo-img" width="32" height="32" />
+            <span class="gradient-text logo-title">うなぎちゃん</span>
+            <span class="cyber-badge purple">UNAGI TECH LAB</span>
+          </div>
+          <p class="brand-desc">
+            グラボほちい・・・泥水啜って頑張ります。※楽しくなさそうなことはやりません。
+            色んな事をやりたいプロ駄作クリエーターの公式ポータルです。
+          </p>
+          <div class="social-links">
+            <a
+              href="https://x.com/UnagiChaaaaaN"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-btn"
+              aria-label="X (Twitter) @UnagiChaaaaaN"
+            >
+              <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+              <span>X: @UnagiChaaaaaN</span>
+            </a>
+          </div>
         </div>
-        <p class="brand-desc">
-          「面倒な作業は全部ツールにやらせたい」という一心で個人開発を続けるうなぎちゃんの公式ポータル。
-          たまにバグが出ても温かい目で見守ってください。
+
+        <div class="footer-nav-groups">
+          <div class="nav-group">
+            <h4 class="nav-heading">TOOLS / 制作ツール</h4>
+            <ul>
+              <li><a href="https://stampcreator.unagichan.com/" target="_blank" rel="noopener noreferrer">StampCreator</a></li>
+              <li><a href="/tools">制作ツール一覧</a></li>
+            </ul>
+          </div>
+
+          <div class="nav-group">
+            <h4 class="nav-heading">INSIGHTS / 開発ノート</h4>
+            <ul>
+              <li><a href="https://note.com/un4chan" target="_blank" rel="noopener noreferrer">公式note（準備中）</a></li>
+              <li><a href="/about">プロフィール</a></li>
+              <li><a href="/contact">お問い合わせ</a></li>
+            </ul>
+          </div>
+
+          <div class="nav-group">
+            <h4 class="nav-heading">LEGAL / 規約・方針</h4>
+            <ul>
+              <li><a href="/privacy-policy">プライバシーポリシー</a></li>
+              <li><a href="/disclaimer">免責事項</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">
+          &copy; {currentYear} うなぎちゃん (UnagiChaaaaaN). All rights reserved.
         </p>
-        <div class="social-links">
-          <a
-            href="https://x.com/UnagiChaaaaaN"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-btn"
-            aria-label="X (Twitter) @UnagiChaaaaaN"
-          >
-            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-            </svg>
-            <span>X: @UnagiChaaaaaN</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="footer-nav-groups">
-        <div class="nav-group">
-          <h4 class="nav-heading">TOOLS / 制作ツール</h4>
-          <ul>
-            <li><a href="https://stampcreator.unagichan.com/" target="_blank" rel="noopener noreferrer">StampCreator</a></li>
-            <li><a href="/tools">制作ツール一覧</a></li>
-          </ul>
-        </div>
-
-        <div class="nav-group">
-          <h4 class="nav-heading">INSIGHTS / 開発ノート</h4>
-          <ul>
-            <li><a href="/blog">公式ブログ</a></li>
-            <li><a href="/about">プロフィール</a></li>
-            <li><a href="/contact">お問い合わせ</a></li>
-          </ul>
-        </div>
-
-        <div class="nav-group">
-          <h4 class="nav-heading">LEGAL / 規約・方針</h4>
-          <ul>
-            <li><a href="/privacy-policy">プライバシーポリシー</a></li>
-            <li><a href="/disclaimer">免責事項</a></li>
-          </ul>
-        </div>
+        <p class="powered-by">
+          Powered by Astro &amp; Cloudflare Pages
+        </p>
       </div>
     </div>
-
-    <div class="footer-bottom">
-      <p class="copyright">
-        &copy; {currentYear} うなぎちゃん (UnagiChaaaaaN). All rights reserved.
-      </p>
-      <p class="powered-by">
-        Powered by Astro &amp; Cloudflare Pages
-      </p>
-    </div>
-  </div>
-</footer>
+  </footer>
+)}
 
 <style>
+  /* Compact Footer for Zero-Scroll Layout */
+  .site-footer-compact {
+    background: rgba(4, 6, 10, 0.9);
+    border-top: 1px solid var(--border-subtle);
+    padding: 0.5rem 0;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    position: relative;
+    z-index: 10;
+  }
+
+  .footer-compact-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .compact-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+  }
+
+  .status-indicator {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 6px var(--cyan);
+    display: inline-block;
+  }
+
+  .compact-brand {
+    color: var(--cyan);
+    font-weight: 700;
+  }
+
+  .compact-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .compact-links a {
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
+  }
+
+  .compact-links a:hover {
+    color: var(--cyan);
+  }
+
+  .sep {
+    color: rgba(255, 255, 255, 0.15);
+  }
+
   .site-footer {
     margin-top: auto;
     background: rgba(4, 6, 10, 0.95);

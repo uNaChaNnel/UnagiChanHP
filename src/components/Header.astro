@@ -2,7 +2,7 @@
 const navItems = [
   { label: 'ホーム', href: '/' },
   { label: '制作ツール', href: '/tools' },
-  { label: 'ブログ', href: '/blog' },
+  { label: 'note', href: 'https://note.com/un4chan', external: true },
   { label: 'プロフィール', href: '/about' },
   { label: 'お問い合わせ', href: '/contact' },
 ];
@@ -19,19 +19,21 @@ const currentPath = Astro.url.pathname;
       </div>
       <div class="brand-text">
         <span class="site-name">うなぎちゃん</span>
-        <span class="site-sub">uNaChaNnel // LAB</span>
+        <span class="site-sub">UNAGI Enterprise OS</span>
       </div>
     </a>
 
     <!-- Desktop Nav -->
     <nav class="desktop-nav" aria-label="メインナビゲーション">
       {navItems.map((item) => {
-        const isActive = item.href === '/' 
+        const isActive = !item.external && (item.href === '/' 
           ? currentPath === '/' 
-          : currentPath.startsWith(item.href);
+          : currentPath.startsWith(item.href));
         return (
           <a
             href={item.href}
+            target={item.external ? '_blank' : undefined}
+            rel={item.external ? 'noopener noreferrer' : undefined}
             class={`nav-link ${isActive ? 'active' : ''}`}
           >
             {item.label}
@@ -42,6 +44,19 @@ const currentPath = Astro.url.pathname;
 
     <!-- Social & Actions -->
     <div class="header-actions">
+      <!-- CUI Terminal Mode Switch Button -->
+      <button
+        id="headerTerminalBtn"
+        type="button"
+        class="terminal-switch-btn"
+        aria-label="CUIターミナルモード起動（キーボードで unagi と入力しても起動）"
+        title="CUIターミナルモード (unagi と入力でも起動)"
+      >
+        <span class="term-glow-dot"></span>
+        <span class="term-prompt-icon">&gt;_</span>
+        <span class="term-btn-text">CLI</span>
+      </button>
+
       <a
         href="https://x.com/UnagiChaaaaaN"
         target="_blank"
@@ -67,18 +82,28 @@ const currentPath = Astro.url.pathname;
   <div class="mobile-drawer" id="mobileDrawer">
     <nav class="mobile-nav">
       {navItems.map((item) => {
-        const isActive = item.href === '/' 
+        const isActive = !item.external && (item.href === '/' 
           ? currentPath === '/' 
-          : currentPath.startsWith(item.href);
+          : currentPath.startsWith(item.href));
         return (
           <a
             href={item.href}
+            target={item.external ? '_blank' : undefined}
+            rel={item.external ? 'noopener noreferrer' : undefined}
             class={`mobile-link ${isActive ? 'active' : ''}`}
           >
             {item.label}
           </a>
         );
       })}
+      <button id="mobileTerminalBtn" class="mobile-terminal-link" type="button">
+        <span class="mobile-term-left">
+          <span class="term-glow-dot"></span>
+          <span>&gt;_ CUIターミナルモード</span>
+        </span>
+        <span class="mobile-term-tag">unagi</span>
+      </button>
+
       <a
         href="https://x.com/UnagiChaaaaaN"
         target="_blank"
@@ -99,6 +124,33 @@ const currentPath = Astro.url.pathname;
 <script>
   const toggleBtn = document.getElementById('menuToggle');
   const drawer = document.getElementById('mobileDrawer');
+  const headerTerminalBtn = document.getElementById('headerTerminalBtn');
+  const mobileTerminalBtn = document.getElementById('mobileTerminalBtn');
+
+  // Trigger CUI Terminal (Open explicitly on click)
+  function handleOpenTerminal(e?: Event) {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    if (typeof (window as any).openUnagiTerminal === 'function') {
+      (window as any).openUnagiTerminal();
+    } else {
+      window.dispatchEvent(new CustomEvent('open-unagi-terminal'));
+    }
+  }
+
+  headerTerminalBtn?.addEventListener('click', handleOpenTerminal);
+  mobileTerminalBtn?.addEventListener('click', (e) => {
+    handleOpenTerminal(e);
+    // Close drawer
+    if (drawer && toggleBtn) {
+      drawer.classList.remove('is-open');
+      toggleBtn.classList.remove('active');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+  });
 
   if (toggleBtn && drawer) {
     toggleBtn.addEventListener('click', () => {
@@ -382,5 +434,91 @@ const currentPath = Astro.url.pathname;
   .external-icon {
     width: 18px;
     height: 18px;
+  }
+
+  /* Terminal Switch Button */
+  .terminal-switch-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: rgba(0, 255, 102, 0.08);
+    border: 1px solid rgba(0, 255, 102, 0.4);
+    color: #00ff66;
+    padding: 0.4rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 0 10px rgba(0, 255, 102, 0.15);
+  }
+
+  .terminal-switch-btn:hover {
+    background: rgba(0, 255, 102, 0.2);
+    border-color: #00ff66;
+    box-shadow: 0 0 16px rgba(0, 255, 102, 0.4);
+    transform: translateY(-1px);
+    color: #fff;
+  }
+
+  .term-glow-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #00ff66;
+    box-shadow: 0 0 6px #00ff66;
+    animation: term-blink 1.4s infinite;
+  }
+
+  @keyframes term-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .term-prompt-icon {
+    color: #38bdf8;
+  }
+
+  .term-btn-text {
+    letter-spacing: 0.05em;
+  }
+
+  /* Mobile Terminal Link */
+  .mobile-terminal-link {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.85rem 1.25rem;
+    background: rgba(0, 255, 102, 0.08);
+    border: 1px solid rgba(0, 255, 102, 0.4);
+    border-radius: var(--radius-md);
+    color: #00ff66;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-terminal-link:hover {
+    background: rgba(0, 255, 102, 0.18);
+    border-color: #00ff66;
+  }
+
+  .mobile-term-left {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .mobile-term-tag {
+    font-size: 0.72rem;
+    background: rgba(0, 255, 102, 0.2);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 255, 102, 0.3);
   }
 </style>

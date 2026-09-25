@@ -1,663 +1,1009 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ToolCard from '../components/ToolCard.astro';
-import PostCard from '../components/PostCard.astro';
 import { toolsData } from '../data/tools';
-import { getCollection } from 'astro:content';
 
-const allPosts = await getCollection('blog');
-const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0, 3);
 const featuredTool = toolsData[0];
-const noteUrl = "https://note.com/unagichaaaan";
+const noteUrl = "https://note.com/un4chan";
+const tweetSupportUrl = "https://x.com/intent/tweet?text=%40UnagiChaaaaaN%20%E3%81%8A%E3%81%98%E3%81%95%E3%82%93%E6%96%B0%E3%81%97%E3%81%84%E3%82%B0%E3%83%A9%E3%83%9C%E8%B2%B7%E3%81%A3%E3%81%A6%E3%82%82%E3%82%89%E3%81%88%EF%BC%81%20%E5%AB%81%E3%81%95%E3%82%93%E8%A8%B1%E3%81%97%E3%81%A6%E3%81%82%E3%81%92%E3%81%A6%EF%BC%81%20https%3A%2F%2Funagichan.com";
 ---
 
 <Layout
-  title="うなぎちゃん公式サイト | 嫁にグラボを一蹴されたエンジニアおじさんの逆襲ポータル"
-  description="AIイラストでPC限界→嫁（あなごちゃん）にグラボ購入を一蹴されたエンジニアのおじさん「うなぎちゃん（@UnagiChaaaaaN）」が、趣味をそのまま収益化するチャレンジの公式ポータル。仕事じゃないのでやりたい事しかやりません！"
+  title="UNAGI Enterprise OS 2.4 | 次世代クラウドインフラ（※中身はうなぎちゃんの自作ツール）"
+  description="UNAGI Enterprise OS 2.4 — 次世代クラウドインフラに見せかけて、すべてのソリューションがうなぎちゃんと個人の開発プロダクトに集約されている狂気のポートフォリオ。グラボほちい・・・泥水啜って頑張ります。"
+  compactFooter={true}
 >
-  <!-- Hero Section: Hyper Momentum & Husband's Revenge -->
-  <section class="hero-section">
-    <div class="hero-glow"></div>
-    <div class="container hero-container">
-      <div class="hero-badge-wrap">
-        <span class="cyber-badge pink">MISSION: GET NEW GPU // 嫁（あなごちゃん）攻略作戦</span>
-        <span class="hero-subtext">UNAGI VS ANAGO</span>
+  <!-- Global System Telemetry Bar (Linear / Stripe style status) -->
+  <aside class="enterprise-telemetry-bar" aria-label="UNAGI Enterprise リアルタイム稼働テレメトリ">
+    <div class="telemetry-inner">
+      <div class="telemetry-status-group">
+        <span class="status-pulse-dot"></span>
+        <span class="telemetry-label">UNAGI Enterprise OS v2.4</span>
+        <span class="telemetry-pill live">OPERATIONAL</span>
       </div>
-
-      <h1 class="hero-title">
-        グラボが欲しい。<br />
-        <span class="gradient-text">嫁に一蹴されたエンジニアおじさんの逆襲。</span>
-      </h1>
-
-      <p class="hero-description">
-        AIイラストで遊び狂っていたらPCのスペックが限界を迎えた。<br />
-        新しいグラボをおねだりしたら嫁（あなごちゃん）に「高すぎ」と秒で一蹴されたエンジニアのおじさん（うなぎちゃん）の公式ポータルだッ！！<br />
-        『じゃあ自分のスキルを活かして、趣味をそのまま収益化してグラボ代稼げば文句ないだろ！？』と色々やってみるチャレンジ中！<br class="hidden-mobile" />
-        ※ただし仕事じゃないので、本当にやりたいことしかやりません！！（でもグラボのためなら靴も舐めるかもしれません）
-      </p>
-
-      <div class="hero-cta-group">
-        <a href="https://stampcreator.unagichan.com/" target="_blank" rel="noopener noreferrer" class="cyber-btn cyber-btn-primary pulse-btn">
-          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-          </svg>
-          <span>StampCreator を使う（グラボへの一歩）</span>
-        </a>
-        <a href={noteUrl} target="_blank" rel="noopener noreferrer" class="cyber-btn cyber-btn-note">
-          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-          </svg>
-          <span>noteで奮闘記を読む（脳汁ログ）</span>
-        </a>
-        <a href="https://x.com/UnagiChaaaaaN" target="_blank" rel="noopener noreferrer" class="cyber-btn cyber-btn-secondary x-btn">
-          <svg class="x-icon" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-          </svg>
-          <span>Xで生存確認（叫べ）</span>
-        </a>
-      </div>
-
-      <!-- Passionate Metrics -->
-      <div class="metrics-grid">
-        <div class="metric-item">
-          <span class="metric-value">Goal: グラボ～その先へ～</span>
-          <span class="metric-label">嫁の鉄壁ガード突破は通過点、未知の領域へ</span>
-        </div>
-        <div class="metric-item">
-          <span class="metric-value">100% 自由</span>
-          <span class="metric-label">仕事じゃないのでやりたい事しかやらない主義</span>
-        </div>
-        <div class="metric-item">
-          <span class="metric-value">0円</span>
-          <span class="metric-label">ツールは完全無料！愛と勢いだけで動いている！</span>
-        </div>
+      <div class="telemetry-metrics">
+        <span class="metric-segment">
+          <span class="m-key">UPTIME</span>
+          <span class="m-val text-success">99.99%</span>
+        </span>
+        <span class="telemetry-sep">/</span>
+        <span class="metric-segment">
+          <span class="m-key">VRAM ALLOCATION</span>
+          <span class="m-val text-alert">0.01% [CRITICAL]</span>
+        </span>
+        <span class="telemetry-sep">/</span>
+        <span class="metric-segment">
+          <span class="m-key">WIFE DEFENSE</span>
+          <span class="m-val text-danger">99,999 [IRON WALL]</span>
+        </span>
+        <span class="telemetry-sep">/</span>
+        <span class="metric-segment">
+          <span class="m-key">BOREDOM TOLERANCE</span>
+          <span class="m-val">0.00% [KILL IMMEDIATELY]</span>
+        </span>
+        <span class="telemetry-sep">/</span>
+        <span class="metric-segment cli-hint">
+          <span class="m-key">CLI SHORTCUT</span>
+          <span class="m-val">Type <code>unagi</code></span>
+        </span>
       </div>
     </div>
-  </section>
+  </aside>
 
-  <!-- Featured Tool Section -->
-  <section class="section section-tools">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-badge">
-          <span class="cyber-badge cyan">PRIMARY WEAPON</span>
-        </div>
-        <h2 class="section-title">注目の制作ツール「StampCreator」（現在これに命をかけてる）</h2>
-        <p class="section-desc">
-          AIイラストでスタンプ作ってたら、LINEの偶数ドット制限や余白調整が面倒すぎて『やってられるかァァッ！』とブチギレて自作した神ツール。<br />
-          画像を入れた瞬間、宇宙の理（ことわり）に従って完璧なZIPが爆誕する。使ってくれッ！！
-        </p>
-      </div>
+  <!-- Zero-Scroll Enterprise Cockpit -->
+  <div class="enterprise-viewport" id="enterpriseViewport">
+    <!-- Ambient Conic Spotlight & Linear Grid -->
+    <div class="spotlight-layer" aria-hidden="true"></div>
+    <div class="linear-grid-bg" aria-hidden="true"></div>
 
-      <div class="featured-tool-wrapper">
-        <ToolCard tool={featuredTool} featured={true} />
-      </div>
+    <!-- Background Unagi Character Backdrop (Cardの後ろにうっすら配置 / Unveil Modeで全面表示) -->
+    <div class="unagi-backdrop-layer" id="unagiBackdrop" aria-hidden="true">
+      <div class="unagi-backdrop-glow"></div>
+      <img src="/unagi-bg.png" alt="うなぎちゃん" class="unagi-backdrop-img" width="706" height="1024" />
 
-      <div class="section-more">
-        <a href="/tools" class="more-link">
-          <span>すべての制作ツール・プロジェクトを見る</span>
-          <svg class="arrow-right" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-          </svg>
-        </a>
+      <!-- 股間の光っている部分にジャスト配置される RESTORE UI ボタン -->
+      <div class="groin-restore-wrapper">
+        <button id="restoreUiBtn" class="restore-ui-btn groin-btn" type="button" aria-label="元のカードUIを復元">
+          <span class="groin-rainbow-pulse"></span>
+          <span class="restore-icon">↺</span>
+          <span class="restore-text">RESTORE UI</span>
+        </button>
       </div>
     </div>
-  </section>
 
-  <!-- note & Blog Section: Brain Meltdown Archives -->
-  <section class="section section-blog">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-badge">
-          <span class="cyber-badge purple">NOTE &amp; DEV LOGS</span>
-        </div>
-        <h2 class="section-title">脳汁が出た瞬間の記録（note連動・開発ブログ）</h2>
-        <p class="section-desc">
-          「グラボ欲しい」「AIイラストPC限界」「嫁の鉄壁ガード」「個人ツールの収益化挑戦」など、<br class="hidden-mobile" />
-          リアルなエンジニアおじさんの試行錯誤と脳汁メモをnoteやブログで大公開中！読めッ！！
-        </p>
+    <!-- Unveil Mode Floating Controls (下端メッセージボックス) -->
+    <div class="unveil-controls" id="unveilControls" aria-hidden="true">
+      <div class="unveil-banner">
+        <span class="unveil-title">うなぎちゃん（真の姿）が顕現しました</span>
       </div>
+    </div>
 
-      <!-- note Banner Card -->
-      <div class="note-banner-wrapper">
-        <a href={noteUrl} target="_blank" rel="noopener noreferrer" class="cyber-card note-feature-card">
-          <div class="note-card-inner">
-            <div class="note-badge-row">
-              <span class="cyber-badge green">NOTE OFFICIAL</span>
-              <span class="note-subtext">リアルタイム奮闘記</span>
+    <div class="container enterprise-container">
+      <div class="bento-layout" id="bentoLayout">
+
+        <!-- PRIMARY HERO BENTO: Core Engine & Mission Control -->
+        <section class="bento-card hero-bento" aria-label="UNAGI Core Platform">
+          <div class="card-glass-shine"></div>
+          
+          <div class="hero-top-row">
+            <div class="enterprise-badge-pill">
+              <span class="badge-sparkle">✦</span>
+              <span class="badge-text">Next-Gen Cloud Infrastructure</span>
+              <span class="badge-divider"></span>
+              <span class="badge-sub">Wife Compliance: 0.001%</span>
             </div>
-            <h3 class="note-card-title">
-              noteにて「嫁にグラボを一蹴されたエンジニアおじさんの収益化奮闘記」連載中！
-            </h3>
-            <p class="note-card-desc">
-              技術メモから日常の叫び、個人開発マネタイズの裏側まで、本音100%で書き殴っています。フォロー＆スキでグラボ代への応援待ってます！
-            </p>
-            <div class="note-card-footer">
-              <span class="note-link-text">note（ノート）で記事を読む ➔</span>
-            </div>
+            <div class="kernel-id">KERNEL: DOROMIZU-6.12-PRO</div>
           </div>
-        </a>
-      </div>
 
-      <div class="blog-grid">
-        {sortedPosts.map((post) => (
-          <PostCard post={post} />
-        ))}
-      </div>
+          <h1 class="hero-headline">
+            The Global Cloud Platform for<br />
+            <span class="gradient-headline">GPU Acquisition &amp; 泥水啜り.</span>
+          </h1>
 
-      <div class="section-more">
-        <a href={noteUrl} target="_blank" rel="noopener noreferrer" class="more-link">
-          <span>noteで開発奮闘記をすべて読む</span>
-          <svg class="arrow-right" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-          </svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Intense Passion & Contact Section -->
-  <section class="section section-feedback">
-    <div class="container">
-      <div class="cyber-card feedback-card">
-        <div class="feedback-inner">
-          <span class="cyber-badge pink">WIFE PRESENTATION</span>
-          <h2 class="feedback-title">叫べ！応援しろ！嫁に『ほら見ろ』と言わせろッ！！</h2>
-          <p class="feedback-desc">
-            うなぎちゃんは褒められると光速を超えます。<br />
-            「おじさん頑張れ」「このツール便利だからグラボ買ってやれ」「嫁（あなごちゃん）を説得しろ」など、<br class="hidden-mobile" />
-            温かい応援リプライをX（旧Twitter）に叩き込んでくれ！！嫁へのプレゼン資料にします！！
+          <p class="hero-lead-text">
+            漫画やゲームが大好きだったが、子供が生まれ趣味の時間が激減。スキマ時間に始めたAIイラストに見事どっぷりハマり、ローカル環境を構築するもPCスペックが限界突破。<br class="break-pc" />
+            嫁（あなごちゃん）におねだりしたら秒殺されたプロ駄作クリエーターの全技術と情熱を集約。<br class="break-pc" />
+            <strong class="gpu-roar">今日もGPUを唸らせる・・・‼‼　ｳｫｫｫｫｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰﾝ‼‼‼‼‼</strong>
           </p>
-          <div class="feedback-actions">
-            <a
-              href="https://x.com/intent/tweet?text=%40UnagiChaaaaaN%20%E3%81%8A%E3%81%98%E3%81%95%E3%82%93%E6%96%B0%E3%81%97%E3%81%84%E3%82%B0%E3%83%A9%E3%83%9C%E8%B2%B7%E3%81%A3%E3%81%A6%E3%82%82%E3%82%89%E3%81%88%EF%BC%81%20%E5%AB%81%E3%81%95%E3%82%93%E8%A8%B1%E3%81%97%E3%81%A6%E3%81%82%E3%81%92%E3%81%A6%EF%BC%81%20https%3A%2F%2Funagichan.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="cyber-btn cyber-btn-primary"
-            >
-              <svg class="x-icon" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
-              <span>X（Twitter）で嫁説得の援護射撃をする</span>
-            </a>
-            <a href="/contact" class="cyber-btn cyber-btn-secondary">
-              <span>メールでこっそり応援する</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- About / Vision Teaser -->
-  <section class="section section-about-teaser">
-    <div class="container">
-      <div class="cyber-card about-card">
-        <div class="about-grid">
-          <div class="about-content">
-            <span class="cyber-badge">ABOUT UNAGI (SPEC)</span>
-            <h2 class="about-title">うなぎちゃん（エンジニアおじさん）の生態</h2>
-            <p class="about-text">
-              AIイラストの生成制限とPCスペックの限界に直面し、最新グラボ（激高）をおねだりするも嫁（あなごちゃん）に一蹴された哀愁とパッションのエンジニアおじさん。<br />
-              「仕事じゃないのでやりたい事しかやらない」を絶対の掟とし、己のフロントエンド技術で自作ツール開発＆収益化に挑んでいます。
-            </p>
-            <div class="about-links">
-              <a href="/about" class="cyber-btn cyber-btn-primary">
-                詳しいプロフィール・経緯を読む
-              </a>
-              <a href="https://x.com/UnagiChaaaaaN" target="_blank" rel="noopener noreferrer" class="cyber-btn cyber-btn-secondary">
-                X（旧Twitter）で監視する
-              </a>
+          <!-- Enterprise Infrastructure SLAs / Metrics (Shortcuts removed as requested) -->
+          <div class="enterprise-kpi-grid">
+            <div class="kpi-cell">
+              <span class="kpi-title">SERVERLESS EGRESS</span>
+              <div class="kpi-number text-cyan">$0.00</div>
+              <span class="kpi-sub">完全クライアント完結処理</span>
+            </div>
+            <div class="kpi-cell">
+              <span class="kpi-title">GPU VRAM REMAINING</span>
+              <div class="kpi-number text-alert">0.02%</div>
+              <span class="kpi-sub">限界突破・煙出そう</span>
+            </div>
+            <div class="kpi-cell">
+              <span class="kpi-title">FUN DRIVEN ALLOCATION</span>
+              <div class="kpi-number text-green">100%</div>
+              <span class="kpi-sub">面白くないなら即撤退</span>
             </div>
           </div>
-          <div class="about-deco">
-            <div class="code-terminal">
-              <div class="terminal-bar">
-                <span class="t-dot red"></span>
-                <span class="t-dot yellow"></span>
-                <span class="t-dot green"></span>
-                <span class="terminal-title">unagi_profile.ts</span>
+        </section>
+
+        <!-- SECONDARY BENTO COLUMN: The 3 Core Solutions (Tools, Note, Profile) -->
+        <aside class="bento-solutions-column" aria-label="Solutions & Infrastructure Products">
+
+          <!-- Card 1: 制作ツール (Tools Directory) -->
+          <div class="bento-card solution-card product-stamp">
+            <div class="solution-glow cyan"></div>
+            <div class="solution-header">
+              <div class="product-badge cyan">
+                <span class="pill-dot"></span>
+                <span>TOOLS DIRECTORY</span>
               </div>
-              <pre><code>const creator = &#123;
-  name: "うなぎちゃん（エンジニアおじさん）",
-  rival: "あなごちゃん（最強の嫁）",
-  ultimate_goal: "グラボ獲得、そしてその先へ――",
-  philosophy: "やりたい事しかやらない（でもグラボのためなら靴も舐める）",
-  current_pc: "AI生成で限界・煙が出そう",
-  weapon: ["C# / WPF", "C / C++", "MATLAB / Simulink", "Java / Kotlin", "TypeScript", "Canvas API", "勢い"],
-  status: "嫁の稟議突破に向けて爆走中！！"
-&#125;;</code></pre>
+              <span class="prod-tag">ALL FREE // 0円</span>
+            </div>
+            <div class="solution-content">
+              <h2 class="solution-title">
+                <a href="/tools">
+                  制作ツール・Webアプリ一覧 ➔
+                </a>
+              </h2>
+              <p class="solution-desc">
+                スマホ完結の神ツール「StampCreator」をはじめ、クリエイターの面倒な画像処理・規格調整を自動化する自作Webツール群を完全無料・ブラウザ完結で公開中。
+              </p>
+            </div>
+            <div class="solution-footer">
+              <div class="tech-spec-bar">
+                <span>StampCreator</span>
+                <span>•</span>
+                <span>規格自動調整</span>
+                <span>•</span>
+                <span>ZIP即時生成</span>
+              </div>
+              <a href="/tools" class="link-arrow">
+                ツール一覧へ ➔
+              </a>
             </div>
           </div>
-        </div>
+
+          <!-- Card 2: ノート (Official note) -->
+          <div class="bento-card solution-card product-note">
+            <div class="solution-glow green"></div>
+            <div class="solution-header">
+              <div class="product-badge green">
+                <span class="pill-dot"></span>
+                <span>NOTE OFFICIAL</span>
+              </div>
+              <span class="prod-tag">COMING SOON // 記事準備中</span>
+            </div>
+            <div class="solution-content">
+              <h2 class="solution-title">
+                <a href={noteUrl} target="_blank" rel="noopener noreferrer">
+                  うなぎちゃん＠｜note ➔
+                </a>
+              </h2>
+              <p class="solution-desc">
+                公式noteページを開設！「嫁にグラボを一蹴されたプロ駄作クリエーターの奮闘記」や開発ログを現在鋭意執筆・準備中。フォローしてお待ちください！
+              </p>
+            </div>
+            <div class="solution-footer">
+              <div class="tech-spec-bar">
+                <span>ページ公開中</span>
+                <span>•</span>
+                <span>記事鋭意準備中</span>
+                <span>•</span>
+                <span>フォロー歓迎</span>
+              </div>
+              <a href={noteUrl} target="_blank" rel="noopener noreferrer" class="link-arrow green">
+                noteへ ➔
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 3: プロフィール (Profile / About) -->
+          <div class="bento-card solution-card product-spec">
+            <div class="solution-glow purple"></div>
+            <div class="solution-header">
+              <div class="product-badge purple">
+                <span class="pill-dot"></span>
+                <span>CREATOR SPEC</span>
+              </div>
+              <span class="prod-tag">ABOUT UNAGI</span>
+            </div>
+            <div class="solution-content">
+              <h2 class="solution-title">
+                <a href="/about">
+                  うなぎちゃん＠（プロ駄作クリエーター） ➔
+                </a>
+              </h2>
+              <div class="spec-capsules">
+                <span class="capsule">C# / WPF</span>
+                <span class="capsule">C / C++</span>
+                <span class="capsule">Simulink</span>
+                <span class="capsule">TypeScript</span>
+                <span class="capsule doromizu">泥水耐性: MAX</span>
+              </div>
+              <p class="solution-desc">
+                「色んな事をやりたい。でも面白くないならやらない」人間。面白い事だけに計算資源をフル投入するプロ駄作クリエーターの詳細生態系と連絡先。
+              </p>
+            </div>
+            <div class="solution-footer nav-links-footer">
+              <a href="/about" class="sub-nav-link">生態プロファイル ➔</a>
+              <span class="sep">•</span>
+              <a href="/contact" class="sub-nav-link">秘密連絡網 ➔</a>
+              <span class="sep">•</span>
+              <a href="https://x.com/UnagiChaaaaaN" target="_blank" rel="noopener noreferrer" class="sub-nav-link highlight">Xで監視 ➔</a>
+            </div>
+          </div>
+
+        </aside>
+
       </div>
     </div>
-  </section>
+  </div>
+
+  <script>
+    (function () {
+      const viewport = document.getElementById('enterpriseViewport');
+      const restoreBtn = document.getElementById('restoreUiBtn');
+      const unveilControls = document.getElementById('unveilControls');
+
+      function toggleUnveilMode(enable?: boolean) {
+        if (!viewport) return;
+        const isCurrentlyUnveiled = viewport.classList.contains('is-unveiled');
+        const shouldUnveil = enable !== undefined ? enable : !isCurrentlyUnveiled;
+
+        viewport.classList.toggle('is-unveiled', shouldUnveil);
+        if (unveilControls) {
+          unveilControls.setAttribute('aria-hidden', String(!shouldUnveil));
+        }
+      }
+
+      // Listen for unagi event dispatched from Terminal
+      window.addEventListener('unagi-unveil-mode', () => {
+        toggleUnveilMode(true);
+      });
+
+      // Restore UI on button click
+      restoreBtn?.addEventListener('click', () => {
+        toggleUnveilMode(false);
+      });
+
+      // ESC key to restore UI if in unveil mode
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && viewport?.classList.contains('is-unveiled')) {
+          toggleUnveilMode(false);
+        }
+      });
+
+      // Check URL query '?unveil=true'
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('unveil') === 'true') {
+        toggleUnveilMode(true);
+      }
+    })();
+  </script>
 </Layout>
 
 <style>
-  /* Hero */
-  .hero-section {
+  /* ==========================================================================
+     UNAGI Enterprise OS: Linear / Vercel / Stripe Aesthetic Tokens
+     ========================================================================== */
+
+  /* Global Telemetry Bar */
+  .enterprise-telemetry-bar {
+    background: rgba(3, 5, 8, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-family: var(--font-mono, monospace);
+    font-size: 0.72rem;
     position: relative;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    z-index: 20;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .telemetry-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.4rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .telemetry-status-group {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .status-pulse-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #00f0ff;
+    box-shadow: 0 0 8px #00f0ff;
+    animation: status-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  @keyframes status-ping {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    50% { transform: scale(1.15); opacity: 1; box-shadow: 0 0 12px #00f0ff; }
+    100% { transform: scale(0.95); opacity: 0.8; }
+  }
+
+  .telemetry-label {
+    color: #e2e8f0;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .telemetry-pill.live {
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 0.1rem 0.45rem;
+    background: rgba(0, 240, 255, 0.12);
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    color: #00f0ff;
+    border-radius: 4px;
+    letter-spacing: 0.06em;
+  }
+
+  .telemetry-metrics {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .metric-segment {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .m-key {
+    color: #64748b;
+  }
+
+  .m-val {
+    color: #cbd5e1;
+    font-weight: 600;
+  }
+
+  .text-success { color: #10b981; }
+  .text-alert { color: #f43f5e; }
+  .text-danger { color: #fb923c; }
+
+  .cli-hint code {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 0.1rem 0.35rem;
+    border-radius: 3px;
+    color: #00ff66;
+  }
+
+  .telemetry-sep {
+    color: rgba(255, 255, 255, 0.15);
+  }
+
+  /* Viewport Layout (Zero Scroll on Desktop) */
+  .enterprise-viewport {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 1.25rem 0;
+    min-height: calc(100vh - 70px - 33px - 38px);
     overflow: hidden;
   }
 
-  .hero-glow {
+  /* Linear Grid & Ambient Spotlight */
+  .linear-grid-bg {
     position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 700px;
-    height: 420px;
-    background: radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, rgba(0, 240, 255, 0.12) 40%, rgba(139, 92, 246, 0.08) 60%, transparent 80%);
-    filter: blur(70px);
+    inset: 0;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 80%);
     pointer-events: none;
     z-index: 0;
   }
 
-  .hero-container {
+  .spotlight-layer {
+    position: absolute;
+    top: -10%;
+    left: 45%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0, 240, 255, 0.1) 0%, rgba(139, 92, 246, 0.08) 40%, rgba(236, 72, 153, 0.04) 70%, transparent 85%);
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Backdrop Unagi Character Layer (Behind cards normally / Front & Vivid in Unveil mode) */
+  .unagi-backdrop-layer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    width: min(78vw, 440px);
+    aspect-ratio: 706 / 1024;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.13;
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s ease;
+  }
+
+  .unagi-backdrop-glow {
+    position: absolute;
+    inset: -30px;
+    background: radial-gradient(circle, rgba(0, 240, 255, 0.3) 0%, rgba(236, 72, 153, 0.2) 50%, transparent 75%);
+    filter: blur(50px);
+    border-radius: 50%;
+    opacity: 0.4;
+    transition: opacity 0.7s ease;
+  }
+
+  .unagi-backdrop-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 35px rgba(0, 240, 255, 0.35));
+    transition: filter 0.7s ease;
+  }
+
+  .enterprise-container {
     position: relative;
     z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    width: 100%;
+    max-width: 1200px;
   }
 
-  .hero-badge-wrap {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
+  /* Bento Layout Grid with Transition */
+  .bento-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    align-items: stretch;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
   }
 
-  .hero-subtext {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--cyan);
-    letter-spacing: 0.12em;
-    font-weight: 700;
-  }
-
-  .hero-title {
-    font-size: 2.3rem;
-    font-weight: 800;
-    line-height: 1.25;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.5rem;
-    color: #fff;
-  }
-
-  @media (min-width: 768px) {
-    .hero-title {
-      font-size: 3.4rem;
+  @media (min-width: 980px) {
+    .bento-layout {
+      grid-template-columns: 1.28fr 0.92fr;
+      gap: 1.5rem;
     }
   }
 
-  .hero-description {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    max-width: 760px;
-    line-height: 1.85;
-    margin-bottom: 2.5rem;
+  /* ==========================================================================
+     UNVEIL MODE: カードUI消去 ＆ うなぎちゃん真の姿が前面に展開
+     ========================================================================== */
+  .enterprise-viewport.is-unveiled .bento-layout {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.92);
+    filter: blur(12px);
   }
 
-  .hidden-mobile {
+  .enterprise-viewport.is-unveiled .unagi-backdrop-layer {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.08);
+    z-index: 20;
+    pointer-events: auto;
+    filter: drop-shadow(0 0 60px rgba(0, 240, 255, 0.65)) drop-shadow(0 0 100px rgba(236, 72, 153, 0.45));
+  }
+
+  .enterprise-viewport.is-unveiled .unagi-backdrop-glow {
+    opacity: 0.95;
+  }
+
+  /* 股間の光っている部分にジャストフィット配置 */
+  .groin-restore-wrapper {
+    position: absolute;
+    top: 64.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 25;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease 0.2s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .enterprise-viewport.is-unveiled .groin-restore-wrapper {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .groin-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.75rem 1.6rem;
+    background: rgba(8, 12, 22, 0.92);
+    border: 2px solid #ffffff;
+    border-radius: 9999px;
+    color: #ffffff;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.86rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    user-select: none;
+    backdrop-filter: blur(16px);
+    transition: all 0.25s ease;
+    animation: groin-pulse 1.8s infinite alternate ease-in-out;
+    white-space: nowrap;
+    box-shadow: 
+      0 0 25px rgba(255, 255, 255, 0.9),
+      0 0 50px rgba(0, 240, 255, 0.8),
+      0 0 85px rgba(236, 72, 153, 0.75),
+      0 0 120px rgba(250, 204, 21, 0.85);
+  }
+
+  @keyframes groin-pulse {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.8),
+        0 0 45px rgba(0, 240, 255, 0.7),
+        0 0 75px rgba(236, 72, 153, 0.65);
+    }
+    100% {
+      transform: scale(1.08);
+      box-shadow: 
+        0 0 35px rgba(255, 255, 255, 1),
+        0 0 75px rgba(0, 240, 255, 0.95),
+        0 0 115px rgba(236, 72, 153, 0.95),
+        0 0 150px rgba(250, 204, 21, 0.9);
+    }
+  }
+
+  .groin-btn:hover {
+    transform: scale(1.15) !important;
+    border-color: #00f0ff;
+    background: #000000;
+    color: #00f0ff;
+    box-shadow: 
+      0 0 45px #00f0ff,
+      0 0 90px #ec4899,
+      0 0 140px #facc15;
+  }
+
+  .groin-btn:active {
+    transform: scale(0.98) !important;
+  }
+
+  .groin-rainbow-pulse {
+    position: absolute;
+    inset: -6px;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #00f0ff, #ec4899, #facc15, #00ff66, #00f0ff);
+    background-size: 300% 300%;
+    filter: blur(8px);
+    opacity: 0.85;
+    z-index: -1;
+    animation: rainbow-flow 3s linear infinite;
+  }
+
+  @keyframes rainbow-flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .restore-icon {
+    font-size: 1.1rem;
+    line-height: 1;
+    color: #00f0ff;
+  }
+
+  /* Unveil Floating Banner (画面下端に配置) */
+  .unveil-controls {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(15px);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 30;
+    display: flex;
+    justify-content: center;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .enterprise-viewport.is-unveiled .unveil-controls {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .unveil-banner {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(4, 8, 16, 0.9);
+    border: 1px solid rgba(0, 240, 255, 0.5);
+    padding: 0.6rem 1.6rem;
+    border-radius: 9999px;
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.3), inset 0 0 15px rgba(0, 240, 255, 0.1);
+    backdrop-filter: blur(16px);
+  }
+
+  .unveil-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+    margin: 0;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+  }
+
+  /* Bento Base Card (Linear / Vercel style) */
+  .bento-card {
+    background: rgba(10, 14, 24, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md, 14px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .bento-card:hover {
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Hero Bento Card (Main Control) */
+  .hero-bento {
+    padding: 2rem 2.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.2rem;
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    box-shadow: 0 0 35px -10px rgba(0, 240, 255, 0.15);
+  }
+
+  .hero-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .enterprise-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 0.3rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+  }
+
+  .badge-sparkle {
+    color: var(--cyan);
+  }
+
+  .badge-text {
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .badge-divider {
+    width: 1px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .badge-sub {
+    color: var(--pink);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+
+  .kernel-id {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+
+  /* Headline & Lead */
+  .hero-headline {
+    font-size: 1.85rem;
+    font-weight: 800;
+    line-height: 1.24;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    text-wrap: balance;
+  }
+
+  @media (min-width: 768px) {
+    .hero-headline {
+      font-size: 2.35rem;
+    }
+  }
+
+  .gradient-headline {
+    background: linear-gradient(135deg, #ffffff 10%, #00f0ff 60%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-lead-text {
+    font-size: 0.92rem;
+    color: #94a3b8;
+    line-height: 1.7;
+    text-wrap: pretty;
+  }
+
+  .hero-lead-text strong {
+    color: #f8fafc;
+  }
+
+  .gpu-roar {
+    display: inline-block;
+    background: linear-gradient(135deg, #00f0ff 0%, #ec4899 60%, #fbbf24 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    text-shadow: 0 0 16px rgba(0, 240, 255, 0.4);
+    letter-spacing: 0.02em;
+  }
+
+  .break-pc {
     display: none;
   }
 
   @media (min-width: 768px) {
-    .hidden-mobile {
+    .break-pc {
       display: inline;
     }
   }
 
-  .hero-cta-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    margin-bottom: 3.5rem;
-  }
-
-  .pulse-btn {
-    box-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
-    animation: btn-glow 2s infinite alternate ease-in-out;
-  }
-
-  @keyframes btn-glow {
-    0% { box-shadow: 0 0 15px rgba(0, 240, 255, 0.3); }
-    100% { box-shadow: 0 0 35px rgba(236, 72, 153, 0.5), 0 0 15px rgba(0, 240, 255, 0.5); }
-  }
-
-  .cyber-btn-note {
-    background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(16, 185, 129, 0.3));
-    border-color: #10b981;
-    color: #ffffff;
-    box-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
-  }
-
-  .cyber-btn-note:hover {
-    background: linear-gradient(135deg, rgba(34, 197, 94, 0.35), rgba(16, 185, 129, 0.45));
-    box-shadow: 0 0 25px rgba(16, 185, 129, 0.45);
-    transform: translateY(-2px);
-    color: #fff;
-  }
-
-  .btn-icon {
-    width: 18px;
-    height: 18px;
-  }
-
-  .x-icon {
-    width: 16px;
-    height: 16px;
-  }
-
-  .metrics-grid {
+  /* KPI Grid */
+  .enterprise-kpi-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-    width: 100%;
-    max-width: 800px;
-    border-top: 1px solid var(--border-subtle);
-    padding-top: 2.25rem;
+    gap: 0.75rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
   }
 
   @media (max-width: 600px) {
-    .metrics-grid {
+    .enterprise-kpi-grid {
       grid-template-columns: 1fr;
-      gap: 1.25rem;
+      gap: 0.6rem;
     }
   }
 
-  .metric-item {
+  .kpi-cell {
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: 0.2rem;
   }
 
-  .metric-value {
+  .kpi-title {
     font-family: var(--font-mono);
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--cyan);
-    letter-spacing: -0.01em;
-  }
-
-  .metric-label {
-    font-size: 0.82rem;
-    color: var(--text-muted);
-    line-height: 1.5;
-  }
-
-  /* Section Common */
-  .section {
-    padding-top: 4.5rem;
-    padding-bottom: 4.5rem;
-  }
-
-  .section-header {
-    text-align: center;
-    margin-bottom: 3rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .section-badge {
-    margin-bottom: 0.75rem;
-  }
-
-  .section-title {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 0.75rem;
-    line-height: 1.35;
-  }
-
-  .section-desc {
-    color: var(--text-secondary);
-    font-size: 1rem;
-    max-width: 640px;
-    line-height: 1.7;
-  }
-
-  .section-more {
-    display: flex;
-    justify-content: center;
-    margin-top: 2.5rem;
-  }
-
-  .more-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--cyan);
-    font-weight: 600;
-    font-size: 0.95rem;
-    padding: 0.55rem 1.35rem;
-    border: 1px solid rgba(0, 240, 255, 0.25);
-    border-radius: var(--radius-full);
-    background: rgba(0, 240, 255, 0.05);
-    transition: all 0.25s ease;
-  }
-
-  .more-link:hover {
-    background: rgba(0, 240, 255, 0.15);
-    border-color: var(--cyan);
-    transform: translateY(-2px);
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
-  }
-
-  .arrow-right {
-    width: 16px;
-    height: 16px;
-  }
-
-  /* Featured Tool */
-  .featured-tool-wrapper {
-    max-width: 840px;
-    margin: 0 auto;
-  }
-
-  /* note Banner Card */
-  .note-banner-wrapper {
-    max-width: 840px;
-    margin: 0 auto 2.5rem;
-  }
-
-  .note-feature-card {
-    display: block;
-    padding: 2rem 2.5rem;
-    border-left: 4px solid #10b981;
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(14, 20, 36, 0.8) 100%);
-    transition: all 0.3s ease;
-  }
-
-  .note-feature-card:hover {
-    border-color: #34d399;
-    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
-    transform: translateY(-3px);
-  }
-
-  .note-badge-row {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .note-subtext {
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    color: #34d399;
+    font-size: 0.68rem;
+    color: #64748b;
     letter-spacing: 0.05em;
   }
 
-  .note-card-title {
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 0.5rem;
-    line-height: 1.4;
-  }
-
-  .note-card-desc {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    line-height: 1.7;
-    margin-bottom: 1rem;
-  }
-
-  .note-link-text {
+  .kpi-number {
     font-family: var(--font-mono);
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #34d399;
-  }
-
-  /* Blog Grid */
-  .blog-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  @media (min-width: 768px) {
-    .blog-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  /* Feedback Card */
-  .feedback-card {
-    max-width: 840px;
-    margin: 0 auto;
-    padding: 3.5rem 2.5rem;
-    text-align: center;
-    border-top: 2px solid var(--pink);
-    box-shadow: 0 0 30px rgba(236, 72, 153, 0.15);
-  }
-
-  .feedback-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.25rem;
-  }
-
-  .feedback-title {
-    font-size: 2rem;
+    font-size: 1.25rem;
     font-weight: 800;
-    color: #fff;
-    line-height: 1.3;
+    letter-spacing: -0.01em;
   }
 
-  .feedback-desc {
-    color: var(--text-secondary);
-    font-size: 1.02rem;
-    max-width: 640px;
-    line-height: 1.8;
-  }
+  .text-cyan { color: var(--cyan); }
+  .text-green { color: #10b981; }
 
-  .feedback-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    margin-top: 0.75rem;
-  }
-
-  /* About Teaser */
-  .about-card {
-    padding: 3rem;
-  }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    align-items: center;
-  }
-
-  @media (min-width: 860px) {
-    .about-grid {
-      grid-template-columns: 1.2fr 1fr;
-    }
-  }
-
-  .about-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  .about-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.35;
-  }
-
-  .about-text {
-    color: var(--text-secondary);
-    line-height: 1.8;
-    font-size: 0.98rem;
-  }
-
-  .about-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 0.5rem;
-  }
-
-  /* Terminal Mockup */
-  .code-terminal {
-    background: #060911;
-    border: 1px solid rgba(0, 240, 255, 0.2);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  }
-
-  .terminal-bar {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 0.6rem 1rem;
-    background: rgba(255, 255, 255, 0.03);
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  .t-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-  }
-
-  .t-dot.red { background: #ef4444; }
-  .t-dot.yellow { background: #f59e0b; }
-  .t-dot.green { background: #10b981; }
-
-  .terminal-title {
-    margin-left: 0.5rem;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
+  .kpi-sub {
+    font-size: 0.72rem;
     color: var(--text-muted);
   }
 
-  .code-terminal pre {
-    padding: 1.25rem;
+  /* Solutions Column (Bento Cards) */
+  .bento-solutions-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    justify-content: center;
+  }
+
+  .solution-card {
+    padding: 1.15rem 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+
+  .solution-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .product-stamp {
+    border-left: 3px solid var(--cyan);
+  }
+
+  .product-stamp:hover {
+    border-color: var(--cyan);
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.2);
+  }
+
+  .product-note {
+    border-left: 3px solid #10b981;
+  }
+
+  .product-note:hover {
+    border-color: #10b981;
+    box-shadow: 0 0 25px rgba(16, 185, 129, 0.2);
+  }
+
+  .product-spec {
+    border-left: 3px solid var(--purple);
+  }
+
+  .product-spec:hover {
+    border-color: var(--purple);
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.2);
+  }
+
+  .solution-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .product-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+
+  .product-badge.cyan { color: var(--cyan); }
+  .product-badge.green { color: #34d399; }
+  .product-badge.purple { color: #c084fc; }
+
+  .pill-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    box-shadow: 0 0 6px currentColor;
+  }
+
+  .prod-tag {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-muted);
+  }
+
+  .solution-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.35;
     margin: 0;
-    font-size: 0.85rem;
+  }
+
+  .solution-title a {
+    color: inherit;
+  }
+
+  .solution-title a:hover {
+    color: var(--cyan);
+  }
+
+  .solution-desc {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
     line-height: 1.6;
-    color: #38bdf8;
-    background: transparent !important;
+    margin-top: 0.2rem;
+  }
+
+  .solution-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-top: 0.45rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.75rem;
+  }
+
+  .tech-spec-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+
+  .link-arrow {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--cyan);
+    font-size: 0.78rem;
+  }
+
+  .link-arrow.green {
+    color: #34d399;
+  }
+
+  .link-arrow:hover {
+    text-shadow: 0 0 8px currentColor;
+  }
+
+  /* Spec Capsules */
+  .spec-capsules {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .capsule {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #cbd5e1;
+  }
+
+  .capsule.doromizu {
+    background: rgba(236, 72, 153, 0.15);
+    border-color: var(--pink);
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .nav-links-footer {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .sub-nav-link {
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
+  }
+
+  .sub-nav-link:hover {
+    color: var(--cyan);
+  }
+
+  .sub-nav-link.highlight {
+    color: var(--pink);
+    font-weight: 600;
+  }
+
+  .sub-nav-link.highlight:hover {
+    text-shadow: 0 0 8px var(--pink);
+  }
+
+  .sep {
+    color: rgba(255, 255, 255, 0.2);
   }
 </style>
