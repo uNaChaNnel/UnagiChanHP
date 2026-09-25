@@ -47,8 +47,48 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </div>
 
+      <!-- Official Email Contact -->
+      <div class="cyber-card contact-card email-contact">
+        <div class="card-icon-wrap email-icon-wrap">
+          <svg class="contact-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="cyber-badge cyan">EMAIL / 公式メール</span>
+          <h2>公式メール窓口</h2>
+          <p>
+            コラボレーションのご提案、制作・お仕事のご相談、長文の不具合詳細報告などはこちらのメールアドレスへご連絡ください。
+          </p>
+          <div class="email-address-box">
+            <span class="email-label">MAIL:</span>
+            <code id="email-address-text" class="email-text">contact@unagichan.com</code>
+            <button id="copy-email-btn" class="cyber-btn cyber-btn-ghost copy-btn" type="button" title="アドレスをコピー">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span id="copy-text">コピー</span>
+            </button>
+          </div>
+          <div class="contact-action-row">
+            <a
+              href="mailto:contact@unagichan.com"
+              class="cyber-btn cyber-btn-primary email-btn"
+            >
+              <span>メールソフトを起動する</span>
+              <svg class="external-icon" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
       <!-- FAQ & Guidelines -->
-      <div class="cyber-card contact-card">
+      <div class="cyber-card contact-card faq-card">
         <h2>よくあるお問い合わせについて</h2>
         <div class="faq-list">
           <div class="faq-item">
@@ -76,6 +116,28 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </div>
 </Layout>
+
+<script>
+  const copyBtn = document.getElementById('copy-email-btn');
+  const copyText = document.getElementById('copy-text');
+  const email = 'contact@unagichan.com';
+
+  if (copyBtn && copyText) {
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(email);
+        copyText.textContent = 'コピー完了！';
+        copyBtn.classList.add('copied');
+        setTimeout(() => {
+          copyText.textContent = 'コピー';
+          copyBtn.classList.remove('copied');
+        }, 2000);
+      } catch (err) {
+        console.error('Failed to copy email:', err);
+      }
+    });
+  }
+</script>
 
 <style>
   .page-header {
@@ -122,6 +184,11 @@ import Layout from '../layouts/Layout.astro';
     background: radial-gradient(circle at top right, rgba(0, 240, 255, 0.08), transparent 60%), var(--grad-card);
   }
 
+  .email-contact {
+    border-color: rgba(139, 92, 246, 0.35);
+    background: radial-gradient(circle at top right, rgba(139, 92, 246, 0.08), transparent 60%), var(--grad-card);
+  }
+
   .card-icon-wrap {
     width: 48px;
     height: 48px;
@@ -131,6 +198,10 @@ import Layout from '../layouts/Layout.astro';
     align-items: center;
     justify-content: center;
     color: var(--cyan);
+  }
+
+  .email-icon-wrap {
+    color: #a78bfa;
   }
 
   .contact-svg {
@@ -158,6 +229,68 @@ import Layout from '../layouts/Layout.astro';
     max-width: 600px;
   }
 
+  .email-address-box {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 1rem;
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    width: 100%;
+    max-width: 460px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+
+  .email-label {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .email-text {
+    color: var(--cyan);
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    background: transparent;
+    padding: 0;
+    border: none;
+    flex: 1;
+    user-select: all;
+  }
+
+  .copy-btn {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+
+  .copy-btn.copied {
+    border-color: var(--cyan);
+    color: var(--cyan);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+  }
+
+  .btn-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .contact-action-row {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 0.25rem;
+  }
+
   .external-icon {
     width: 16px;
     height: 16px;
@@ -180,5 +313,14 @@ import Layout from '../layouts/Layout.astro';
     color: var(--text-secondary);
     font-size: 0.9rem;
     line-height: 1.7;
+  }
+
+  @media (max-width: 600px) {
+    .email-address-box {
+      flex-wrap: wrap;
+    }
+    .email-text {
+      width: 100%;
+    }
   }
 </style>

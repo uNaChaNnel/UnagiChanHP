@@ -120,7 +120,7 @@ Type <span class="term-hl">exit</span> to return to graphical interface.
 
     if (!modal || !input || !historyContainer || !bodyContainer) return;
 
-    const commandList = ['help', 'unagi', 'tools', 'stamp', 'stampcreator', 'note', 'x', 'twitter', 'spec', 'about', 'gpu', 'doromizu', 'wife', 'contact', 'clear', 'cls', 'matrix', 'sudo', 'exit', 'gui'];
+    const commandList = ['help', 'unagi', 'tools', 'stamp', 'stampcreator', 'note', 'x', 'twitter', 'spec', 'about', 'gpu', 'doromizu', 'wife', 'contact', 'mail', 'email', 'clear', 'cls', 'matrix', 'sudo', 'exit', 'gui'];
     const cmdHistory: string[] = [];
     let historyIndex = -1;
 
@@ -281,6 +281,9 @@ Type <span class="term-hl">exit</span> to return to graphical interface.
   <span class="cmd">doromizu</span>
     泥水啜りプロセスの実行ログを出力
 
+  <span class="cmd">contact</span>, <span class="cmd">mail</span>
+    公式メール窓口（contact@unagichan.com）と連絡先
+
   <span class="cmd">matrix</span>
     緑の文字が降るマトリックス演出
 
@@ -382,7 +385,14 @@ Type <span class="term-hl">exit</span> to return to graphical interface.
           break;
 
         case 'contact':
-          printLine(`お問い合わせページへ遷移します: <a href="/contact" class="term-link">/contact</a>`);
+        case 'mail':
+        case 'email':
+          printLine(`
+<span class="term-hl">[CONTACT CHANNELS]</span>
+- Email : <a href="mailto:contact@unagichan.com" class="term-link">contact@unagichan.com</a>
+- X DM  : <a href="https://x.com/UnagiChaaaaaN" target="_blank" class="term-link">@UnagiChaaaaaN</a>
+- Form  : <a href="/contact" class="term-link">/contact</a>
+`);
           break;
 
         case 'clear':
