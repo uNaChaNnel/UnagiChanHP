@@ -7,12 +7,13 @@ const currentYear = new Date().getFullYear();
     <div class="footer-top">
       <div class="footer-brand">
         <div class="footer-logo">
-          <span class="gradient-text logo-title">うなぎちゃん公式サイト</span>
-          <span class="cyber-badge purple">Developer & Creator</span>
+          <img src="/unagi-icon.png" alt="うなぎちゃん" class="footer-logo-img" width="32" height="32" />
+          <span class="gradient-text logo-title">うなぎちゃんねる</span>
+          <span class="cyber-badge purple">uNaChaNnel BBS</span>
         </div>
         <p class="brand-desc">
-          スマホ完結のクリエイター向けWebツール開発と、開発ノウハウ・制作秘話を発信する公式サイト。
-          クリエイターの「つくりたい」をテクノロジーでサポートします。
+          スマホ完結のクリエイター向けWebツール開発と、開発ノウハウ・制作秘話を発信する公式BBSポータル。
+          クリエイターの「つくりたい」をテクノロジーでサポートします。（sage進行）
         </p>
         <div class="social-links">
           <a
@@ -25,14 +26,14 @@ const currentYear = new Date().getFullYear();
             <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
             </svg>
-            <span>@UnagiChaaaaaN</span>
+            <span>X: @UnagiChaaaaaN</span>
           </a>
         </div>
       </div>
 
       <div class="footer-nav-groups">
         <div class="nav-group">
-          <h4 class="nav-heading">TOOLS / ツール</h4>
+          <h4 class="nav-heading">【ツール板】</h4>
           <ul>
             <li><a href="https://stampcreator.unagichan.com/" target="_blank" rel="noopener noreferrer">StampCreator</a></li>
             <li><a href="/tools">制作ツール一覧</a></li>
@@ -40,19 +41,19 @@ const currentYear = new Date().getFullYear();
         </div>
 
         <div class="nav-group">
-          <h4 class="nav-heading">CONTENTS / コンテンツ</h4>
+          <h4 class="nav-heading">【開発ノート板】</h4>
           <ul>
-            <li><a href="/blog">公式ブログ</a></li>
-            <li><a href="/about">プロフィール・活動紹介</a></li>
-            <li><a href="/contact">お問い合わせ</a></li>
+            <li><a href="/blog">公式ブログ・過去ログ</a></li>
+            <li><a href="/about">自己紹介・プロフィール</a></li>
+            <li><a href="/contact">お問い合わせ・削除依頼</a></li>
           </ul>
         </div>
 
         <div class="nav-group">
-          <h4 class="nav-heading">LEGAL / 規約・方針</h4>
+          <h4 class="nav-heading">【規約・ガイドライン】</h4>
           <ul>
             <li><a href="/privacy-policy">プライバシーポリシー</a></li>
-            <li><a href="/disclaimer">免責事項</a></li>
+            <li><a href="/disclaimer">免責事項・転載について</a></li>
           </ul>
         </div>
       </div>
@@ -119,6 +120,15 @@ const currentYear = new Date().getFullYear();
     flex-wrap: wrap;
     align-items: center;
     gap: 0.75rem;
+  }
+
+  .footer-logo-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 240, 255, 0.4);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+    object-fit: cover;
   }
 
   .logo-title {

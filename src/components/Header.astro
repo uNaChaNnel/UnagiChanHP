@@ -10,26 +10,33 @@ const navItems = [
 const currentPath = Astro.url.pathname;
 ---
 
+<!-- 2ch Neo-Retro BBS Status Bar -->
+<div class="bbs-status-bar">
+  <div class="container bbs-status-inner">
+    <div class="bbs-status-left">
+      <span class="bbs-live-tag">LIVE</span>
+      <span class="bbs-status-text">uNaChaNnel [総合BBS] ｜ サーバー負荷: 良好 (Dat落ちなし) ｜ sage進行</span>
+    </div>
+    <div class="bbs-status-right">
+      <span class="bbs-board-label">板一覧:</span>
+      <a href="/tools" class="bbs-board-pill">【ツール板】</a>
+      <a href="/blog" class="bbs-board-pill">【開発ノート板】</a>
+      <a href="/about" class="bbs-board-pill">【自己紹介板】</a>
+      <a href="/contact" class="bbs-board-pill">【お問い合わせ】</a>
+    </div>
+  </div>
+</div>
+
 <header class="site-header">
   <div class="header-inner container">
-    <a href="/" class="brand-logo" aria-label="うなぎちゃん公式サイト ホーム">
+    <a href="/" class="brand-logo" aria-label="うなぎちゃんねる ホーム">
       <div class="logo-icon-wrap">
-        <svg class="logo-svg" viewBox="0 0 32 32" fill="none">
-          <circle cx="16" cy="16" r="14" stroke="url(#hGrad)" stroke-width="2"/>
-          <path d="M9 21C8 17 11 13 14 12C18 10 22 12 23 16C24 19 21 22 18 22C14 22 12 19 13 17" stroke="url(#hGrad)" stroke-width="2.5" stroke-linecap="round"/>
-          <circle cx="12" cy="13" r="1.5" fill="#00f0ff"/>
-          <defs>
-            <linearGradient id="hGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#00f0ff" />
-              <stop offset="100%" stop-color="#ec4899" />
-            </linearGradient>
-          </defs>
-        </svg>
+        <img src="/unagi-icon.png" alt="うなぎちゃん アイコン" class="logo-img" width="38" height="38" />
         <span class="live-dot"></span>
       </div>
       <div class="brand-text">
-        <span class="site-name">うなぎちゃん</span>
-        <span class="site-sub">OFFICIAL</span>
+        <span class="site-name">うなぎちゃんねる</span>
+        <span class="site-sub">uNaChaNnel / 2ch NEO</span>
       </div>
     </a>
 
@@ -158,27 +165,41 @@ const currentPath = Astro.url.pathname;
 
   .logo-icon-wrap {
     position: relative;
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 240, 255, 0.15) 0%, rgba(11, 15, 25, 0.8) 70%);
+    border: 1.5px solid rgba(0, 240, 255, 0.4);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
   }
 
-  .logo-svg {
+  .brand-logo:hover .logo-icon-wrap {
+    transform: scale(1.08) rotate(3deg);
+    border-color: var(--cyan);
+    box-shadow: 0 0 16px rgba(0, 240, 255, 0.6);
+  }
+
+  .logo-img {
     width: 100%;
     height: 100%;
-    filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.5));
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
   }
 
   .live-dot {
     position: absolute;
-    bottom: 2px;
-    right: 2px;
-    width: 8px;
-    height: 8px;
+    bottom: -1px;
+    right: -1px;
+    width: 9px;
+    height: 9px;
     background: #00f0ff;
     border-radius: 50%;
+    border: 1.5px solid var(--bg-dark);
     box-shadow: 0 0 8px #00f0ff;
   }
 

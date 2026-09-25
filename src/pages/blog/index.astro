@@ -16,11 +16,14 @@ const allTags = Array.from(new Set(posts.flatMap(p => p.data.tags)));
 >
   <div class="page-header">
     <div class="container">
-      <span class="cyber-badge purple">BLOG &amp; ARTICLES</span>
-      <h1 class="page-title">公式ブログ・開発ノート</h1>
+      <div class="res-header" style="margin-bottom: 0.5rem;">
+        <span class="bbs-board-pill">【開発ノート板】</span>
+        <span class="res-date">uNaChaNnel BBS 過去ログ倉庫</span>
+      </div>
+      <h1 class="page-title">公式ブログ・開発ノートスレッド一覧</h1>
       <p class="page-desc">
         LINEスタンプ制作の実践知識、Webフロントエンド技術、個人ツールのUI/UX設計など、
-        クリエイターとエンジニアに役立つ実践的な知見をシェアしています。
+        クリエイターとエンジニアに役立つ実践的な知見を蓄積しています。
       </p>
 
       {allTags.length > 0 && (
