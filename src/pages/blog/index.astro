@@ -35,6 +35,20 @@ const allTags = Array.from(new Set(posts.flatMap(p => p.data.tags)));
   </div>
 
   <div class="container blog-main-container">
+    <!-- note Feature Banner -->
+    <a href="https://note.com/unagichaaaan" target="_blank" rel="noopener noreferrer" class="cyber-card note-feature-banner">
+      <div class="note-banner-left">
+        <span class="cyber-badge green">NOTE OFFICIAL</span>
+        <h2 class="note-banner-heading">noteで「嫁にグラボを一蹴されたエンジニアおじさんの収益化奮闘記」連載中！</h2>
+        <p class="note-banner-text">
+          日々の技術メモ、個人開発のリアルな裏話、収益化への試行錯誤はnoteでリアルタイム発信しています。
+        </p>
+      </div>
+      <div class="note-banner-btn">
+        <span class="cyber-btn cyber-btn-primary">noteを読む ➔</span>
+      </div>
+    </a>
+
     <div class="blog-grid">
       {sortedPosts.map((post) => (
         <PostCard post={post} />
@@ -96,6 +110,55 @@ const allTags = Array.from(new Set(posts.flatMap(p => p.data.tags)));
     display: flex;
     flex-direction: column;
     gap: 3.5rem;
+  }
+
+  .note-feature-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 2rem 2.5rem;
+    border-left: 4px solid #10b981;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(14, 20, 36, 0.8) 100%);
+    transition: all 0.3s ease;
+  }
+
+  .note-feature-banner:hover {
+    border-color: #34d399;
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .note-banner-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .note-banner-heading {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.4;
+  }
+
+  .note-banner-text {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .note-banner-btn {
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .note-feature-banner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+      padding: 1.5rem;
+    }
   }
 
   .blog-grid {
