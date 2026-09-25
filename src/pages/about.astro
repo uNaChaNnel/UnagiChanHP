@@ -82,9 +82,16 @@ import Layout from '../layouts/Layout.astro';
         </ul>
 
         <h3>主な技術スタック</h3>
+        <p class="skills-lead">
+          長年のエンジニア経験に裏打ちされた、制御・組み込みから業務アプリ・モダンWebフロントエンドまでの守備範囲：
+        </p>
         <div class="skills-grid">
-          <span class="skill-tag">HTML5 / Canvas API</span>
+          <span class="skill-tag highlight">C# / WPF</span>
+          <span class="skill-tag highlight">C / C++</span>
+          <span class="skill-tag highlight">MATLAB / Simulink</span>
+          <span class="skill-tag highlight">Java / Kotlin</span>
           <span class="skill-tag">TypeScript / JavaScript</span>
+          <span class="skill-tag">HTML / Canvas API</span>
           <span class="skill-tag">Astro (SSG)</span>
           <span class="skill-tag">Cloudflare Pages</span>
           <span class="skill-tag">Git / GitHub</span>
@@ -231,11 +238,17 @@ import Layout from '../layouts/Layout.astro';
     height: 14px;
   }
 
+  .skills-lead {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+  }
+
   .skills-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin: 1rem 0 1.5rem;
+    margin: 0.5rem 0 1.5rem;
   }
 
   .skill-tag {
@@ -246,6 +259,13 @@ import Layout from '../layouts/Layout.astro';
     color: var(--cyan);
     padding: 0.3rem 0.75rem;
     border-radius: var(--radius-sm);
+  }
+
+  .skill-tag.highlight {
+    background: rgba(139, 92, 246, 0.12);
+    border-color: rgba(139, 92, 246, 0.35);
+    color: #c4b5fd;
+    font-weight: 600;
   }
 
   .info-table {
