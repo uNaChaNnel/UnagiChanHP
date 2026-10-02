@@ -2,29 +2,193 @@
 import Layout from '../../layouts/Layout.astro';
 import ToolCard from '../../components/ToolCard.astro';
 import { toolsData } from '../../data/tools';
+
+const noteUrl = "https://note.com/un4chan";
+const stampCreatorUrl = "https://stampcreator.unagichan.com/";
 ---
 
 <Layout
-  title="制作ツール一覧 | うなぎちゃん公式サイト"
-  description="うなぎちゃんが開発・提供しているクリエイター支援Webツールの一覧。スマホ完結LINEスタンプ制作ツール「StampCreator」をはじめ、登録不要・ブラウザ完結のツールを提供しています。"
+  title="制作ツール一覧＆開発ドキュメント | うなぎちゃん公式サイト"
+  description="うなぎちゃんが開発・提供しているクリエイター支援Webツールの一覧と技術仕様。スマホ完結LINEスタンプ制作ツール「StampCreator」の規格準拠解説や、登録不要・ブラウザ完結の設計思想を公開しています。"
 >
   <div class="page-header">
     <div class="container">
-      <span class="cyber-badge pink">TOOLS DIRECTORY</span>
+      <span class="cyber-badge pink">TOOLS &amp; SPECS</span>
       <h1 class="page-title">制作ツール・Webアプリ一覧</h1>
       <p class="page-desc">
-        クリエイターが創作活動に集中できるよう、面倒な規格調整や画像処理を自動化するWebツールを開発・公開しています。
-        すべてのツールはインストール不要、スマホやPCのブラウザからすぐにご利用いただけます。
+        クリエイターが創作活動だけに集中できるよう、面倒な規格調整や画像処理を自動化する自作Webツールを開発・公開しています。
+        すべてのツールは会員登録不要・完全無料で、スマホやPCのブラウザから即座にご利用いただけます。
       </p>
     </div>
   </div>
 
   <div class="container tools-main-container">
-    <div class="tools-grid">
-      {toolsData.map((tool) => (
-        <ToolCard tool={tool} featured={tool.status === 'active'} />
-      ))}
-    </div>
+    <!-- Active Tools Grid -->
+    <section class="tools-grid-section">
+      <div class="section-title-row">
+        <h2 class="sub-heading">
+          <span class="pulse-dot green"></span>
+          <span>公開中・開発中のWebツール</span>
+        </h2>
+        <span class="heading-tag">ZERO INSTALL / WEB-BASED</span>
+      </div>
+      <div class="tools-grid">
+        {toolsData.map((tool) => (
+          <ToolCard tool={tool} featured={tool.status === 'active'} />
+        ))}
+      </div>
+    </section>
+
+    <!-- Technical Deep Dive: StampCreator Specification Guide -->
+    <section class="tech-spec-section cyber-card" id="stampcreator-guide">
+      <div class="card-glow-line cyan"></div>
+      <div class="spec-header">
+        <span class="cyber-badge cyan">FLAGSHIP TOOL DEEP DIVE</span>
+        <h2 class="spec-title">StampCreator が解決する「LINEスタンプ公式規格の落とし穴」</h2>
+        <p class="spec-subtitle">
+          「イラストを描くことだけに集中したい」クリエイターのために、審査リジェクトの温床となる面倒なレギュレーションを完全自動化しました。
+        </p>
+      </div>
+
+      <div class="spec-grid">
+        <!-- Pitfall 1 -->
+        <div class="spec-card">
+          <div class="spec-num">01</div>
+          <h3 class="spec-card-title">「偶数ドット」の厳格ルール</h3>
+          <p class="spec-card-desc">
+            LINE Creators Marketのスタンプ画像（最大横370×縦320px）は、<strong>幅・高さ共に必ず「偶数ピクセル」</strong>でなければ自動エラーになります。奇数（例: 369×319px）が1枚でも混ざると申請すら通りません。
+          </p>
+          <div class="spec-solution">
+            <span class="sol-badge">自動補正</span>
+            <span>投入画像をCanvas APIで解析し、アスペクト比を保ちつつ最も近い偶数サイズへ自動整形します。</span>
+          </div>
+        </div>
+
+        <!-- Pitfall 2 -->
+        <div class="spec-card">
+          <div class="spec-num">02</div>
+          <h3 class="spec-card-title">「周囲10pxの透明余白」</h3>
+          <p class="spec-card-desc">
+            イラストをキャンバス端ギリギリまで描くと、トーク画面のフチで欠けたり不自然に見えるため、<strong>上下左右に約10pxの余白</strong>が必須です。手動でキャンバスを広げて均等配置するのは途方もない苦行です。
+          </p>
+          <div class="spec-solution">
+            <span class="sol-badge">自動補正</span>
+            <span>イラストの透明部分を自動検出し、常に上下左右に均等な透明マージンを自動付与して書き出します。</span>
+          </div>
+        </div>
+
+        <!-- Pitfall 3 -->
+        <div class="spec-card">
+          <div class="spec-num">03</div>
+          <h3 class="spec-card-title">main.png / tab.png の個別作成</h3>
+          <p class="spec-card-desc">
+            スタンプ本体（8〜40個）とは別に、ストア表示用の<strong>メイン画像（240×240px）</strong>とトーク切り替え用の<strong>タブ画像（96×74px）</strong>の用意が必須。別ソフトでリサイズする手間が発生します。
+          </p>
+          <div class="spec-solution">
+            <span class="sol-badge">自動生成</span>
+            <span>代表スタンプを選択するだけで、それぞれの規格サイズに合わせた画像を瞬時にトリミング生成します。</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5-min Workflow -->
+      <div class="workflow-box">
+        <h3 class="workflow-title">⏱️ 最短5分で完了する制作ワークフロー</h3>
+        <div class="workflow-steps">
+          <div class="step-item">
+            <div class="step-badge">STEP 1</div>
+            <div class="step-content">
+              <strong>イラストを描く</strong>
+              <p>背景透過のPNG形式でキャライラストを用意（AI生成・手描き両対応）</p>
+            </div>
+          </div>
+          <div class="step-arrow">➔</div>
+          <div class="step-item">
+            <div class="step-badge">STEP 2</div>
+            <div class="step-content">
+              <strong>画像をドラッグ＆ドロップ</strong>
+              <p><a href={stampCreatorUrl} target="_blank" rel="noopener noreferrer">StampCreator</a> に画像を放り込むだけ</p>
+            </div>
+          </div>
+          <div class="step-arrow">➔</div>
+          <div class="step-item">
+            <div class="step-badge">STEP 3</div>
+            <div class="step-content">
+              <strong>看板画像を選択</strong>
+              <p>一覧からメイン・タブにしたいスタンプを選ぶだけで自動トリミング</p>
+            </div>
+          </div>
+          <div class="step-arrow">➔</div>
+          <div class="step-item">
+            <div class="step-badge">STEP 4</div>
+            <div class="step-content">
+              <strong>一括ZIPダウンロード</strong>
+              <p>連番命名（01.png〜）の公式申請セットがそのまま即座に完成！</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="spec-cta-row">
+        <a href={stampCreatorUrl} target="_blank" rel="noopener noreferrer" class="cyber-btn cyber-btn-primary">
+          StampCreator を今すぐ使う（登録不要・無料）➔
+        </a>
+      </div>
+    </section>
+
+    <!-- Development Philosophy Section -->
+    <section class="philosophy-section cyber-card">
+      <div class="card-glow-line purple"></div>
+      <div class="phil-header">
+        <span class="cyber-badge purple">DESIGN POLICY</span>
+        <h2 class="phil-title">UNAGI LAB ツール開発の3大設計原則</h2>
+        <p class="phil-sub">「自分が使いたい」「ユーザーに迷わせない」を極限まで追求したUI/UX</p>
+      </div>
+
+      <div class="phil-grid">
+        <div class="phil-item">
+          <div class="phil-icon">⚡</div>
+          <h3 class="phil-item-title">会員登録不要で即座に使える</h3>
+          <p class="phil-item-desc">
+            メアド登録やパスワード設定などの心理的ハードルを排除。ページを開いて1秒後にメイン機能に触れられる直感性を重視しています。
+          </p>
+        </div>
+
+        <div class="phil-item">
+          <div class="phil-icon">🛡️</div>
+          <h3 class="phil-item-title">完全クライアント完結のプライバシー保護</h3>
+          <p class="phil-item-desc">
+            Canvas APIを活用し、全画像処理をブラウザ端末内部だけで完結。大切な未公開イラストが外部サーバーに送信・保存される心配は一切ありません。
+          </p>
+        </div>
+
+        <div class="phil-item">
+          <div class="phil-icon">📱</div>
+          <h3 class="phil-item-title">スマホ・タブレットでの快適操作</h3>
+          <p class="phil-item-desc">
+            多くのクリエイターがiPadやスマホで作業することを前提に、44px以上の押しやすいタッチターゲットと親指操作に最適化したレスポンシブUIを提供します。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Note Link Banner -->
+    <section class="note-banner-card cyber-card">
+      <div class="banner-inner">
+        <div class="banner-text">
+          <span class="cyber-badge green">DEVELOPMENT NOTES</span>
+          <h3 class="banner-title">ツール開発の裏話や奮闘記は note で連載中！</h3>
+          <p class="banner-desc">
+            「嫁にグラボを一蹴されたプロ駄作クリエーターの奮闘記」や、個人開発の試行錯誤ログ、新機能のアップデート情報は公式noteにて随時発信しています。
+          </p>
+        </div>
+        <div class="banner-action">
+          <a href={noteUrl} target="_blank" rel="noopener noreferrer" class="cyber-btn cyber-btn-primary">
+            公式noteを見に行く ➔
+          </a>
+        </div>
+      </div>
+    </section>
   </div>
 </Layout>
 
@@ -46,7 +210,7 @@ import { toolsData } from '../../data/tools';
   .page-desc {
     color: var(--text-secondary);
     font-size: 1.05rem;
-    max-width: 680px;
+    max-width: 720px;
     line-height: 1.8;
   }
 
@@ -55,7 +219,42 @@ import { toolsData } from '../../data/tools';
     padding-bottom: 5rem;
     display: flex;
     flex-direction: column;
-    gap: 3.5rem;
+    gap: 4rem;
+  }
+
+  /* Grid Section */
+  .section-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.75rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .sub-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+  }
+
+  .pulse-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 10px #10b981;
+  }
+
+  .heading-tag {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
   }
 
   .tools-grid {
@@ -68,5 +267,293 @@ import { toolsData } from '../../data/tools';
     .tools-grid {
       grid-template-columns: repeat(2, 1fr);
     }
+  }
+
+  /* Deep Dive Spec Section */
+  .tech-spec-section {
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-glow-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+  }
+
+  .card-glow-line.cyan {
+    background: linear-gradient(90deg, transparent, #00f0ff, transparent);
+  }
+
+  .card-glow-line.purple {
+    background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
+  }
+
+  .spec-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .spec-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 0.75rem 0 0.5rem;
+    line-height: 1.35;
+  }
+
+  .spec-subtitle {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 800px;
+  }
+
+  .spec-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  @media (min-width: 860px) {
+    .spec-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .spec-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .spec-num {
+    font-family: var(--font-mono, monospace);
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #00f0ff;
+    margin-bottom: 0.5rem;
+  }
+
+  .spec-card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+
+  .spec-card-desc {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    flex: 1;
+  }
+
+  .spec-solution {
+    background: rgba(0, 240, 255, 0.06);
+    border-left: 3px solid #00f0ff;
+    padding: 0.75rem 0.9rem;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: #e2e8f0;
+  }
+
+  .sol-badge {
+    display: block;
+    font-weight: 700;
+    color: #00f0ff;
+    font-size: 0.75rem;
+    margin-bottom: 0.2rem;
+  }
+
+  /* Workflow Steps */
+  .workflow-box {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .workflow-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.25rem;
+  }
+
+  .workflow-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  @media (min-width: 768px) {
+    .workflow-steps {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .step-item {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 1rem;
+  }
+
+  .step-badge {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #ec4899;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.35rem;
+  }
+
+  .step-content strong {
+    display: block;
+    color: #fff;
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .step-content p {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .step-content a {
+    color: #00f0ff;
+    text-decoration: underline;
+  }
+
+  .step-arrow {
+    display: none;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+  }
+
+  @media (min-width: 768px) {
+    .step-arrow {
+      display: block;
+    }
+  }
+
+  .spec-cta-row {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Philosophy Section */
+  .philosophy-section {
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .phil-header {
+    margin-bottom: 2rem;
+  }
+
+  .phil-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 0.75rem 0 0.4rem;
+  }
+
+  .phil-sub {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+  }
+
+  .phil-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .phil-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .phil-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .phil-icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .phil-item-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.6rem;
+  }
+
+  .phil-item-desc {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Note Banner Card */
+  .note-banner-card {
+    padding: 2rem 2.5rem;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(0, 0, 0, 0.4) 100%);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+  }
+
+  .banner-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .banner-text {
+    flex: 1;
+    min-width: 280px;
+  }
+
+  .banner-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0.5rem 0;
+  }
+
+  .banner-desc {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .banner-action {
+    flex-shrink: 0;
   }
 </style>

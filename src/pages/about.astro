@@ -1,16 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const noteUrl = "https://note.com/un4chan";
 ---
 
 <Layout
-  title="運営者情報・プロフィール | うなぎちゃん公式サイト"
-  description="グラボほちい・・・泥水啜って頑張ります。※楽しくなさそうなことはやりません。うなぎちゃん（@UnagiChaaaaaN）のプロフィール、活動方針、技術スタックを紹介するページです。"
+  title="運営者情報・プロフィール・技術設計思想 | うなぎちゃん公式サイト"
+  description="グラボほちい・・・泥水啜って頑張ります。※楽しくなさそうなことはやりません。うなぎちゃん（@UnagiChaaaaaN）のプロフィール、活動方針、個人WebツールのUI/UX設計思想、Cloudflare Pages × Astro技術スタックを紹介するページです。"
 >
   <div class="page-header">
     <div class="container-narrow">
-      <span class="cyber-badge pink">ABOUT CREATOR</span>
+      <span class="cyber-badge pink">ABOUT CREATOR &amp; ARCHITECTURE</span>
       <h1 class="page-title">運営者情報・プロフィール</h1>
-      <p class="page-desc">うなぎちゃん（UnagiChaaaaaN）の活動とビジョン</p>
+      <p class="page-desc">うなぎちゃん（UnagiChaaaaaN）の活動、開発哲学、技術選定</p>
     </div>
   </div>
 
@@ -73,6 +75,80 @@ import Layout from '../layouts/Layout.astro';
           <span class="whisper-note">（※グラボのためなら喜んで靴を舐める覚悟はあります。）</span>
         </p>
 
+        <!-- UI/UX & Product Design Philosophy -->
+        <h3>個人Webツール開発における5つの設計原則</h3>
+        <p>
+          StampCreatorをはじめとする自作Webツールを開発する際、機能の多さ以上に重視しているのが<strong>「ユーザーの手間を極限まで削るUI/UX設計」</strong>です。日々の開発で徹底している5つのポリシーを共有します。
+        </p>
+        
+        <div class="principles-grid">
+          <div class="principle-item">
+            <span class="p-num">01</span>
+            <h4>会員登録不要（0秒アクセス）</h4>
+            <p>
+              ログインやメール認証を強制した瞬間に過半数のユーザーは離脱します。「ページを開いて1秒後にメイン機能に触れる」状態を常に目指しています。
+            </p>
+          </div>
+          <div class="principle-item">
+            <span class="p-num">02</span>
+            <h4>スマホ・タブレット完全最適化</h4>
+            <p>
+              多くのクリエイターはiPadやスマホで作業しています。親指で操作しやすい下部配置や44px以上のタッチターゲットを確保し、誤タップを防ぎます。
+            </p>
+          </div>
+          <div class="principle-item">
+            <span class="p-num">03</span>
+            <h4>クライアントサイド完結の安心</h4>
+            <p>
+              Canvas APIを活用し、全画像処理をブラウザ端末内部だけで完結。大切な未公開イラストが外部サーバーに送信・流出するリスクを根本から遮断します。
+            </p>
+          </div>
+          <div class="principle-item">
+            <span class="p-num">04</span>
+            <h4>エラーを出さない「自動補正」の優しさ</h4>
+            <p>
+              ただ「規格外エラー」と突き放すのではなく、奇数ピクセルを偶数へ、余白不足を自動で透明マージン補正するなど、ツール側で正解へ導きます。
+            </p>
+          </div>
+          <div class="principle-item full-width">
+            <span class="p-num">05</span>
+            <h4>心地よいマイクロインタラクション</h4>
+            <p>
+              完了時の心地よいアニメーションや進捗インジケーターなど、触っていて気持ちいいフィードバックを丁寧に実装しています。
+            </p>
+          </div>
+        </div>
+
+        <!-- Tech Architecture & Infrastructure -->
+        <h3>本サイトの技術構成：Cloudflare Pages × Astro v5</h3>
+        <p>
+          うなぎちゃん公式サイトは、<strong>Astro v5</strong> と <strong>Cloudflare Pages</strong> による「爆速静的SSG（Zero-JS by default）」アーキテクチャを採用しています。
+        </p>
+        
+        <div class="arch-box">
+          <div class="arch-item">
+            <div class="arch-badge">Zero-JS SSG</div>
+            <div class="arch-content">
+              <strong>PageSpeed Insights 100点の爆速レスポンス</strong>
+              <p>ビルド時に静的HTML/CSSを完全事前生成。WordPressのように都度サーバーでPHP/SQLが走らないため、TTFB（初回応答）が極小でレイアウト崩れ（CLS 0）も皆無です。</p>
+            </div>
+          </div>
+          <div class="arch-item">
+            <div class="arch-badge">Edge Network</div>
+            <div class="arch-content">
+              <strong>世界300都市以上のグローバルエッジ配信</strong>
+              <p>Cloudflareのエッジキャッシュにより、日本国内はもちろん海外からのアクセスも数十ミリ秒で即座に応答。帯域幅無制限・DDoS防御・常時SSL化を標準装備しています。</p>
+            </div>
+          </div>
+          <div class="arch-item">
+            <div class="arch-badge">CI/CD Pipeline</div>
+            <div class="arch-content">
+              <strong>Gitプッシュ駆動の自動デプロイ</strong>
+              <p>GitHubのmainブランチへのコミットをトリガーに、エッジ環境へ全自動でビルド＆デプロイが完了するモダンな開発パイプラインを構築しています。</p>
+            </div>
+          </div>
+        </div>
+
         <h3>元々やっている創作活動</h3>
         <ul>
           <li>
@@ -82,6 +158,10 @@ import Layout from '../layouts/Layout.astro';
           <li>
             <strong><a href="https://kakuyomu.jp/users/UnagiChan" target="_blank" rel="noopener noreferrer">カクヨム : UnagiChan</a></strong><br />
             Web小説執筆・ストーリー創作活動の拠点。物語を作ることへの情熱を注ぎ込む、文章クリエイターとしての原点。
+          </li>
+          <li>
+            <strong><a href={noteUrl} target="_blank" rel="noopener noreferrer">公式note : un4chan</a></strong><br />
+            「嫁にグラボを一蹴されたプロ駄作クリエーターの奮闘記」や開発ログ、AI活用エッセイを発信。有料記事も好評展開中！
           </li>
         </ul>
 
@@ -108,7 +188,7 @@ import Layout from '../layouts/Layout.astro';
           </div>
           <div class="pipeline-item">
             <span class="pipeline-badge success">売上発生</span>
-            <strong><a href="https://note.com/un4chan" target="_blank" rel="noopener noreferrer">note 有料記事販売</a></strong>: 「嫁にグラボを一蹴された奮闘記」やノウハウ記事を執筆。有料記事が実際に数本売れ、泥水から最初の一滴を抽出！
+            <strong><a href={noteUrl} target="_blank" rel="noopener noreferrer">note 有料記事販売</a></strong>: 「嫁にグラボを一蹴された奮闘記」やノウハウ記事を執筆。有料記事が実際に数本売れ、泥水から最初の一滴を抽出！
           </div>
           <div class="pipeline-item">
             <span class="pipeline-badge review">審査中</span>
@@ -135,7 +215,7 @@ import Layout from '../layouts/Layout.astro';
           <span class="skill-tag highlight">Java / Kotlin</span>
           <span class="skill-tag">TypeScript / JavaScript</span>
           <span class="skill-tag">HTML / Canvas API</span>
-          <span class="skill-tag">Astro (SSG)</span>
+          <span class="skill-tag">Astro v5 (SSG)</span>
           <span class="skill-tag">Cloudflare Pages</span>
           <span class="skill-tag">Git / GitHub</span>
           <span class="skill-tag">UI/UX Design</span>
@@ -159,6 +239,10 @@ import Layout from '../layouts/Layout.astro';
             <tr>
               <th>公式SNS</th>
               <td><a href="https://x.com/UnagiChaaaaaN" target="_blank" rel="noopener noreferrer">X (旧Twitter) @UnagiChaaaaaN</a></td>
+            </tr>
+            <tr>
+              <th>公式note</th>
+              <td><a href={noteUrl} target="_blank" rel="noopener noreferrer">note (un4chan)</a></td>
             </tr>
             <tr>
               <th>お問い合わせ</th>
@@ -309,6 +393,107 @@ import Layout from '../layouts/Layout.astro';
     border-color: rgba(139, 92, 246, 0.35);
     color: #c4b5fd;
     font-weight: 600;
+  }
+
+  /* Principles Grid */
+  .principles-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0 2.5rem;
+  }
+
+  @media (min-width: 680px) {
+    .principles-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .principle-item.full-width {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .principle-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: 1.25rem;
+    position: relative;
+  }
+
+  .p-num {
+    font-family: var(--font-mono, monospace);
+    font-size: 1rem;
+    font-weight: 800;
+    color: #ec4899;
+    margin-bottom: 0.4rem;
+    display: inline-block;
+  }
+
+  .principle-item h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 0.4rem;
+  }
+
+  .principle-item p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* Architecture Box */
+  .arch-box {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem 0 2.5rem;
+  }
+
+  .arch-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  @media (min-width: 600px) {
+    .arch-item {
+      flex-direction: row;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+  }
+
+  .arch-badge {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #00f0ff;
+    background: rgba(0, 240, 255, 0.1);
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    width: fit-content;
+  }
+
+  .arch-content strong {
+    display: block;
+    color: #fff;
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .arch-content p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin: 0;
   }
 
   .info-table {
