@@ -2,22 +2,23 @@
 import Layout from '../layouts/Layout.astro';
 import { toolsData } from '../data/tools';
 
-const featuredTool = toolsData[0];
 const noteUrl = "https://note.com/un4chan";
-const tweetSupportUrl = "https://x.com/intent/tweet?text=%40UnagiChaaaaaN%20%E3%81%8A%E3%81%98%E3%81%95%E3%82%93%E6%96%B0%E3%81%97%E3%81%84%E3%82%B0%E3%83%A9%E3%83%9C%E8%B2%B7%E3%81%A3%E3%81%A6%E3%82%82%E3%82%89%E3%81%88%EF%BC%81%20%E5%AB%81%E3%81%95%E3%82%93%E8%A8%B1%E3%81%97%E3%81%A6%E3%81%82%E3%81%92%E3%81%A6%EF%BC%81%20https%3A%2F%2Funagichan.com";
+const xUrl = "https://x.com/UnagiChaaaaaN";
+const kakuyomuUrl = "https://kakuyomu.jp/users/UnagiChan";
+const stampCreatorUrl = "https://stampcreator.unagichan.com/";
 ---
 
 <Layout
-  title="UNAGI Enterprise OS 2.4 | 次世代クラウドインフラ（※中身はうなぎちゃんの自作ツール）"
-  description="UNAGI Enterprise OS 2.4 — 次世代クラウドインフラに見せかけて、すべてのソリューションがうなぎちゃんと個人の開発プロダクトに集約されている狂気のポートフォリオ。グラボほちい・・・泥水啜って頑張ります。"
-  compactFooter={true}
+  title="UNAGI LAB | うなぎちゃん公式ポートフォリオ（新GPU獲得泥水パイプライン）"
+  description="AIイラストにハマりPCスペック限界突破！新GPU購入のため、嫁（あなごちゃん）の鉄壁ガードに挑みながらあらゆる収益化（Fanvue、note、FANZA同人、ツール開発、Game制作）の泥水を啜るプロ駄作クリエーターの公式ポートフォリオ。"
+  compactFooter={false}
 >
   <!-- Global System Telemetry Bar (Linear / Stripe style status) -->
   <aside class="enterprise-telemetry-bar" aria-label="UNAGI Enterprise リアルタイム稼働テレメトリ">
     <div class="telemetry-inner">
       <div class="telemetry-status-group">
         <span class="status-pulse-dot"></span>
-        <span class="telemetry-label">UNAGI Enterprise OS v2.4</span>
+        <span class="telemetry-label">UNAGI PORTFOLIO OS v2.5</span>
         <span class="telemetry-pill live">OPERATIONAL</span>
       </div>
       <div class="telemetry-metrics">
@@ -37,8 +38,8 @@ const tweetSupportUrl = "https://x.com/intent/tweet?text=%40UnagiChaaaaaN%20%E3%
         </span>
         <span class="telemetry-sep">/</span>
         <span class="metric-segment">
-          <span class="m-key">BOREDOM TOLERANCE</span>
-          <span class="m-val">0.00% [KILL IMMEDIATELY]</span>
+          <span class="m-key">GPU FUND</span>
+          <span class="m-val text-success">泥水抽出中</span>
         </span>
         <span class="telemetry-sep">/</span>
         <span class="metric-segment cli-hint">
@@ -49,8 +50,8 @@ const tweetSupportUrl = "https://x.com/intent/tweet?text=%40UnagiChaaaaaN%20%E3%
     </div>
   </aside>
 
-  <!-- Zero-Scroll Enterprise Cockpit -->
-  <div class="enterprise-viewport" id="enterpriseViewport">
+  <!-- Ambient Backdrop Container -->
+  <div class="portfolio-page" id="enterpriseViewport">
     <!-- Ambient Conic Spotlight & Linear Grid -->
     <div class="spotlight-layer" aria-hidden="true"></div>
     <div class="linear-grid-bg" aria-hidden="true"></div>
@@ -77,164 +78,432 @@ const tweetSupportUrl = "https://x.com/intent/tweet?text=%40UnagiChaaaaaN%20%E3%
       </div>
     </div>
 
-    <div class="container enterprise-container">
-      <div class="bento-layout" id="bentoLayout">
+    <!-- Main Content Flow (Scrollable Portfolio) -->
+    <div class="container portfolio-container" id="bentoLayout">
 
-        <!-- PRIMARY HERO BENTO: Core Engine & Mission Control -->
-        <section class="bento-card hero-bento" aria-label="UNAGI Core Platform">
-          <div class="card-glass-shine"></div>
-          
-          <div class="hero-top-row">
-            <div class="enterprise-badge-pill">
-              <span class="badge-sparkle">✦</span>
-              <span class="badge-text">Next-Gen Cloud Infrastructure</span>
-              <span class="badge-divider"></span>
-              <span class="badge-sub">Wife Compliance: 0.001%</span>
-            </div>
-            <div class="kernel-id">KERNEL: DOROMIZU-6.12-PRO</div>
+      <!-- ===================================================================
+           HERO SECTION: Core Mission Control & Telemetry
+           =================================================================== -->
+      <section class="portfolio-hero cyber-card" aria-label="UNAGI Core Platform & Mission">
+        <div class="card-glass-shine"></div>
+        
+        <div class="hero-top-row">
+          <div class="enterprise-badge-pill">
+            <span class="badge-sparkle">✦</span>
+            <span class="badge-text">Official Creator Portfolio &amp; GPU Fund</span>
+            <span class="badge-divider"></span>
+            <span class="badge-sub">Wife Compliance: 0.001%</span>
           </div>
+          <div class="kernel-id">KERNEL: DOROMIZU-6.12-PRO</div>
+        </div>
 
-          <h1 class="hero-headline">
-            The Global Cloud Platform for<br />
-            <span class="gradient-headline">GPU Acquisition &amp; 泥水啜り.</span>
-          </h1>
+        <h1 class="hero-headline">
+          The Creator Portfolio for<br />
+          <span class="gradient-headline">GPU Acquisition &amp; 泥水啜り.</span>
+        </h1>
 
-          <p class="hero-lead-text">
-            漫画やゲームが大好きだったが、子供が生まれ趣味の時間が激減。スキマ時間に始めたAIイラストに見事どっぷりハマり、ローカル環境を構築するもPCスペックが限界突破。<br class="break-pc" />
-            嫁（あなごちゃん）におねだりしたら秒殺されたプロ駄作クリエーターの全技術と情熱を集約。<br class="break-pc" />
-            <strong class="gpu-roar">今日もGPUを唸らせる・・・‼‼　ｳｫｫｫｫｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰﾝ‼‼‼‼‼</strong>
-          </p>
+        <p class="hero-lead-text">
+          漫画やゲームが大好きだったが、子供が生まれ趣味の時間が激減。スキマ時間に始めたAIイラストに見事どっぷりハマり、ローカル環境を構築するもPCスペックが限界突破。<br class="break-pc" />
+          嫁（あなごちゃん）におねだりしたら秒殺されたプロ駄作クリエーターの全技術・制作物・泥水収益化挑戦ログを集約。<br class="break-pc" />
+          <strong class="gpu-roar">今日もGPUを唸らせる・・・‼‼　ｳｫｫｫｫｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰﾝ‼‼‼‼‼</strong>
+        </p>
 
-          <!-- Enterprise Infrastructure SLAs / Metrics (Shortcuts removed as requested) -->
-          <div class="enterprise-kpi-grid">
-            <div class="kpi-cell">
-              <span class="kpi-title">SERVERLESS EGRESS</span>
-              <div class="kpi-number text-cyan">$0.00</div>
-              <span class="kpi-sub">完全クライアント完結処理</span>
-            </div>
-            <div class="kpi-cell">
-              <span class="kpi-title">GPU VRAM REMAINING</span>
-              <div class="kpi-number text-alert">0.02%</div>
-              <span class="kpi-sub">限界突破・煙出そう</span>
-            </div>
-            <div class="kpi-cell">
-              <span class="kpi-title">FUN DRIVEN ALLOCATION</span>
-              <div class="kpi-number text-green">100%</div>
-              <span class="kpi-sub">面白くないなら即撤退</span>
-            </div>
+        <!-- KPI Grid -->
+        <div class="hero-kpi-grid">
+          <div class="kpi-cell">
+            <span class="kpi-title">GPU VRAM REMAINING</span>
+            <div class="kpi-number text-alert">0.02%</div>
+            <span class="kpi-sub">限界突破・煙出そう</span>
           </div>
-        </section>
+          <div class="kpi-cell">
+            <span class="kpi-title">MONETIZATION CHANNELS</span>
+            <div class="kpi-number text-cyan">5+ 項目</div>
+            <span class="kpi-sub">泥水啜って全力挑戦中</span>
+          </div>
+          <div class="kpi-cell">
+            <span class="kpi-title">BOREDOM TOLERANCE</span>
+            <div class="kpi-number text-green">0.00%</div>
+            <span class="kpi-sub">面白くないなら即撤退</span>
+          </div>
+        </div>
 
-        <!-- SECONDARY BENTO COLUMN: The 3 Core Solutions (Tools, Note, Profile) -->
-        <aside class="bento-solutions-column" aria-label="Solutions & Infrastructure Products">
+        <!-- Quick Jump Navigation -->
+        <div class="hero-quick-nav">
+          <a href="#works" class="cyber-btn cyber-btn-primary quick-btn">
+            <span class="btn-icon">🛠️</span>
+            <span>制作物・ツール</span>
+          </a>
+          <a href="#monetization" class="cyber-btn quick-btn highlight-btn">
+            <span class="btn-icon">💰</span>
+            <span>収益化挑戦パイプライン</span>
+          </a>
+          <a href="#platforms" class="cyber-btn quick-btn">
+            <span class="btn-icon">📡</span>
+            <span>活動拠点・SNS</span>
+          </a>
+          <button id="heroCliBtn" class="cyber-btn quick-btn cli-quick-btn" type="button">
+            <span class="btn-icon">&gt;_</span>
+            <span>CLI起動</span>
+          </button>
+        </div>
+      </section>
 
-          <!-- Card 1: 制作ツール (Tools Directory) -->
-          <div class="bento-card solution-card product-stamp">
-            <div class="solution-glow cyan"></div>
-            <div class="solution-header">
-              <div class="product-badge cyan">
-                <span class="pill-dot"></span>
-                <span>TOOLS DIRECTORY</span>
+      <!-- ===================================================================
+           SECTION 1: 制作物・Webツール開発 (WORKS & PRODUCTS)
+           =================================================================== -->
+      <section class="portfolio-section" id="works" aria-label="制作物・自作Webツール">
+        <div class="section-header-row">
+          <div class="section-title-wrap">
+            <span class="section-badge cyan">01 // WORKS &amp; PRODUCTS</span>
+            <h2 class="section-title">制作物・Webツール開発</h2>
+            <p class="section-desc">
+              クリエイターの面倒な手作業や規格調整を一撃で解決する、完全ブラウザ完結の自作Webアプリケーション。
+            </p>
+          </div>
+          <a href="/tools" class="section-more-link">
+            すべてのツールを見る ➔
+          </a>
+        </div>
+
+        <div class="works-grid">
+          <!-- StampCreator: Flagship -->
+          <article class="work-card featured-work cyber-card">
+            <div class="card-glow-edge cyan"></div>
+            <div class="work-header">
+              <div class="work-status-badge cyan">
+                <span class="pulse-dot"></span>
+                <span>FLAGSHIP TOOL // ACTIVE</span>
               </div>
-              <span class="prod-tag">ALL FREE // 0円</span>
+              <span class="work-price-pill">完全無料 // 0円</span>
             </div>
-            <div class="solution-content">
-              <h2 class="solution-title">
-                <a href="/tools">
-                  制作ツール・Webアプリ一覧 ➔
+
+            <div class="work-body">
+              <h3 class="work-title">
+                <a href={stampCreatorUrl} target="_blank" rel="noopener noreferrer">
+                  StampCreator ➔
                 </a>
-              </h2>
-              <p class="solution-desc">
-                スマホ完結の神ツール「StampCreator」をはじめ、クリエイターの面倒な画像処理・規格調整を自動化する自作Webツール群を完全無料・ブラウザ完結で公開中。
+              </h3>
+              <p class="work-catchphrase">
+                LINEスタンプ クイックメーカー - スマホ完結・規格準拠画像セット一括生成
               </p>
-            </div>
-            <div class="solution-footer">
-              <div class="tech-spec-bar">
-                <span>StampCreator</span>
-                <span>•</span>
-                <span>規格自動調整</span>
-                <span>•</span>
-                <span>ZIP即時生成</span>
+              <p class="work-desc">
+                スマホやPCのブラウザだけで完結。イラスト画像をアップロードするだけで、LINE Creators Marketの厳格な「偶数ドット規格・サイズ・余白ルール」に自動適合し、メイン・タブ・スタンプ画像をZIPで即座に一括生成できる制作支援Webツールです。
+              </p>
+
+              <div class="work-features-list">
+                <div class="feat-item">✓ LINE Creators Market 公式規格に完全自動準拠</div>
+                <div class="feat-item">✓ メイン画像(240×240)・タブ画像(96×74)・スタンプ画像(最大370×320)を自動作成</div>
+                <div class="feat-item">✓ 完全クライアント処理（サーバー通信ゼロ・画像データ流出なし）</div>
+                <div class="feat-item">✓ スマホのブラウザでも軽快に動作する直感UI</div>
               </div>
-              <a href="/tools" class="link-arrow">
-                ツール一覧へ ➔
+            </div>
+
+            <div class="work-footer">
+              <a href={stampCreatorUrl} target="_blank" rel="noopener noreferrer" class="cyber-btn cyber-btn-primary">
+                StampCreatorを起動する ➔
+              </a>
+              <a href="/tools" class="cyber-btn">
+                詳細・仕様解説
               </a>
             </div>
+          </article>
+
+          <!-- Side Works Column -->
+          <div class="side-works-column">
+            <!-- UNAGI Official Portal -->
+            <article class="work-card cyber-card">
+              <div class="work-header">
+                <div class="work-status-badge green">
+                  <span class="pulse-dot green"></span>
+                  <span>CORE INFRA // LIVE</span>
+                </div>
+                <span class="tech-tag">Astro v5 + Cloudflare</span>
+              </div>
+              <div class="work-body">
+                <h3 class="work-title">
+                  <a href="/">うなぎちゃん公式サイト（本ポータル）</a>
+                </h3>
+                <p class="work-desc">
+                  Cloudflare Pages × Astroによる爆速SSGポータル。Zero-JS設計、PageSpeed Insights満点、サイバーCUIターミナルエミュレータを完全自作搭載。
+                </p>
+              </div>
+              <div class="work-footer">
+                <span class="work-spec-text">Zero-JS / SSG / Edge Cache</span>
+              </div>
+            </article>
+
+            <!-- 案くれ (Idea Wanted) -->
+            <article class="work-card cyber-card">
+              <div class="work-header">
+                <div class="work-status-badge pink">
+                  <span class="pulse-dot pink"></span>
+                  <span>IDEA WANTED // 案くれ</span>
+                </div>
+                <span class="tech-tag">企画構想中</span>
+              </div>
+              <div class="work-body">
+                <h3 class="work-title">
+                  <a href="/tools">スタンプ用プロンプトラボ（案くれ）</a>
+                </h3>
+                <p class="work-desc">
+                  股間が虹色に光るうなぎちゃん誕生。LINEスタンプ制作に役立つセリフ・ポーズの一括プロンプト生成ツールを構想中。クリエイターからのアイデアを大募集中！
+                </p>
+              </div>
+              <div class="work-footer">
+                <a href="/tools" class="link-arrow pink">
+                  アイデア提案・詳細 ➔
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SECTION 2: 収益化現在挑戦中パイプライン (MONETIZATION ROADMAP)
+           =================================================================== -->
+      <section class="portfolio-section" id="monetization" aria-label="新GPU獲得に向けた収益化挑戦パイプライン">
+        <div class="section-header-row">
+          <div class="section-title-wrap">
+            <span class="section-badge purple">02 // GPU FUND PIPELINE</span>
+            <h2 class="section-title">新GPU獲得！収益化現在挑戦中</h2>
+            <p class="section-desc">
+              嫁（あなごちゃん）にグラボ代を秒殺された男が、最新ハイスペックGPU購入資金を錬成するために泥水を啜って挑戦しているリアルタイム進捗ログ。
+            </p>
+          </div>
+        </div>
+
+        <div class="pipeline-grid">
+          <!-- 1. Fanvue -->
+          <div class="pipeline-card cyber-card border-green">
+            <div class="pipeline-card-glow green"></div>
+            <div class="pipeline-top">
+              <span class="pipeline-status-badge status-active">
+                <span class="status-pulse-dot green"></span>
+                <span>収益化達成 // ACTIVE</span>
+              </span>
+              <span class="pipeline-tag">ファンコミュニティ</span>
+            </div>
+            <h3 class="pipeline-card-title">Fanvue</h3>
+            <p class="pipeline-card-desc">
+              AIイラスト生成技術を活かしたファンコミュニティ運営・コンテンツ配信。収益化を達成し、新GPU購入資金の貴重な兵站として現在進行形で稼働中！
+            </p>
+            <div class="pipeline-card-footer">
+              <span class="pipeline-meta">Status: 稼働中・継続投稿</span>
+            </div>
           </div>
 
-          <!-- Card 2: ノート (Official note) -->
-          <div class="bento-card solution-card product-note">
-            <div class="solution-glow green"></div>
-            <div class="solution-header">
-              <div class="product-badge green">
-                <span class="pill-dot"></span>
-                <span>NOTE OFFICIAL</span>
-              </div>
-              <span class="prod-tag">COMING SOON // 記事準備中</span>
+          <!-- 2. note販売 -->
+          <div class="pipeline-card cyber-card border-green">
+            <div class="pipeline-card-glow green"></div>
+            <div class="pipeline-top">
+              <span class="pipeline-status-badge status-active">
+                <span class="status-pulse-dot green"></span>
+                <span>有料記事売上発生 // SUCCESS</span>
+              </span>
+              <span class="pipeline-tag">コンテンツ販売</span>
             </div>
-            <div class="solution-content">
-              <h2 class="solution-title">
-                <a href={noteUrl} target="_blank" rel="noopener noreferrer">
-                  うなぎちゃん＠｜note ➔
-                </a>
-              </h2>
-              <p class="solution-desc">
-                公式noteページを開設！「嫁にグラボを一蹴されたプロ駄作クリエーターの奮闘記」や開発ログを現在鋭意執筆・準備中。フォローしてお待ちください！
-              </p>
-            </div>
-            <div class="solution-footer">
-              <div class="tech-spec-bar">
-                <span>ページ公開中</span>
-                <span>•</span>
-                <span>記事鋭意準備中</span>
-                <span>•</span>
-                <span>フォロー歓迎</span>
-              </div>
+            <h3 class="pipeline-card-title">
+              <a href={noteUrl} target="_blank" rel="noopener noreferrer">
+                note 有料記事販売 ➔
+              </a>
+            </h3>
+            <p class="pipeline-card-desc">
+              「嫁にグラボを一蹴されたプロ駄作クリエーターの奮闘記」や開発・創作ノウハウを公開。有料記事が実際に数本売れ、泥水から最初の一滴を抽出成功！
+            </p>
+            <div class="pipeline-card-footer">
               <a href={noteUrl} target="_blank" rel="noopener noreferrer" class="link-arrow green">
-                noteへ ➔
+                noteを見に行く ➔
               </a>
             </div>
           </div>
 
-          <!-- Card 3: プロフィール (Profile / About) -->
-          <div class="bento-card solution-card product-spec">
-            <div class="solution-glow purple"></div>
-            <div class="solution-header">
-              <div class="product-badge purple">
-                <span class="pill-dot"></span>
-                <span>CREATOR SPEC</span>
-              </div>
-              <span class="prod-tag">ABOUT UNAGI</span>
+          <!-- 3. FANZA同人CG販売 -->
+          <div class="pipeline-card cyber-card border-yellow">
+            <div class="pipeline-card-glow yellow"></div>
+            <div class="pipeline-top">
+              <span class="pipeline-status-badge status-review">
+                <span class="status-pulse-dot yellow"></span>
+                <span>審査中 // UNDER REVIEW</span>
+              </span>
+              <span class="pipeline-tag">同人CG・写真集</span>
             </div>
-            <div class="solution-content">
-              <h2 class="solution-title">
-                <a href="/about">
-                  うなぎちゃん＠（プロ駄作クリエーター） ➔
-                </a>
-              </h2>
-              <div class="spec-capsules">
-                <span class="capsule">C# / WPF</span>
-                <span class="capsule">C / C++</span>
-                <span class="capsule">Simulink</span>
-                <span class="capsule">TypeScript</span>
-                <span class="capsule doromizu">泥水耐性: MAX</span>
-              </div>
-              <p class="solution-desc">
-                「色んな事をやりたい。でも面白くないならやらない」人間。面白い事だけに計算資源をフル投入するプロ駄作クリエーターの詳細生態系と連絡先。
-              </p>
-            </div>
-            <div class="solution-footer nav-links-footer">
-              <a href="/about" class="sub-nav-link">生態プロファイル ➔</a>
-              <span class="sep">•</span>
-              <a href="/contact" class="sub-nav-link">秘密連絡網 ➔</a>
-              <span class="sep">•</span>
-              <a href="https://x.com/UnagiChaaaaaN" target="_blank" rel="noopener noreferrer" class="sub-nav-link highlight">Xで監視 ➔</a>
+            <h3 class="pipeline-card-title">FANZA同人等でのCG販売</h3>
+            <p class="pipeline-card-desc">
+              AIイラストを活用した同人CG集・デジタル作品集の販売申請中。審査が無事に通ればグラボ獲得に向けた特大の前進！現在審査通過を祈祷中。
+            </p>
+            <div class="pipeline-card-footer">
+              <span class="pipeline-meta text-yellow">Status: 審査結果待ち</span>
             </div>
           </div>
 
-        </aside>
+          <!-- 4. AIデジタル商品 -->
+          <div class="pipeline-card cyber-card border-purple">
+            <div class="pipeline-card-glow purple"></div>
+            <div class="pipeline-top">
+              <span class="pipeline-status-badge status-ready">
+                <span class="status-pulse-dot purple"></span>
+                <span>準備完了 // PLATFORM PENDING</span>
+              </span>
+              <span class="pipeline-tag">デジタルアセット</span>
+            </div>
+            <h3 class="pipeline-card-title">AIデジタル商品</h3>
+            <p class="pipeline-card-desc">
+              高精度プロンプト集やデジタル制作アセットのパッケージングは完了。配信プラットフォーム側の準備が整い次第即時ローンチ予定。
+            </p>
+            <div class="pipeline-card-footer">
+              <span class="pipeline-meta text-purple">Status: プラットフォーム準備待ち</span>
+            </div>
+          </div>
 
-      </div>
+          <!-- 5. Game作成 -->
+          <div class="pipeline-card cyber-card border-cyan">
+            <div class="pipeline-card-glow cyan"></div>
+            <div class="pipeline-top">
+              <span class="pipeline-status-badge status-wip">
+                <span class="status-pulse-dot cyan"></span>
+                <span>まったり作成中 // IN PROGRESS</span>
+              </span>
+              <span class="pipeline-tag">ゲーム開発</span>
+            </div>
+            <h3 class="pipeline-card-title">自作Game作成</h3>
+            <p class="pipeline-card-desc">
+              漫画・ゲーム好きとしての情熱を結集。「面白くないならやらない」の精神で、自分が本気で遊べる世界観のゲームを気ままに試作・開発中。
+            </p>
+            <div class="pipeline-card-footer">
+              <span class="pipeline-meta text-cyan">Status: プロトタイプ開発中</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SECTION 3: 元々やっていること & 活動拠点 (PLATFORMS & ORIGINS)
+           =================================================================== -->
+      <section class="portfolio-section" id="platforms" aria-label="元々やっている創作活動とプラットフォーム">
+        <div class="section-header-row">
+          <div class="section-title-wrap">
+            <span class="section-badge green">03 // ORIGINS &amp; PLATFORMS</span>
+            <h2 class="section-title">元々やっていること &amp; 活動拠点</h2>
+            <p class="section-desc">
+              うなぎちゃんが元々活動している創作のフロントライン、発信拠点、ストーリー創作の原点。
+            </p>
+          </div>
+        </div>
+
+        <div class="platforms-grid">
+          <!-- X (Twitter) -->
+          <a href={xUrl} target="_blank" rel="noopener noreferrer" class="platform-card cyber-card">
+            <div class="platform-icon-wrap">
+              <svg class="platform-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </div>
+            <div class="platform-body">
+              <div class="platform-badge-row">
+                <span class="platform-badge">OFFICIAL SNS</span>
+                <span class="platform-handle">@UnagiChaaaaaN</span>
+              </div>
+              <h3 class="platform-title">X (旧Twitter)</h3>
+              <p class="platform-desc">
+                日々のAIイラスト生成、ツール開発進捗、日常、そして嫁（あなごちゃん）との熾烈な交渉ログを日々ポストしている全活動の最前線。
+              </p>
+            </div>
+            <div class="platform-arrow">➔</div>
+          </a>
+
+          <!-- カクヨム -->
+          <a href={kakuyomuUrl} target="_blank" rel="noopener noreferrer" class="platform-card cyber-card">
+            <div class="platform-icon-wrap kakuyomu-icon">
+              <span class="icon-letter">K</span>
+            </div>
+            <div class="platform-body">
+              <div class="platform-badge-row">
+                <span class="platform-badge">NOVEL &amp; STORY</span>
+                <span class="platform-handle">UnagiChan</span>
+              </div>
+              <h3 class="platform-title">カクヨム</h3>
+              <p class="platform-desc">
+                Web小説執筆・ストーリー創作活動の拠点。物語を作ることへの情熱を注ぎ込む、文章クリエイターとしての原点。
+              </p>
+            </div>
+            <div class="platform-arrow">➔</div>
+          </a>
+
+          <!-- note -->
+          <a href={noteUrl} target="_blank" rel="noopener noreferrer" class="platform-card cyber-card">
+            <div class="platform-icon-wrap note-icon">
+              <span class="icon-letter">n</span>
+            </div>
+            <div class="platform-body">
+              <div class="platform-badge-row">
+                <span class="platform-badge">TECH &amp; ESSAY</span>
+                <span class="platform-handle">un4chan</span>
+              </div>
+              <h3 class="platform-title">公式note</h3>
+              <p class="platform-desc">
+                「嫁にグラボを一蹴されたプロ駄作クリエーターの奮闘記」や開発ログ、AI活用ノウハウを発信。有料記事も好評展開中！
+              </p>
+            </div>
+            <div class="platform-arrow">➔</div>
+          </a>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SECTION 4: クリエイタースペック & 秘密連絡網 (PROFILE & CONTACT)
+           =================================================================== -->
+      <section class="portfolio-section" id="profile" aria-label="クリエイタースペックと連絡先">
+        <div class="creator-profile-card cyber-card">
+          <div class="profile-glow"></div>
+          
+          <div class="profile-content-wrap">
+            <div class="profile-avatar-wrap">
+              <img src="/unagi-icon.png" alt="うなぎちゃん" class="profile-avatar-img" width="100" height="100" />
+            </div>
+
+            <div class="profile-info-body">
+              <div class="profile-badge-row">
+                <span class="cyber-badge pink">CREATOR SPEC</span>
+                <span class="spec-id">ID: UNAGI-001</span>
+              </div>
+
+              <h2 class="profile-title">うなぎちゃん＠（プロ駄作クリエーター）</h2>
+              
+              <div class="concept-callout-box">
+                <strong>グラボほちい・・・泥水啜って頑張ります。<br />※楽しくなさそうなことはやりません。</strong>
+              </div>
+
+              <p class="profile-bio">
+                「色んな事をやりたい。でも面白くないならやらない」人間。長年のエンジニア経験を活かし、制御・組み込みからモダンWeb、AI活用、小説創作まで面白い事だけに計算資源をフル投入しています。
+              </p>
+
+              <div class="skills-tag-row">
+                <span class="spec-tag highlight">C# / WPF</span>
+                <span class="spec-tag highlight">C / C++</span>
+                <span class="spec-tag highlight">MATLAB / Simulink</span>
+                <span class="spec-tag">TypeScript</span>
+                <span class="spec-tag">Astro</span>
+                <span class="spec-tag">Canvas API</span>
+                <span class="spec-tag doromizu">泥水耐性: MAX</span>
+              </div>
+
+              <div class="profile-actions-row">
+                <a href="/about" class="cyber-btn cyber-btn-primary">
+                  詳しい生態系（プロフィール）➔
+                </a>
+                <a href="/contact" class="cyber-btn">
+                  秘密連絡網（お問い合わせ）➔
+                </a>
+                <a href={xUrl} target="_blank" rel="noopener noreferrer" class="cyber-btn">
+                  Xで監視する ➔
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
   </div>
 
@@ -243,6 +512,7 @@ const tweetSupportUrl = "https://x.com/intent/tweet?text=%40UnagiChaaaaaN%20%E3%
       const viewport = document.getElementById('enterpriseViewport');
       const restoreBtn = document.getElementById('restoreUiBtn');
       const unveilControls = document.getElementById('unveilControls');
+      const heroCliBtn = document.getElementById('heroCliBtn');
 
       function toggleUnveilMode(enable?: boolean) {
         if (!viewport) return;
@@ -254,6 +524,15 @@ const tweetSupportUrl = "https://x.com/intent/tweet?text=%40UnagiChaaaaaN%20%E3%
           unveilControls.setAttribute('aria-hidden', String(!shouldUnveil));
         }
       }
+
+      // Hero CLI Button trigger
+      heroCliBtn?.addEventListener('click', () => {
+        if (typeof (window as any).toggleUnagiTerminal === 'function') {
+          (window as any).toggleUnagiTerminal();
+        } else {
+          window.dispatchEvent(new CustomEvent('open-unagi-terminal'));
+        }
+      });
 
       // Listen for unagi event dispatched from Terminal
       window.addEventListener('unagi-unveil-mode', () => {
@@ -283,7 +562,7 @@ const tweetSupportUrl = "https://x.com/intent/tweet?text=%40UnagiChaaaaaN%20%E3%
 
 <style>
   /* ==========================================================================
-     UNAGI Enterprise OS: Linear / Vercel / Stripe Aesthetic Tokens
+     UNAGI Portfolio OS: Cyber Bento & Modern Portfolio Styling
      ========================================================================== */
 
   /* Global Telemetry Bar */
@@ -324,9 +603,29 @@ const tweetSupportUrl = "https://x.com/intent/tweet?text=%40UnagiChaaaaaN%20%E3%
     animation: status-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
   }
 
+  .status-pulse-dot.green {
+    background: #10b981;
+    box-shadow: 0 0 8px #10b981;
+  }
+
+  .status-pulse-dot.yellow {
+    background: #eab308;
+    box-shadow: 0 0 8px #eab308;
+  }
+
+  .status-pulse-dot.purple {
+    background: #a78bfa;
+    box-shadow: 0 0 8px #a78bfa;
+  }
+
+  .status-pulse-dot.cyan {
+    background: #00f0ff;
+    box-shadow: 0 0 8px #00f0ff;
+  }
+
   @keyframes status-ping {
     0% { transform: scale(0.95); opacity: 0.8; }
-    50% { transform: scale(1.15); opacity: 1; box-shadow: 0 0 12px #00f0ff; }
+    50% { transform: scale(1.15); opacity: 1; box-shadow: 0 0 12px currentColor; }
     100% { transform: scale(0.95); opacity: 0.8; }
   }
 
@@ -372,6 +671,9 @@ const tweetSupportUrl = "https://x.com/intent/tweet?text=%40UnagiChaaaaaN%20%E3%
   .text-success { color: #10b981; }
   .text-alert { color: #f43f5e; }
   .text-danger { color: #fb923c; }
+  .text-yellow { color: #eab308; }
+  .text-purple { color: #a78bfa; }
+  .text-cyan { color: #00f0ff; }
 
   .cli-hint code {
     background: rgba(255, 255, 255, 0.08);
@@ -385,15 +687,11 @@ const tweetSupportUrl = "https://x.com/intent/tweet?text=%40UnagiChaaaaaN%20%E3%
     color: rgba(255, 255, 255, 0.15);
   }
 
-  /* Viewport Layout (Zero Scroll on Desktop) */
-  .enterprise-viewport {
+  /* Portfolio Page Layout */
+  .portfolio-page {
     position: relative;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    padding: 1.25rem 0;
-    min-height: calc(100vh - 70px - 33px - 38px);
-    overflow: hidden;
+    padding: 2.5rem 0 5rem;
+    min-height: calc(100vh - 70px - 33px);
   }
 
   /* Linear Grid & Ambient Spotlight */
@@ -404,28 +702,28 @@ const tweetSupportUrl = "https://x.com/intent/tweet?text=%40UnagiChaaaaaN%20%E3%
       linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
     background-size: 40px 40px;
-    mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 80%);
-    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 80%);
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 20%, black 20%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 20%, black 20%, transparent 80%);
     pointer-events: none;
     z-index: 0;
   }
 
   .spotlight-layer {
     position: absolute;
-    top: -10%;
-    left: 45%;
+    top: 0;
+    left: 50%;
     transform: translateX(-50%);
-    width: 800px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(0, 240, 255, 0.1) 0%, rgba(139, 92, 246, 0.08) 40%, rgba(236, 72, 153, 0.04) 70%, transparent 85%);
+    width: 900px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0, 240, 255, 0.12) 0%, rgba(139, 92, 246, 0.08) 40%, rgba(236, 72, 153, 0.04) 70%, transparent 85%);
     filter: blur(80px);
     pointer-events: none;
     z-index: 0;
   }
 
-  /* Backdrop Unagi Character Layer (Behind cards normally / Front & Vivid in Unveil mode) */
+  /* Backdrop Unagi Character Layer */
   .unagi-backdrop-layer {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.95);
@@ -436,8 +734,8 @@ const tweetSupportUrl = "https://x.com/intent/tweet?text=%40UnagiChaaaaaN%20%E3%
     justify-content: center;
     pointer-events: none;
     z-index: 0;
-    opacity: 0.13;
-    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s ease;
+    opacity: 0.10;
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .unagi-backdrop-glow {
@@ -447,229 +745,127 @@ const tweetSupportUrl = "https://x.com/intent/tweet?text=%40UnagiChaaaaaN%20%E3%
     filter: blur(50px);
     border-radius: 50%;
     opacity: 0.4;
-    transition: opacity 0.7s ease;
   }
 
   .unagi-backdrop-img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    filter: drop-shadow(0 0 35px rgba(0, 240, 255, 0.35));
-    transition: filter 0.7s ease;
+    filter: drop-shadow(0 0 30px rgba(0, 240, 255, 0.25));
   }
 
-  .enterprise-container {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    max-width: 1200px;
-  }
-
-  /* Bento Layout Grid with Transition */
-  .bento-layout {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-    align-items: stretch;
-    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
-  }
-
-  @media (min-width: 980px) {
-    .bento-layout {
-      grid-template-columns: 1.28fr 0.92fr;
-      gap: 1.5rem;
-    }
-  }
-
-  /* ==========================================================================
-     UNVEIL MODE: カードUI消去 ＆ うなぎちゃん真の姿が前面に展開
-     ========================================================================== */
-  .enterprise-viewport.is-unveiled .bento-layout {
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(0.92);
-    filter: blur(12px);
-  }
-
-  .enterprise-viewport.is-unveiled .unagi-backdrop-layer {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.08);
-    z-index: 20;
-    pointer-events: auto;
-    filter: drop-shadow(0 0 60px rgba(0, 240, 255, 0.65)) drop-shadow(0 0 100px rgba(236, 72, 153, 0.45));
-  }
-
-  .enterprise-viewport.is-unveiled .unagi-backdrop-glow {
-    opacity: 0.95;
-  }
-
-  /* 股間の光っている部分にジャストフィット配置 */
   .groin-restore-wrapper {
     position: absolute;
-    top: 64.5%;
+    top: 73.5%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 25;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.5s ease 0.2s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .enterprise-viewport.is-unveiled .groin-restore-wrapper {
-    opacity: 1;
+    display: none;
     pointer-events: auto;
+    z-index: 100;
   }
 
   .groin-btn {
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 0.55rem;
-    padding: 0.75rem 1.6rem;
-    background: rgba(8, 12, 22, 0.92);
-    border: 2px solid #ffffff;
-    border-radius: 9999px;
-    color: #ffffff;
+    gap: 0.5rem;
+    padding: 0.65rem 1.4rem;
     font-family: var(--font-mono, monospace);
-    font-size: 0.86rem;
+    font-size: 0.85rem;
     font-weight: 800;
-    letter-spacing: 0.08em;
+    color: #ffffff;
+    background: rgba(11, 15, 25, 0.85);
+    border: 2px solid #00f0ff;
+    border-radius: 9999px;
     cursor: pointer;
-    user-select: none;
-    backdrop-filter: blur(16px);
-    transition: all 0.25s ease;
-    animation: groin-pulse 1.8s infinite alternate ease-in-out;
-    white-space: nowrap;
-    box-shadow: 
-      0 0 25px rgba(255, 255, 255, 0.9),
-      0 0 50px rgba(0, 240, 255, 0.8),
-      0 0 85px rgba(236, 72, 153, 0.75),
-      0 0 120px rgba(250, 204, 21, 0.85);
-  }
-
-  @keyframes groin-pulse {
-    0% {
-      transform: scale(0.95);
-      box-shadow: 
-        0 0 20px rgba(255, 255, 255, 0.8),
-        0 0 45px rgba(0, 240, 255, 0.7),
-        0 0 75px rgba(236, 72, 153, 0.65);
-    }
-    100% {
-      transform: scale(1.08);
-      box-shadow: 
-        0 0 35px rgba(255, 255, 255, 1),
-        0 0 75px rgba(0, 240, 255, 0.95),
-        0 0 115px rgba(236, 72, 153, 0.95),
-        0 0 150px rgba(250, 204, 21, 0.9);
-    }
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.8), 0 0 50px rgba(236, 72, 153, 0.5);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(8px);
   }
 
   .groin-btn:hover {
-    transform: scale(1.15) !important;
-    border-color: #00f0ff;
-    background: #000000;
-    color: #00f0ff;
-    box-shadow: 
-      0 0 45px #00f0ff,
-      0 0 90px #ec4899,
-      0 0 140px #facc15;
+    transform: scale(1.08);
+    box-shadow: 0 0 35px #00f0ff, 0 0 70px #ec4899;
   }
 
-  .groin-btn:active {
-    transform: scale(0.98) !important;
-  }
-
-  .groin-rainbow-pulse {
-    position: absolute;
-    inset: -6px;
-    border-radius: 9999px;
-    background: linear-gradient(135deg, #00f0ff, #ec4899, #facc15, #00ff66, #00f0ff);
-    background-size: 300% 300%;
-    filter: blur(8px);
-    opacity: 0.85;
-    z-index: -1;
-    animation: rainbow-flow 3s linear infinite;
-  }
-
-  @keyframes rainbow-flow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  .restore-icon {
-    font-size: 1.1rem;
-    line-height: 1;
-    color: #00f0ff;
-  }
-
-  /* Unveil Floating Banner (画面下端に配置) */
-  .unveil-controls {
-    position: absolute;
-    bottom: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%) translateY(15px);
+  /* Unveil Mode Active State */
+  .portfolio-page.is-unveiled .portfolio-container {
     opacity: 0;
     pointer-events: none;
-    z-index: 30;
-    display: flex;
-    justify-content: center;
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: scale(0.96) translateY(20px);
   }
 
-  .enterprise-viewport.is-unveiled .unveil-controls {
+  .portfolio-page.is-unveiled .unagi-backdrop-layer {
     opacity: 1;
+    transform: translate(-50%, -50%) scale(1.08);
+    filter: drop-shadow(0 0 60px rgba(0, 240, 255, 0.6));
+    z-index: 10;
+  }
+
+  .portfolio-page.is-unveiled .groin-restore-wrapper {
+    display: block;
+  }
+
+  .unveil-controls {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+    z-index: 40;
     pointer-events: auto;
-    transform: translateX(-50%) translateY(0);
+  }
+
+  .portfolio-page.is-unveiled .unveil-controls {
+    display: block;
   }
 
   .unveil-banner {
-    display: inline-flex;
-    align-items: center;
-    background: rgba(4, 8, 16, 0.9);
-    border: 1px solid rgba(0, 240, 255, 0.5);
-    padding: 0.6rem 1.6rem;
+    background: rgba(11, 15, 25, 0.9);
+    border: 1px solid rgba(0, 240, 255, 0.4);
     border-radius: 9999px;
-    box-shadow: 0 0 25px rgba(0, 240, 255, 0.3), inset 0 0 15px rgba(0, 240, 255, 0.1);
-    backdrop-filter: blur(16px);
+    padding: 0.6rem 1.75rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(12px);
   }
 
   .unveil-title {
-    font-size: 0.95rem;
-    font-weight: 800;
-    color: #ffffff;
-    letter-spacing: 0.05em;
-    margin: 0;
-    text-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+    font-family: var(--font-mono, monospace);
+    font-size: 0.85rem;
+    color: #00f0ff;
+    font-weight: 700;
   }
 
-  /* Bento Base Card (Linear / Vercel style) */
-  .bento-card {
-    background: rgba(10, 14, 24, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--radius-md, 14px);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+  /* Portfolio Container */
+  .portfolio-container {
     position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-  }
-
-  .bento-card:hover {
-    border-color: rgba(255, 255, 255, 0.18);
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
-  }
-
-  /* Hero Bento Card (Main Control) */
-  .hero-bento {
-    padding: 2rem 2.2rem;
+    z-index: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 1.2rem;
-    border: 1px solid rgba(0, 240, 255, 0.2);
-    box-shadow: 0 0 35px -10px rgba(0, 240, 255, 0.15);
+    gap: 4.5rem;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  /* ==========================================================================
+     HERO SECTION
+     ========================================================================== */
+  .portfolio-hero {
+    position: relative;
+    padding: 3rem;
+    background: linear-gradient(180deg, rgba(14, 20, 36, 0.8) 0%, rgba(8, 12, 22, 0.95) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+  }
+
+  .card-glass-shine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.4) 30%, rgba(0, 240, 255, 0.8) 50%, rgba(255, 255, 255, 0.4) 70%, transparent 100%);
   }
 
   .hero-top-row {
@@ -677,333 +873,779 @@ const tweetSupportUrl = "https://x.com/intent/tweet?text=%40UnagiChaaaaaN%20%E3%
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
   }
 
   .enterprise-badge-pill {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    padding: 0.3rem 0.75rem;
+    gap: 0.6rem;
+    padding: 0.35rem 0.85rem;
+    background: rgba(0, 240, 255, 0.08);
+    border: 1px solid rgba(0, 240, 255, 0.25);
     border-radius: 9999px;
+    font-family: var(--font-mono, monospace);
     font-size: 0.75rem;
   }
 
-  .badge-sparkle {
-    color: var(--cyan);
-  }
-
-  .badge-text {
-    font-weight: 600;
-    color: #fff;
-  }
-
-  .badge-divider {
-    width: 1px;
-    height: 10px;
-    background: rgba(255, 255, 255, 0.2);
-  }
-
-  .badge-sub {
-    color: var(--pink);
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    font-weight: 700;
-  }
+  .badge-sparkle { color: #00f0ff; }
+  .badge-text { color: #f8fafc; font-weight: 700; }
+  .badge-divider { width: 1px; height: 10px; background: rgba(255, 255, 255, 0.2); }
+  .badge-sub { color: #94a3b8; }
 
   .kernel-id {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--text-muted);
+    font-family: var(--font-mono, monospace);
+    font-size: 0.72rem;
+    color: #64748b;
+    letter-spacing: 0.05em;
   }
 
-  /* Headline & Lead */
   .hero-headline {
-    font-size: 1.85rem;
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
     font-weight: 800;
-    line-height: 1.24;
+    line-height: 1.15;
     letter-spacing: -0.02em;
     color: #ffffff;
-    text-wrap: balance;
-  }
-
-  @media (min-width: 768px) {
-    .hero-headline {
-      font-size: 2.35rem;
-    }
+    margin-bottom: 1.5rem;
   }
 
   .gradient-headline {
-    background: linear-gradient(135deg, #ffffff 10%, #00f0ff 60%, #ec4899 100%);
+    background: linear-gradient(135deg, #00f0ff 0%, #a78bfa 50%, #ec4899 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   .hero-lead-text {
-    font-size: 0.92rem;
-    color: #94a3b8;
-    line-height: 1.7;
-    text-wrap: pretty;
-  }
-
-  .hero-lead-text strong {
-    color: #f8fafc;
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: var(--text-secondary);
+    max-width: 900px;
+    margin-bottom: 2rem;
   }
 
   .gpu-roar {
     display: inline-block;
-    background: linear-gradient(135deg, #00f0ff 0%, #ec4899 60%, #fbbf24 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #ff3366;
     font-weight: 800;
-    text-shadow: 0 0 16px rgba(0, 240, 255, 0.4);
-    letter-spacing: 0.02em;
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 15px rgba(255, 51, 102, 0.5);
+    margin-top: 0.4rem;
   }
 
-  .break-pc {
-    display: none;
-  }
-
-  @media (min-width: 768px) {
-    .break-pc {
-      display: inline;
-    }
-  }
-
-  /* KPI Grid */
-  .enterprise-kpi-grid {
+  .hero-kpi-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
-    padding-top: 1.1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  @media (max-width: 600px) {
-    .enterprise-kpi-grid {
-      grid-template-columns: 1fr;
-      gap: 0.6rem;
-    }
+    gap: 1.25rem;
+    padding: 1.5rem;
+    background: rgba(3, 5, 10, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-md);
+    margin-bottom: 2rem;
   }
 
   .kpi-cell {
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
+    gap: 0.35rem;
   }
 
   .kpi-title {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.72rem;
     color: #64748b;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
   }
 
   .kpi-number {
-    font-family: var(--font-mono);
-    font-size: 1.25rem;
+    font-size: 1.8rem;
     font-weight: 800;
-    letter-spacing: -0.01em;
+    font-family: var(--font-mono, monospace);
+    line-height: 1;
   }
 
-  .text-cyan { color: var(--cyan); }
-  .text-green { color: #10b981; }
-
   .kpi-sub {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .hero-quick-nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+  }
+
+  .quick-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    padding: 0.65rem 1.25rem;
+  }
+
+  .highlight-btn {
+    border-color: rgba(139, 92, 246, 0.5);
+    background: rgba(139, 92, 246, 0.12);
+    color: #c4b5fd;
+  }
+
+  .highlight-btn:hover {
+    background: rgba(139, 92, 246, 0.25);
+    border-color: #8b5cf6;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+  }
+
+  .cli-quick-btn {
+    border-color: rgba(0, 240, 255, 0.4);
+    color: #00f0ff;
+    font-family: var(--font-mono, monospace);
+  }
+
+  /* ==========================================================================
+     SECTION SHARED STYLES
+     ========================================================================== */
+  .portfolio-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .section-header-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .section-badge {
+    display: inline-block;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-badge.cyan { color: #00f0ff; }
+  .section-badge.purple { color: #a78bfa; }
+  .section-badge.green { color: #10b981; }
+
+  .section-title {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.4rem;
+  }
+
+  .section-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    max-width: 750px;
+    line-height: 1.6;
+  }
+
+  .section-more-link {
+    display: inline-flex;
+    align-items: center;
+    color: #00f0ff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: var(--font-mono, monospace);
+    border-bottom: 1px dashed rgba(0, 240, 255, 0.4);
+    padding-bottom: 2px;
+  }
+
+  .section-more-link:hover {
+    border-bottom-color: #00f0ff;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+  }
+
+  /* ==========================================================================
+     SECTION 1: WORKS GRID
+     ========================================================================== */
+  .works-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .work-card {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    border-radius: var(--radius-md);
+    background: var(--grad-card);
+    border: 1px solid var(--border-subtle);
+    position: relative;
+  }
+
+  .featured-work {
+    border-color: rgba(0, 240, 255, 0.35);
+    background: radial-gradient(circle at top right, rgba(0, 240, 255, 0.08) 0%, transparent 70%), var(--grad-card);
+  }
+
+  .card-glow-edge.cyan {
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #00f0ff, transparent);
+    box-shadow: 0 0 15px #00f0ff;
+  }
+
+  .work-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .work-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  .work-status-badge.cyan {
+    background: rgba(0, 240, 255, 0.12);
+    border: 1px solid rgba(0, 240, 255, 0.35);
+    color: #00f0ff;
+  }
+
+  .work-status-badge.green {
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    color: #10b981;
+  }
+
+  .work-status-badge.pink {
+    background: rgba(236, 72, 153, 0.12);
+    border: 1px solid rgba(236, 72, 153, 0.35);
+    color: #ec4899;
+  }
+
+  .pulse-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #00f0ff;
+  }
+
+  .pulse-dot.green { background: #10b981; }
+  .pulse-dot.pink { background: #ec4899; }
+
+  .work-price-pill, .tech-tag {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .work-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .work-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #ffffff;
+  }
+
+  .work-title a:hover {
+    color: #00f0ff;
+  }
+
+  .work-catchphrase {
+    color: #00f0ff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .work-desc {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+
+  .work-features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    margin: 0.75rem 0 1.25rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+    color: #cbd5e1;
+  }
+
+  .feat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .work-footer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .side-works-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .work-spec-text {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.78rem;
+    color: #64748b;
+  }
+
+  .link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #00f0ff;
+  }
+
+  .link-arrow.green { color: #10b981; }
+  .link-arrow.pink { color: #ec4899; }
+  .link-arrow:hover { text-decoration: underline; }
+
+  /* ==========================================================================
+     SECTION 2: PIPELINE GRID
+     ========================================================================== */
+  .pipeline-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .pipeline-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem;
+    border-radius: var(--radius-md);
+    background: rgba(14, 20, 36, 0.65);
+    border: 1px solid var(--border-subtle);
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+  }
+
+  .pipeline-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .pipeline-card.border-green:hover {
+    border-color: rgba(16, 185, 129, 0.5);
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.15);
+  }
+
+  .pipeline-card.border-yellow:hover {
+    border-color: rgba(234, 179, 8, 0.5);
+    box-shadow: 0 10px 30px rgba(234, 179, 8, 0.15);
+  }
+
+  .pipeline-card.border-purple:hover {
+    border-color: rgba(139, 92, 246, 0.5);
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.15);
+  }
+
+  .pipeline-card.border-cyan:hover {
+    border-color: rgba(0, 240, 255, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15);
+  }
+
+  .pipeline-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .pipeline-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  .status-active {
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: #10b981;
+  }
+
+  .status-review {
+    background: rgba(234, 179, 8, 0.15);
+    border: 1px solid rgba(234, 179, 8, 0.4);
+    color: #eab308;
+  }
+
+  .status-ready {
+    background: rgba(139, 92, 246, 0.15);
+    border: 1px solid rgba(139, 92, 246, 0.4);
+    color: #a78bfa;
+  }
+
+  .status-wip {
+    background: rgba(0, 240, 255, 0.12);
+    border: 1px solid rgba(0, 240, 255, 0.35);
+    color: #00f0ff;
+  }
+
+  .pipeline-tag {
+    font-family: var(--font-mono, monospace);
     font-size: 0.72rem;
     color: var(--text-muted);
   }
 
-  /* Solutions Column (Bento Cards) */
-  .bento-solutions-column {
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-    justify-content: center;
+  .pipeline-card-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 0.6rem;
   }
 
-  .solution-card {
-    padding: 1.15rem 1.35rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    transition: transform 0.25s ease, border-color 0.25s ease;
+  .pipeline-card-title a:hover {
+    color: #10b981;
   }
 
-  .solution-card:hover {
-    transform: translateY(-2px);
-  }
-
-  .product-stamp {
-    border-left: 3px solid var(--cyan);
-  }
-
-  .product-stamp:hover {
-    border-color: var(--cyan);
-    box-shadow: 0 0 25px rgba(0, 240, 255, 0.2);
-  }
-
-  .product-note {
-    border-left: 3px solid #10b981;
-  }
-
-  .product-note:hover {
-    border-color: #10b981;
-    box-shadow: 0 0 25px rgba(16, 185, 129, 0.2);
-  }
-
-  .product-spec {
-    border-left: 3px solid var(--purple);
-  }
-
-  .product-spec:hover {
-    border-color: var(--purple);
-    box-shadow: 0 0 25px rgba(139, 92, 246, 0.2);
-  }
-
-  .solution-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .product-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-  }
-
-  .product-badge.cyan { color: var(--cyan); }
-  .product-badge.green { color: #34d399; }
-  .product-badge.purple { color: #c084fc; }
-
-  .pill-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: currentColor;
-    box-shadow: 0 0 6px currentColor;
-  }
-
-  .prod-tag {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    color: var(--text-muted);
-  }
-
-  .solution-title {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.35;
-    margin: 0;
-  }
-
-  .solution-title a {
-    color: inherit;
-  }
-
-  .solution-title a:hover {
-    color: var(--cyan);
-  }
-
-  .solution-desc {
-    font-size: 0.82rem;
+  .pipeline-card-desc {
     color: var(--text-secondary);
-    line-height: 1.6;
-    margin-top: 0.2rem;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    flex: 1;
+    margin-bottom: 1.25rem;
   }
 
-  .solution-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    padding-top: 0.45rem;
+  .pipeline-card-footer {
+    padding-top: 0.85rem;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
-    font-size: 0.75rem;
+    font-size: 0.85rem;
   }
 
-  .tech-spec-bar {
-    display: flex;
-    align-items: center;
-    gap: 0.45rem;
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
+  .pipeline-meta {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.78rem;
     color: var(--text-muted);
   }
 
-  .link-arrow {
-    font-family: var(--font-mono);
+  /* ==========================================================================
+     SECTION 3: PLATFORMS GRID
+     ========================================================================== */
+  .platforms-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .platform-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.75rem;
+    border-radius: var(--radius-md);
+    background: var(--grad-card);
+    border: 1px solid var(--border-subtle);
+    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+  }
+
+  .platform-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 240, 255, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 240, 255, 0.12);
+  }
+
+  .platform-icon-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #ffffff;
+  }
+
+  .kakuyomu-icon {
+    background: rgba(0, 240, 255, 0.1);
+    border-color: rgba(0, 240, 255, 0.3);
+    color: #00f0ff;
+  }
+
+  .note-icon {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.3);
+    color: #10b981;
+  }
+
+  .icon-letter {
+    font-family: var(--font-mono, monospace);
+    font-weight: 800;
+    font-size: 1.3rem;
+  }
+
+  .platform-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .platform-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .platform-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .platform-badge {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.68rem;
     font-weight: 700;
-    color: var(--cyan);
-    font-size: 0.78rem;
+    color: #00f0ff;
   }
 
-  .link-arrow.green {
-    color: #34d399;
+  .platform-handle {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.72rem;
+    color: var(--text-muted);
   }
 
-  .link-arrow:hover {
-    text-shadow: 0 0 8px currentColor;
+  .platform-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #ffffff;
   }
 
-  /* Spec Capsules */
-  .spec-capsules {
+  .platform-desc {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .platform-arrow {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    transition: transform var(--transition), color var(--transition);
+  }
+
+  .platform-card:hover .platform-arrow {
+    transform: translateX(4px);
+    color: #00f0ff;
+  }
+
+  /* ==========================================================================
+     SECTION 4: PROFILE CARD
+     ========================================================================== */
+  .creator-profile-card {
+    padding: 3rem;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, rgba(20, 28, 50, 0.7) 0%, rgba(10, 15, 28, 0.9) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .profile-glow {
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, rgba(139, 92, 246, 0.1) 50%, transparent 70%);
+    filter: blur(50px);
+    pointer-events: none;
+  }
+
+  .profile-content-wrap {
+    display: flex;
+    align-items: flex-start;
+    gap: 2.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .profile-avatar-wrap {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    padding: 3px;
+    background: linear-gradient(135deg, var(--cyan), var(--pink));
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
+    flex-shrink: 0;
+  }
+
+  .profile-avatar-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #0b0f19;
+  }
+
+  .profile-info-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .profile-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .spec-id {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .profile-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #ffffff;
+  }
+
+  .concept-callout-box {
+    background: rgba(236, 72, 153, 0.08);
+    border-left: 3px solid var(--pink);
+    padding: 0.85rem 1.25rem;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    color: #ffffff;
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: fit-content;
+  }
+
+  .profile-bio {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    max-width: 800px;
+  }
+
+  .skills-tag-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.35rem;
-    margin-bottom: 0.3rem;
+    gap: 0.5rem;
   }
 
-  .capsule {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    padding: 0.15rem 0.45rem;
-    border-radius: 4px;
+  .spec-tag {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.8rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: var(--radius-sm);
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: #cbd5e1;
   }
 
-  .capsule.doromizu {
-    background: rgba(236, 72, 153, 0.15);
-    border-color: var(--pink);
-    color: #fff;
-    font-weight: 700;
-  }
-
-  .nav-links-footer {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-
-  .sub-nav-link {
-    color: var(--text-secondary);
-    transition: color 0.2s ease;
-  }
-
-  .sub-nav-link:hover {
-    color: var(--cyan);
-  }
-
-  .sub-nav-link.highlight {
-    color: var(--pink);
+  .spec-tag.highlight {
+    background: rgba(139, 92, 246, 0.12);
+    border-color: rgba(139, 92, 246, 0.35);
+    color: #c4b5fd;
     font-weight: 600;
   }
 
-  .sub-nav-link.highlight:hover {
-    text-shadow: 0 0 8px var(--pink);
+  .spec-tag.doromizu {
+    background: rgba(236, 72, 153, 0.12);
+    border-color: rgba(236, 72, 153, 0.35);
+    color: #f472b6;
+    font-weight: 700;
   }
 
-  .sep {
-    color: rgba(255, 255, 255, 0.2);
+  .profile-actions-row {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 960px) {
+    .works-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .platforms-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-kpi-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .portfolio-hero {
+      padding: 1.75rem 1.25rem;
+    }
+
+    .profile-content-wrap {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .concept-callout-box {
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .skills-tag-row, .profile-actions-row {
+      justify-content: center;
+    }
+
+    .telemetry-metrics {
+      display: none;
+    }
+
+    .break-pc {
+      display: none;
+    }
   }
 </style>

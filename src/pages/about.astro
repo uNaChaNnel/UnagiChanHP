@@ -73,21 +73,56 @@ import Layout from '../layouts/Layout.astro';
           <span class="whisper-note">（※グラボのためなら喜んで靴を舐める覚悟はあります。）</span>
         </p>
 
-        <h3>発信プラットフォーム・プロダクト</h3>
+        <h3>元々やっている創作活動</h3>
         <ul>
           <li>
-            <strong><a href="https://stampcreator.unagichan.com/" target="_blank" rel="noopener noreferrer">StampCreator</a></strong><br />
-            スマホ完結・LINEスタンプ制作支援ツール。AIイラストでスタンプを作る際に直面した「LINEの偶数ドット規格・余白・ZIP化がだるすぎる問題」を完全ブラウザ内処理で一発解決する自作ツール。
+            <strong><a href="https://x.com/UnagiChaaaaaN" target="_blank" rel="noopener noreferrer">X (旧Twitter) : @UnagiChaaaaaN</a></strong><br />
+            AIイラスト、開発進捗、日常、そして嫁（あなごちゃん）との熾烈な交渉ログを日々ポストしている活動のフロントライン。
           </li>
           <li>
-            <strong><a href="https://note.com/un4chan" target="_blank" rel="noopener noreferrer">公式note（うなぎちゃん＠ / 記事準備中）</a></strong><br />
-            ページを開設！「嫁にグラボを一蹴されたプロ駄作クリエーターの奮闘記」や開発ログを現在鋭意執筆・準備中。フォローしてお待ちください。
+            <strong><a href="https://kakuyomu.jp/users/UnagiChan" target="_blank" rel="noopener noreferrer">カクヨム : UnagiChan</a></strong><br />
+            Web小説執筆・ストーリー創作活動の拠点。物語を作ることへの情熱を注ぎ込む、文章クリエイターとしての原点。
+          </li>
+        </ul>
+
+        <h3>制作物・自作プロダクト</h3>
+        <ul>
+          <li>
+            <strong><a href="https://stampcreator.unagichan.com/" target="_blank" rel="noopener noreferrer">StampCreator（Webツール開発）</a></strong><br />
+            スマホ完結・LINEスタンプ制作支援ツール。AIイラストでスタンプを作る際に直面した「LINEの偶数ドット規格・余白・ZIP化がだるすぎる問題」を完全ブラウザ内処理で一発解決する自作ツール（無料公開中）。
           </li>
           <li>
             <strong>うなぎちゃん公式サイト（本サイト）</strong><br />
-            自作Webツールの公開母艦＆開発ログの集約ポータル。
+            自作Webツールの公開母艦＆ポートフォリオ。Astro v5 + Cloudflare Pagesによる爆速静的SSG構成。
           </li>
         </ul>
+
+        <h3>新GPU獲得に向けた収益化挑戦パイプライン</h3>
+        <p>
+          嫁に秒殺されたグラボ代を自力で錬成するため、面白そうな収益化には片っ端から泥水を啜って挑戦中！
+        </p>
+        <div class="monetize-pipeline-list">
+          <div class="pipeline-item">
+            <span class="pipeline-badge success">収益化達成</span>
+            <strong>Fanvue</strong>: AIイラストを活かしたファンコミュニティ運営・コンテンツ配信で収益化を達成！
+          </div>
+          <div class="pipeline-item">
+            <span class="pipeline-badge success">売上発生</span>
+            <strong><a href="https://note.com/un4chan" target="_blank" rel="noopener noreferrer">note 有料記事販売</a></strong>: 「嫁にグラボを一蹴された奮闘記」やノウハウ記事を執筆。有料記事が実際に数本売れ、泥水から最初の一滴を抽出！
+          </div>
+          <div class="pipeline-item">
+            <span class="pipeline-badge review">審査中</span>
+            <strong>FANZA同人等でのCG販売</strong>: AIイラストを活用した同人CG集・デジタル写真集の販売を申請。審査通過を心静かに祈祷中。
+          </div>
+          <div class="pipeline-item">
+            <span class="pipeline-badge ready">PF側準備待ち</span>
+            <strong>AIデジタル商品</strong>: 高精度プロンプトやデジタル制作アセットのパッケージングは完了。プラットフォーム側の準備が整い次第展開予定。
+          </div>
+          <div class="pipeline-item">
+            <span class="pipeline-badge wip">まったり作成中</span>
+            <strong>オリジナルGame作成</strong>: 漫画・ゲーム好きとしての本領発揮。自分が心から「面白い！」と思える世界観のゲームを気ままに試作中。
+          </div>
+        </div>
 
         <h3>主な技術スタック</h3>
         <p class="skills-lead">
@@ -314,5 +349,60 @@ import Layout from '../layouts/Layout.astro';
 
   .info-table td {
     color: var(--text-secondary);
+  }
+
+  /* Monetize Pipeline Styles */
+  .monetize-pipeline-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1.25rem 0 2rem;
+  }
+
+  .pipeline-item {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.85rem 1.1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    flex-wrap: wrap;
+  }
+
+  .pipeline-badge {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+  }
+
+  .pipeline-badge.success {
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: #10b981;
+  }
+
+  .pipeline-badge.review {
+    background: rgba(234, 179, 8, 0.15);
+    border: 1px solid rgba(234, 179, 8, 0.4);
+    color: #eab308;
+  }
+
+  .pipeline-badge.ready {
+    background: rgba(139, 92, 246, 0.15);
+    border: 1px solid rgba(139, 92, 246, 0.4);
+    color: #a78bfa;
+  }
+
+  .pipeline-badge.wip {
+    background: rgba(0, 240, 255, 0.12);
+    border: 1px solid rgba(0, 240, 255, 0.35);
+    color: #00f0ff;
   }
 </style>

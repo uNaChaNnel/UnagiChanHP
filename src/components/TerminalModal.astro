@@ -120,7 +120,12 @@ Type <span class="term-hl">exit</span> to return to graphical interface.
 
     if (!modal || !input || !historyContainer || !bodyContainer) return;
 
-    const commandList = ['help', 'unagi', 'tools', 'stamp', 'stampcreator', 'note', 'x', 'twitter', 'spec', 'about', 'gpu', 'doromizu', 'wife', 'contact', 'mail', 'email', 'clear', 'cls', 'matrix', 'sudo', 'exit', 'gui'];
+    const commandList = [
+      'help', 'unagi', 'tools', 'stamp', 'stampcreator', 'note', 'x', 'twitter', 
+      'spec', 'about', 'gpu', 'vram', 'wife', 'anago', 'doromizu', 'contact', 'mail', 'email', 
+      'clear', 'cls', 'matrix', 'sudo', 'exit', 'gui',
+      'portfolio', 'works', 'kakuyomu', 'fanza', 'cg', 'fanvue', 'game', 'digital', 'ai', 'status', 'monetize'
+    ];
     const cmdHistory: string[] = [];
     let historyIndex = -1;
 
@@ -254,44 +259,128 @@ Type <span class="term-hl">exit</span> to return to graphical interface.
           printLine(`
 <span class="term-hl">=== UNAGI CUI COMMANDS ===</span>
 
-  <span class="cmd">unagi</span>
-    ???
+  <span class="cmd">portfolio</span>, <span class="cmd">works</span>
+    制作物・活動・収益化パイプラインの概要を表示
 
-  <span class="cmd">tools</span>
-    制作ツール・プロジェクト一覧を表示
+  <span class="cmd">status</span>, <span class="cmd">monetize</span>
+    新GPU獲得に向けた収益化挑戦ステータス一覧
 
-  <span class="cmd">stamp</span>
-    注目の「StampCreator」をブラウザで即起動
+  <span class="cmd">tools</span>, <span class="cmd">stamp</span>
+    制作ツール一覧 / StampCreator起動
 
-  <span class="cmd">note</span>
-    公式note（嫁との攻防・開発奮闘記）を開く
+  <span class="cmd">kakuyomu</span>
+    カクヨム（Web小説執筆・創作の原点）を開く
 
   <span class="cmd">x</span>, <span class="cmd">twitter</span>
     うなぎちゃんのX（@UnagiChaaaaaN）を開く
 
+  <span class="cmd">note</span>
+    公式note（嫁との攻防・有料記事）を開く
+
+  <span class="cmd">fanza</span>, <span class="cmd">fanvue</span>, <span class="cmd">game</span>, <span class="cmd">digital</span>
+    各挑戦プロジェクトの個別詳細を表示
+
   <span class="cmd">spec</span>, <span class="cmd">about</span>
-    うなぎちゃん＠（プロ駄作クリエーター）のシステム仕様
+    プロ駄作クリエーターの生態仕様
 
-  <span class="cmd">gpu</span>, <span class="cmd">vram</span>
-    GPU VRAM限界アラートと嫁への土下座状況
-
-  <span class="cmd">wife</span>, <span class="cmd">anago</span>
-    嫁（あなごちゃん）の現況ステータス（超警戒）
-
-  <span class="cmd">doromizu</span>
-    泥水啜りプロセスの実行ログを出力
+  <span class="cmd">gpu</span>, <span class="cmd">doromizu</span>, <span class="cmd">wife</span>
+    GPU危機アラート / 泥水啜りログ / 嫁ガード現況
 
   <span class="cmd">contact</span>, <span class="cmd">mail</span>
-    公式メール窓口（contact@unagichan.com）と連絡先
+    公式メール窓口
 
-  <span class="cmd">matrix</span>
-    緑の文字が降るマトリックス演出
+  <span class="cmd">matrix</span>, <span class="cmd">clear</span>, <span class="cmd">exit</span>
+    マトリックス演出 / 画面消去 / CUI終了
+`);
+        case 'portfolio':
+        case 'works':
+          printLine(`
+<span class="term-hl">=== UNAGI PORTFOLIO OVERVIEW ===</span>
+【元々やっていること】
+- X (旧Twitter) : <a href="https://x.com/UnagiChaaaaaN" target="_blank" class="term-link">@UnagiChaaaaaN</a> (AIイラスト・開発・日常)
+- カクヨム       : <a href="https://kakuyomu.jp/users/UnagiChan" target="_blank" class="term-link">UnagiChan</a> (Web小説執筆・物語創作)
 
-  <span class="cmd">clear</span>, <span class="cmd">cls</span>
-    ターミナル画面を消去
+【制作物・Webツール】
+- StampCreator  : <a href="https://stampcreator.unagichan.com/" target="_blank" class="term-link">https://stampcreator.unagichan.com/</a>
+  (スマホ完結LINEスタンプ規格一括生成ツール・Zero Egress)
+- 公式サイト    : Astro v5 + Cloudflare Pagesによる爆速SSGポータル
 
-  <span class="cmd">exit</span>, <span class="cmd">gui</span>
-    CUIを終了して通常Web画面に戻る
+【収益化現在挑戦中 (新GPU獲得泥水パイプライン)】
+- Fanvue        : [収益化達成] ファンコミュニティ運営
+- note販売      : [売上発生] 有料記事が数本売れた！
+- FANZA同人CG   : [審査中] AIイラストCG集販売申請中
+- AIデジタル商品 : [準備完了] PF側準備待ち
+- Game作成      : [まったり作成中] オリジナルゲーム開発中
+
+Type '<span class="term-hl">status</span>' で詳細パイプラインを確認できます。
+`);
+          break;
+
+        case 'status':
+        case 'monetize':
+          printLine(`
+<span class="term-hl">=== GPU FUND PIPELINE STATUS ===</span>
+[新GPU獲得に向けた泥水啜り進捗レポート]
+
+1. [  <span class="term-success">OK / 収益化</span>  ] Fanvue
+   -> AIイラスト生成ファンコミュニティで収益化達成中！
+
+2. [  <span class="term-success">OK / 売上発生</span>  ] note 有料記事販売
+   -> 「嫁にグラボを一蹴された奮闘記」等。有料記事数本売れた！泥水から最初の一滴を抽出。
+   -> URL: <a href="https://note.com/un4chan" target="_blank" class="term-link">https://note.com/un4chan</a>
+
+3. [  <span class="term-warning">WAIT / 審査中</span> ] FANZA同人等でのCG販売
+   -> AIイラスト同人CG集の販売申請中。現在審査通過を祈祷中...
+
+4. [  <span class="term-info">READY / 待機</span>  ] AIデジタル商品
+   -> 商品パッケージング準備完了。プラットフォーム側の準備完了待ち。
+
+5. [  <span class="term-cyan">WIP / 開発中</span>   ] 自作Game作成
+   -> ゲーム好きクリエイターの本領発揮。まったり試作中。
+
+★ 嫁の警戒度: SSS+ (鉄壁) / 諦めない心: 100%
+`);
+          break;
+
+        case 'kakuyomu':
+          printLine(`<span class="term-success">[OPEN]</span> カクヨム（うなぎちゃんのWeb小説）を開いています... 物語創作の原点！`);
+          window.open('https://kakuyomu.jp/users/UnagiChan', '_blank');
+          break;
+
+        case 'fanza':
+        case 'cg':
+          printLine(`
+<span class="term-warning">[STATUS: 審査中 // UNDER REVIEW]</span>
+- Project : FANZA同人等でのAIイラストCG集販売
+- Current : 作品提出完了、プラットフォーム審査通過待ち
+- Comment : 審査が無事通ればグラボ資金の大きな後方支援に！祈祷をお願いします。
+`);
+          break;
+
+        case 'fanvue':
+          printLine(`
+<span class="term-success">[STATUS: 収益化達成 // ACTIVE]</span>
+- Project : Fanvue ファンコミュニティ運営
+- Current : AIイラスト配信により収益化達成！
+- Comment : 日々の生成と応援してくださる方々に感謝。GPU代へ一歩前進。
+`);
+          break;
+
+        case 'game':
+          printLine(`
+<span class="term-cyan">[STATUS: まったり作成中 // IN PROGRESS]</span>
+- Project : オリジナル自作Game開発
+- Current : プロトタイプ・世界観構想中
+- Policy  : 面白くないならやらない。自分が本気で遊べるものをまったり形にしています。
+`);
+          break;
+
+        case 'digital':
+        case 'ai':
+          printLine(`
+<span class="term-info">[STATUS: 準備完了 // PLATFORM PENDING]</span>
+- Project : AIデジタル商品・プロンプト・制作アセット
+- Current : コンテンツ側の制作・準備は完了。配信プラットフォーム側の準備完了待ち。
 `);
           break;
 
